@@ -140,7 +140,7 @@ export const RegisterForm = () => {
 					/>
 
 					<Button type="submit" className="w-full">
-						Login
+						Create an account
 					</Button>
 				</form>
 			</Form>

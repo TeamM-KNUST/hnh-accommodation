@@ -1,10 +1,12 @@
+"use client";
+
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
-    FormMessage,
+	FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { CardWrapper } from "./card-wrapper";
@@ -13,21 +15,24 @@ import * as z from "zod";
 
 import { LoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export const LoginForm = () => {
+	const [showPassword, setShowPassword] = useState(false);
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
 			email: "",
 			password: "",
 		},
-    });
-    
-    const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-        console.log(data);
-    }
+	});
+
+	const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+		console.log(data);
+	};
 	return (
 		<CardWrapper
 			headerLabel="Welcome Back"
@@ -36,10 +41,7 @@ export const LoginForm = () => {
 			showSocial
 		>
 			<Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-6"
-                >
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 					<FormField
 						control={form.control}
 						name="email"
@@ -63,17 +65,34 @@ export const LoginForm = () => {
 							<FormItem>
 								<FormLabel>Password</FormLabel>
 								<FormControl>
-									<Input {...field} placeholder="********" type="password" />
-                                </FormControl>
-                                <FormMessage />
-                                
+									<div className="relative">
+										<Input
+											{...field}
+											placeholder="********"
+											type={showPassword ? "text" : "password"}
+										/>
+										<Button
+											className="absolute inset-y-0 right-2 flex items-center"
+											size="icon"
+											variant="ghost"
+											onClick={() => setShowPassword(!showPassword)}
+										>
+											{showPassword ? (
+												<EyeOffIcon className="w-5 h-5" />
+											) : (
+												<EyeIcon className="w-5 h-5" />
+											)}
+										</Button>
+									</div>
+								</FormControl>
+								<FormMessage />
 							</FormItem>
 						)}
-                    />
-                    <Button type="submit" className="w-full">
-                        Login
+					/>
 
-                    </Button>
+					<Button type="submit" className="w-full">
+						Login
+					</Button>
 				</form>
 			</Form>
 		</CardWrapper>

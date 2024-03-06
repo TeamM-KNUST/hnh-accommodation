@@ -19,6 +19,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { login } from "@/actions/login";
 
 export const LoginForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,7 @@ export const LoginForm = () => {
 	});
 
 	const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-		console.log(data);
+		login(data);
 	};
 	return (
 		<CardWrapper

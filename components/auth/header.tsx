@@ -6,6 +6,7 @@ const font = Poppins({
 	weight: ["600"],
 });
 
+
 interface HeaderProps {
 	label: string;
 }

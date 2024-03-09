@@ -18,11 +18,20 @@ import { Input } from "@/components/ui/input";
 import { RegisterSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+
+import { register } from "@/actions/register";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
 
 export const RegisterForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [showComfirmPassword, setShowComfirmPassword] = useState(false);
+
+	const [pending, startTransition] = useTransition();
+
+	const [error, setError] = useState<string | undefined>("");
+	const [success, setSuccess] = useState<string | undefined>("");
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
@@ -34,8 +43,17 @@ export const RegisterForm = () => {
 		},
 	});
 
-	const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
-		console.log(data);
+	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+		setError("");
+		setSuccess("");
+		startTransition(() => {
+			register(values).then((data) => {
+				if (!(data instanceof z.ZodError)) {
+					setError(data.error);
+					setSuccess(data.success);
+				}
+			});
+		});
 	};
 	return (
 		<CardWrapper
@@ -53,7 +71,12 @@ export const RegisterForm = () => {
 							<FormItem>
 								<FormLabel>Name</FormLabel>
 								<FormControl>
-									<Input {...field} placeholder="John Doe" type="name" />
+									<Input
+										{...field}
+										placeholder="John Doe"
+										type="name"
+										disabled={pending}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -70,6 +93,7 @@ export const RegisterForm = () => {
 										{...field}
 										placeholder="john.doe@example.com"
 										type="email"
+										disabled={pending}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -88,6 +112,7 @@ export const RegisterForm = () => {
 											{...field}
 											placeholder="********"
 											type={showPassword ? "text" : "password"}
+											disabled={pending}
 										/>
 										<Button
 											className="absolute inset-y-0 right-2 flex items-center"
@@ -119,6 +144,7 @@ export const RegisterForm = () => {
 											{...field}
 											placeholder="********"
 											type={showComfirmPassword ? "text" : "password"}
+											disabled={pending}
 										/>
 										<Button
 											className="absolute inset-y-0 right-2 flex items-center"
@@ -127,6 +153,7 @@ export const RegisterForm = () => {
 											onClick={() =>
 												setShowComfirmPassword(!showComfirmPassword)
 											}
+											disabled={pending}
 										>
 											{showComfirmPassword ? (
 												<EyeOffIcon className="w-5 h-5" />
@@ -140,8 +167,10 @@ export const RegisterForm = () => {
 							</FormItem>
 						)}
 					/>
+					<FormError message={error} />
+					<FormSuccess message={success} />
 
-					<Button type="submit" className="w-full">
+					<Button disabled={pending} type="submit" className="w-full">
 						Create an account
 					</Button>
 				</form>

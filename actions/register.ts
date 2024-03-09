@@ -6,8 +6,8 @@ import { db } from "@/lib/db";
 import { RegisterSchema } from "@/schemas";
 import * as z from "zod";
 
-export const regiser = async (data: z.infer<typeof RegisterSchema>) => {
-	const validateFields = RegisterSchema.safeParse(data);
+export const register = async (values: z.infer<typeof RegisterSchema>) => {
+	const validateFields = RegisterSchema.safeParse(values);
 
 	if (!validateFields.success) {
 		return validateFields.error;

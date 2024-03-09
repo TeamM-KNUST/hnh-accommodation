@@ -24,7 +24,6 @@ model Account {
   providerAccountId  String
   refresh_token      String?  @db.Text
   access_token       String?  @db.Text
-  password           String?  @db.Text
   expires_at         Int?
   token_type         String?
   scope              String?
@@ -49,6 +48,8 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  password      String?  @db.Text
+  confirmPassword String? @db.Text
   image         String?
   accounts      Account[]
   sessions      Session[]

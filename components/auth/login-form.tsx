@@ -20,6 +20,8 @@ import { LoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState, useTransition } from "react";
+import { FormError } from "../form-error";
+import { FormSuccess } from "../form-success";
 
 export const LoginForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -100,7 +102,8 @@ export const LoginForm = () => {
 							</FormItem>
 						)}
 					/>
-
+					<FormError message="Invalid credential" />
+					<FormSuccess message="Login successful" />
 					<Button type="submit" className="w-full" disabled={pending}>
 						Login
 					</Button>

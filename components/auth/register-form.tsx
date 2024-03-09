@@ -118,6 +118,7 @@ export const RegisterForm = () => {
 											className="absolute inset-y-0 right-2 flex items-center"
 											size="icon"
 											variant="ghost"
+											type="button"
 											onClick={() => setShowPassword(!showPassword)}
 										>
 											{showPassword ? (
@@ -150,6 +151,7 @@ export const RegisterForm = () => {
 											className="absolute inset-y-0 right-2 flex items-center"
 											size="icon"
 											variant="ghost"
+											type="button"
 											onClick={() =>
 												setShowComfirmPassword(!showComfirmPassword)
 											}

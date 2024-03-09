@@ -13,8 +13,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 		return validateFields.error;
 	}
 	const { email, password, name, confirmpassword } = validateFields.data;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const hashedConfirmPassword = await bcrypt.hash(confirmpassword, 10);
+	const hashedPassword = await bcrypt.hash(password, 10);
+	const hashedConfirmPassword = await bcrypt.hash(confirmpassword, 10);
 
 	const existingUser = await db.user.findFirst({
 		where: {
@@ -23,22 +23,22 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 	});
 	if (existingUser) {
 		return {
-			error: "User already exists",
+			error: "User already exists!",
 		};
 	}
 
-    if(password !== confirmpassword){
-        return {
-            error: "Password mismatch!"
-        }
-    }
+	if (password !== confirmpassword) {
+		return {
+			error: "Password mismatch!",
+		};
+	}
 
 	await db.user.create({
 		data: {
 			email,
 			name,
-            password: hashedPassword,
-            confirmPassword:hashedConfirmPassword
+			password: hashedPassword,
+			confirmPassword: hashedConfirmPassword,
 		},
 	});
 

@@ -55,6 +55,7 @@ export const RegisterForm = () => {
 								<FormControl>
 									<Input {...field} placeholder="John Doe" type="name" />
 								</FormControl>
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -71,6 +72,7 @@ export const RegisterForm = () => {
 										type="email"
 									/>
 								</FormControl>
+								<FormMessage />
 							</FormItem>
 						)}
 					/>

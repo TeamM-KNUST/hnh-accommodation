@@ -26,6 +26,8 @@ import { FormSuccess } from "../form-success";
 export const LoginForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [pending, startTransition] = useTransition();
+	const [error, setError] = useState<string | undefined>("");
+	const [success, setSuccess] = useState<string | undefined>("");
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
@@ -36,10 +38,22 @@ export const LoginForm = () => {
 	});
 
 	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+		setError("");
+		setSuccess("");
+
 		startTransition(() => {
-			login(values).then((data) => {
-				console.log(data);
-			});
+			login(values)
+				.then((data ) => {
+					if (data?.error) {
+						setError(data.error);
+					}
+					if (data?.success) {
+						setSuccess(data.success);
+					}
+				})
+				.catch((error) => {
+					setError("Something went wrong");
+				});
 		});
 	};
 	return (
@@ -102,8 +116,8 @@ export const LoginForm = () => {
 							</FormItem>
 						)}
 					/>
-					<FormError message="Invalid credential" />
-					<FormSuccess message="Login successful" />
+					<FormError message={error} />
+					<FormSuccess message={success} />
 					<Button type="submit" className="w-full" disabled={pending}>
 						Login
 					</Button>

@@ -48,8 +48,8 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  password      String?  @db.Text
-  confirmPassword String? @db.Text
+  password      String?  
+  confirmPassword String? 
   image         String?
   accounts      Account[]
   sessions      Session[]

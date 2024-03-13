@@ -14,39 +14,38 @@ export default auth((req) => {
 	const { nextUrl } = req;
 	const isLoggedIn = !!req.auth;
 
-		const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-		const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-		const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-		if (isApiAuthRoute) {
-			return null;
+	if (isApiAuthRoute) {
+		return null;
+	}
+
+	if (isAuthRoute) {
+		if (isLoggedIn) {
+			return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+		}
+		return null;
+	}
+
+	if (!isLoggedIn && !isPublicRoute) {
+		let callbackUrl = nextUrl.pathname;
+		if (nextUrl.search) {
+			callbackUrl += nextUrl.search;
 		}
 
-		if (isAuthRoute) {
-			if (isLoggedIn) {
-				return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-			}
-			return null;
-		}
+		const encodedCallbackUrl = encodeURIComponent(callbackUrl);
 
-		if (!isLoggedIn && !isPublicRoute) {
-			let callbackUrl = nextUrl.pathname;
-			if (nextUrl.search) {
-				callbackUrl += nextUrl.search;
-			}
+		return Response.redirect(
+			new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+		);
+	}
 
-			const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+	return null;
+});
 
-			return Response.redirect(
-				new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
-			);
-	
-
- 	return null;
-		}
-}, 
-	
-
+// Optionally, don't invoke Middleware on some paths
 export const config = {
 	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

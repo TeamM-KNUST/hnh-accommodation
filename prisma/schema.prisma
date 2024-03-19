@@ -16,6 +16,10 @@ datasource db {
 }
 
 
+enum UserRole {
+  ADMIN
+  USER
+}
 model Account {
   id                 String  @id @default(cuid())
   userId             String
@@ -29,6 +33,7 @@ model Account {
   scope              String?
   id_token           String?  @db.Text
   session_state      String?
+  role               UserRole @default(USER)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

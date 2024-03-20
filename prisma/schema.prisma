@@ -33,7 +33,6 @@ model Account {
   scope              String?
   id_token           String?  @db.Text
   session_state      String?
-  role               UserRole @default(USER)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -56,6 +55,7 @@ model User {
   password      String?  
   confirmPassword String? 
   image         String?
+  role          UserRole @default(USER)
   accounts      Account[]
   sessions      Session[]
 }

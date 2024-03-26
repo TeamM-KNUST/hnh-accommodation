@@ -46,6 +46,7 @@ export const LoginForm = () => {
 				.then((data ) => {
 					if (data?.error) {
 						setError(data.error);
+						form.reset();
 					}
 					// if (data?.success) {
 					// 	setSuccess(data.success);
@@ -53,6 +54,7 @@ export const LoginForm = () => {
 				})
 				.catch((error) => {
 					setError("Something went wrong");
+					form.reset();
 				});
 		});
 	};

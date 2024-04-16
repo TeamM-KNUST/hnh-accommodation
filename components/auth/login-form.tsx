@@ -48,9 +48,9 @@ export const LoginForm = () => {
 						setError(data.error);
 						form.reset();
 					}
-					// if (data?.success) {
-					// 	setSuccess(data.success);
-					// }
+					if (data?.success) {
+						setSuccess(data.success);
+					}
 				})
 				.catch((error) => {
 					setError("Something went wrong");

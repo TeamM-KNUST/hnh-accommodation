@@ -28,15 +28,6 @@ export const {
 		}
 	},
 	callbacks: {
-		async signIn({ user }) {
-			if (user && user.id) {
-				const existingUser = await getUserById(user.id);
-				if (!existingUser) return false;
-			}
-
-			return true;
-
-	},
 		async session({ session, token, user }) {
 			
 			if (token.sub && session.user) {

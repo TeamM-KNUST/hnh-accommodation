@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { RegisterSchema } from "@/schemas";
 import * as z from "zod";
 import { getUserByEmail } from "@/data/user";
+import { generateVerificationToken } from "@/lib/token";	
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
 	const validateFields = RegisterSchema.safeParse(values);
@@ -38,8 +39,9 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 			confirmPassword: hashedConfirmPassword,
 		},
 	});
+	const verificationToken = await generateVerificationToken(email);
 
 	return {
-		success: "User created successfully!",
+		success: "Confirmation email sent!",
 	};
 };

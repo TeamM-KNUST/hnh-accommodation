@@ -6,7 +6,8 @@ export const getVericationTokenByToken = async (token: string) => {
 			where: {
 				token,
 			},
-		});
+        });
+        return verificationToken;
 	} catch {
 		return null;
 	}
@@ -18,7 +19,8 @@ export const getVericationTokenByEmail = async (email: string) => {
 			where: {
 				email,
 			},
-		});
+        });
+        return verificationToken;
 	} catch {
 		return null;
 	}

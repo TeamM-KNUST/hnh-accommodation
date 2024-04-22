@@ -28,7 +28,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
 	if (password !== confirmpassword) {
 		return {
-			error: "Password mismatch!",
+			error: "Password Mismatch!",
 		};
 	}
 

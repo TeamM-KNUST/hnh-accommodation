@@ -139,7 +139,7 @@ export const NewPasswordForm = () => {
 					<FormSuccess message={success} />
 
 					<Button disabled={pending} type="submit" className="w-full">
-						Update password
+						Reset password
 					</Button>
 				</form>
 			</Form>

@@ -16,7 +16,7 @@ import * as z from "zod";
 import { login } from "@/actions/login";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LoginSchema } from "@/schemas";
+import { ResetPasswordSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { FormError } from "../form-error";
@@ -27,15 +27,14 @@ export const PassswordResetForm = () => {
 	const [error, setError] = useState<string | undefined>("");
 	const [success, setSuccess] = useState<string | undefined>("");
 
-	const form = useForm<z.infer<typeof LoginSchema>>({
-		resolver: zodResolver(LoginSchema),
+	const form = useForm<z.infer<typeof ResetPasswordSchema>>({
+		resolver: zodResolver(ResetPasswordSchema),
 		defaultValues: {
-			email: "",
-			password: "",
+			email: ""
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+	const onSubmit = (values: z.infer<typeof ResetPasswordSchema>) => {
 		setError("");
 		setSuccess("");
 

@@ -22,6 +22,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState, useTransition } from "react";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import Link from "next/link";
 
 export const LoginForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -114,6 +115,15 @@ export const LoginForm = () => {
 										</Button>
 									</div>
 								</FormControl>
+								<Button
+									size="sm"
+									variant="link"
+									className="px-0 font-normal"
+								>
+									<Link href="/auth/reset">
+										Reset password
+									</Link>
+								</Button>
 								<FormMessage />
 							</FormItem>
 						)}

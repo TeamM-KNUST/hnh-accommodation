@@ -7,10 +7,12 @@ import {
 	authRoutes,
 	publicRoutes,
 } from "@/route";
+import { NextRequest } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
+	
 	const { nextUrl } = req;
 	const isLoggedIn = !!req.auth;
 

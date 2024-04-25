@@ -121,7 +121,7 @@ export const LoginForm = () => {
 									className="px-0 font-normal"
 								>
 									<Link href="/auth/reset">
-										Reset password
+										Forgot password
 									</Link>
 								</Button>
 								<FormMessage />

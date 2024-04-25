@@ -13,7 +13,7 @@ import { CardWrapper } from "./card-wrapper";
 
 import * as z from "zod";
 
-import { login } from "@/actions/login";
+import { reset } from "@/actions/reset";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ResetPasswordSchema } from "@/schemas";
@@ -39,7 +39,7 @@ export const PassswordResetForm = () => {
 		setSuccess("");
 
 		startTransition(() => {
-			login(values)
+			reset(values)
 				.then((data) => {
 					if (data?.error) {
 						setError(data.error);

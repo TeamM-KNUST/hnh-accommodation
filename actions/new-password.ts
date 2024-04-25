@@ -2,9 +2,9 @@
 
 import bcrypt from "bcryptjs";
 
+import { getPasswordResetTokenByToken } from "@/data/password-reset-token";
 import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
-import { generatePasswordToken } from "@/lib/token";
 import { NewPasswordSchema } from "@/schemas";
 import * as z from "zod";
 
@@ -22,7 +22,7 @@ export const newPassword = async (
 	}
 	const { password, confirmpassword } = validateFields.data;
 
-	const existingToken = await generatePasswordToken(token);
+	const existingToken = await getPasswordResetTokenByToken(token);
 	if (!existingToken) {
 		return { error: "Invalid token!" };
 	}
@@ -32,13 +32,19 @@ export const newPassword = async (
 		return { error: "Token has expired!" };
 	}
 
-	const exitingUser = await getUserByEmail(existingToken.email);
-	if (!exitingUser) {
+	const existingUser = await getUserByEmail(existingToken.email);
+	if (!existingUser) {
 		return { error: "Email does not exist!" };
 	}
-
-	const hashedPassword = await bcrypt.hash(password, 10);
-	const hashedConfirmPassword = await bcrypt.hash(confirmpassword, 10);
+	if (existingUser && existingUser.password) {
+		const isSamePassword = await bcrypt.compare(
+			password,
+			existingUser.password
+		);
+		if (isSamePassword) {
+			return { error: "Cannot use old password!" };
+		}
+	}
 
 	if (password !== confirmpassword) {
 		return {
@@ -46,8 +52,11 @@ export const newPassword = async (
 		};
 	}
 
+	const hashedPassword = await bcrypt.hash(password, 10);
+	const hashedConfirmPassword = await bcrypt.hash(confirmpassword, 10);
+
 	await db.user.update({
-		where: { email: existingToken.email },
+		where: { id: existingToken.id },
 		data: {
 			password: hashedPassword,
 			confirmPassword: hashedConfirmPassword,

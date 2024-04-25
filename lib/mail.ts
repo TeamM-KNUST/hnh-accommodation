@@ -6,7 +6,7 @@ const domain = process.env.NEXT_PUBLIC_URL;
 
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-	const confirmLink = `${domain}/auth/reset?token=${token}`;
+	const confirmLink = `${domain}/auth/new-password?token=${token}`;
 	await resend.emails.send({
 		from: "Acme <onboarding@resend.dev>",
 		to: email,

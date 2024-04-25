@@ -29,4 +29,3 @@ export const Header = ({ label }: HeaderProps) => {
 		</div>
 	);
 };
-s

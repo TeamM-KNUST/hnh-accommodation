@@ -15,16 +15,20 @@ import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RegisterSchema } from "@/schemas";
+import { NewPasswordSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState, useTransition } from "react";
 
-import { register } from "@/actions/register";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
+import { newPassword } from "@/actions/new-password";
+import { useSearchParams } from "next/navigation";
 
 export const NewPasswordForm = () => {
+	const searchParams = useSearchParams();
+	const token = searchParams.get("token");
+
 	const [showPassword, setShowPassword] = useState(false);
 	const [showComfirmPassword, setShowComfirmPassword] = useState(false);
 
@@ -33,21 +37,19 @@ export const NewPasswordForm = () => {
 	const [error, setError] = useState<string | undefined>("");
 	const [success, setSuccess] = useState<string | undefined>("");
 
-	const form = useForm<z.infer<typeof RegisterSchema>>({
-		resolver: zodResolver(RegisterSchema),
+	const form = useForm<z.infer<typeof NewPasswordSchema>>({
+		resolver: zodResolver(NewPasswordSchema),
 		defaultValues: {
-			email: "",
 			password: "",
-			confirmpassword: "",
-			name: "",
+			confirmpassword: ""
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+	const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
 		setError("");
 		setSuccess("");
 		startTransition(() => {
-			register(values).then((data) => {
+			newPassword(values, token).then((data) => {
 				if (!(data instanceof z.ZodError)) {
 					setError(data.error);
 					setSuccess(data.success);

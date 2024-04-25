@@ -23,8 +23,15 @@ import { useState, useTransition } from "react";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
+	const searchParams = useSearchParams();
+	const callbackUrl = searchParams.get("callbackUrl");
+	const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
+		? "Email already in use by another account"
+		: "";
+
 	const [showPassword, setShowPassword] = useState(false);
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string | undefined>("");
@@ -43,7 +50,7 @@ export const LoginForm = () => {
 		setSuccess("");
 
 		startTransition(() => {
-			login(values)
+			login(values, callbackUrl)
 				.then((data ) => {
 					if (data?.error) {
 						setError(data.error);
@@ -121,15 +128,13 @@ export const LoginForm = () => {
 									className="px-0 font-normal"
 									asChild
 								>
-									<Link href="/auth/reset">
-										Forgot password
-									</Link>
+									<Link href="/auth/reset">Forgot password</Link>
 								</Button>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
-					<FormError message={error} />
+					<FormError message={error || urlError} />
 					<FormSuccess message={success} />
 					<Button type="submit" className="w-full" disabled={pending}>
 						Login

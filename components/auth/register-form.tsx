@@ -35,7 +35,7 @@ export const RegisterForm = () => {
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
-		defaultValues: {
+		defaultValues:{
 			email: "",
 			password: "",
 			confirmpassword: "",
@@ -51,6 +51,7 @@ export const RegisterForm = () => {
 				if (!(data instanceof z.ZodError)) {
 					setError(data.error);
 					setSuccess(data.success);
+					form.reset();
 				}
 			});
 		});

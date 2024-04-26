@@ -15,11 +15,15 @@ datasource db {
   // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
+// Define the enumeration for UserRole
 enum UserRole {
   ADMIN
   USER
+  MODERATOR
+
 }
 
+// Define the User model with the following fields:
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -27,12 +31,28 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  phone        String?@default("000-000-0000")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
   role          UserRole @default(USER)
+
+  // Define the relation with other models
   accounts      Account[]
-  isTwoFactorEnabled Boolean @default(false)
+  listings     Listing[]
+  reservations Reservation[]
+  favorites    Favorite[]
   twoFactorConfirmation TwoFactorConfirmation?
+
+  isTwoFactorEnabled Boolean @default(false)
+
+  //Indexing for frequently used queries for performance
+  @@index([role])
+
 }
 
+
+// Define the Account model with the following fields:
 model Account {
   id                 String  @id @default(cuid())
   userId             String
@@ -47,11 +67,73 @@ model Account {
   id_token           String?  @db.Text
   session_state      String?
 
+  // Define the relation with User model
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
+// Define the Listing model with the following fields:
+model Listing {
+  id                 String  @id @default(cuid())
+  title           String
+  description     String
+  imageSrc        String
+  createdAt       DateTime @default(now())
+  category        String
+  roomCount       Int
+  bathroomCount   Int
+  guestCount      Int
+  locationValue   String
+  userId          String   
+  price           Int
+
+  // Define the relation with User model
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+
+  // Define the relation with other models
+  reservations    Reservation[]
+  favorites       Favorite[]
+
+  @@index([createdAt])
+}
+
+
+// Define the Reservation model with the following fields:
+model Reservation {
+  id                 String  @id @default(cuid())
+  userId           String 
+  listingId        String 
+  startDate        DateTime
+  endDate          DateTime
+  totalPrice       Int
+  createdAt        DateTime @default(now())
+
+  // Define the relation with User and Listing models
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+
+  @@index([startDate, endDate])
+}
+
+
+// Define the Favorite model with the following fields:
+model Favorite {
+  id                String  @id @default(cuid())
+  userId          String
+  listingId       String 
+
+  // Define the relation with User and Listing models
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing         Listing       @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+
+  @@unique([userId, listingId])
+}
+
+// Define the VerificationToken, PasswordResetToken, TwoFactorToken, and TwoFactorConfirmation models with the following fields:
 model VerificationToken {
   id String @id @default(cuid())
   email String
@@ -60,6 +142,8 @@ model VerificationToken {
 
   @@unique([email, token])
 }
+
+
 
 model PasswordResetToken {
   id String @id @default(cuid())

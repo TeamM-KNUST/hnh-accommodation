@@ -8,9 +8,7 @@
 export const publicRoutes = [
     "/",
     "/auth/confirm",
-    "/auth/reset",
-    "/auth/new-password",
-    "/auth/error",
+    
 ];
 
 /**

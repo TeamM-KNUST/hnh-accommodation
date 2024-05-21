@@ -1,13 +1,13 @@
-import create from 'zustand';
+import {create} from 'zustand';
 
 type usePopoverStore = {
   isOpen: boolean;
-  open: () => void;
-  close: () => void;
+  onOpen: () => void;
+  onClose: () => void;
 };
 
 export const usePopoverModal = create<usePopoverStore>((set) => ({
-  isOpen: true,
-  open: () => set({ isOpen: true }),
-  close: () => set({ isOpen: false }),
+	isOpen: true,
+	onOpen: () => set({ isOpen: true }),
+	onClose: () => set({ isOpen: false }),
 }));

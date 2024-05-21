@@ -1,32 +1,32 @@
 "use client";
 
-
 import { usePopoverModal } from "@/hooks/use-popover-modal";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { signOut } from "next-auth/react";
+import { Button } from "../ui/button";
+import { Popover, PopoverContent } from "../ui/popover";
 
-interface UserPopoverProps {
-    children: React.ReactNode;
+export const UserPopover = () => {
+	const { isOpen, onClose, onOpen } = usePopoverModal();
 
-}
+	const handleClick = () => {
+		if (isOpen) {
+			onOpen();
+        } else {
+			onClose();
+		}
+	};
 
-export const UserPopover = ({
-    children,
-    
-}: UserPopoverProps) => {
-    
-    const isOpen = usePopoverModal((state) => state.isOpen);
-    const onclose = usePopoverModal((state) => state.close);
-    const onOpen = usePopoverModal((state) => state.open);
-
-
-    return (
-        <Popover open={isOpen}  onOpenChange={onclose}>
-            <PopoverTrigger asChild onChange={onOpen} >
-               
-            </PopoverTrigger>
-            <PopoverContent>
-                {children}
-            </PopoverContent>
-       </Popover>
-    );
-}
+	return (
+		<Popover open={isOpen} >
+			<PopoverContent>
+				<Button
+					className="text-sm font-semibold bg-blue-800 "
+					size="lg"
+					onClick={() => signOut()}
+				>
+					Sign Up
+				</Button>
+			</PopoverContent>
+		</Popover>
+	);
+};

@@ -3,14 +3,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 interface AvatarImgProps {
     src?: string | undefined | null;
     alt?: string;
+    onClick?: () => void;
+    className?: string;
 
 }
 
 
-export const AvatarImg =({src, alt}:AvatarImgProps) => {
+export const AvatarImg =({src, alt, onClick, className}:AvatarImgProps) => {
     
     return (
-        <Avatar>
+        <Avatar onClick={onClick} className={className}>
             <AvatarImage src={src||'/image/placeholder.jpg'  } alt={alt} />
             <AvatarFallback>
                 <svg

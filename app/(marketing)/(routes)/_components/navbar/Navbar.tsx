@@ -1,5 +1,6 @@
 import { Container } from "@/components/container"
 import { Logo } from "./logo"
+import { UserMenu } from "./usermenu"
 
 
 export const Navbar = () => {
@@ -8,7 +9,8 @@ export const Navbar = () => {
             <div className="py-4 border-b-[1px]">
                 <Container>
                     <div className="flex items-center justify-between gap-3 md:gap-0">
-                        <Logo/>
+                        <Logo />
+                        <UserMenu/>
                     </div>
                 </Container>
             </div>

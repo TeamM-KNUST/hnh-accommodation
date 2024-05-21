@@ -1,14 +1,12 @@
-"use client";
 
-
-import { useSession } from "next-auth/react";
 import { AvatarImg } from "./avatarImage";
+import { auth } from "@/auth";
 
-export const UserMenu = () => {
-	const { data: session } = useSession();
+export const UserMenu = async () => {
+    const session = await auth();
 	return (
 		<div className="relative">
-			<AvatarImg src={session?.user?.image} />
+			<AvatarImg src={session?.user?.image} alt="User Avatar"/>
 		</div>
 	);
 };

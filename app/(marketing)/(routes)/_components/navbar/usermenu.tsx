@@ -1,9 +1,14 @@
-import { AvatarImg } from "./avatarImage"
+"use client";
+
+
+import { useSession } from "next-auth/react";
+import { AvatarImg } from "./avatarImage";
 
 export const UserMenu = () => {
-    return (
-        <div className="relative">
-            <AvatarImg />
-        </div>
-    )
-}
+	const { data: session } = useSession();
+	return (
+		<div className="relative">
+			<AvatarImg src={session?.user?.image} />
+		</div>
+	);
+};

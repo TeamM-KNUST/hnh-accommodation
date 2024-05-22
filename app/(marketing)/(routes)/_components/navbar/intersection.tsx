@@ -5,6 +5,8 @@ import "../style/intersection.css";
 import { cn } from "@/lib/utils";
 import { Inter, Poppins } from "next/font/google";
 import { useEffect, useRef } from "react";
+import { AVATAR_IMAGE_URLS, FLAGS_IMAGE_URLS } from "@/data/constant";
+import { HomePageAvatar } from "../homePage/homepageavatar";
 
 const font = Poppins({
 	subsets: ["latin"],
@@ -34,7 +36,8 @@ export const InterSection = () => {
 		<div className="section-wrapper">
 			<div className="relatve w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out">
 				<Image
-					ref={imageRef}
+                    ref={imageRef}
+                    sizes="(min-width: 640px) 50vw, 100vw"
 					src={
 						"https://a.hwstatic.com/image/upload/f_auto/v1645010222/pwa/whosgoing/los-patios-card_png.jpg"
 					}
@@ -42,7 +45,53 @@ export const InterSection = () => {
 					width={289}
 					height={328}
 					loading="lazy"
-				/>
+                />
+                <div>
+                    <HomePageAvatar 
+                        imgUrl={AVATAR_IMAGE_URLS["mike"]}
+                        flagImgUrl={FLAGS_IMAGE_URLS["usa"]}
+                        size={24}
+                        flagPosition={3}
+                        borerColor="aqua"
+                        className="w-16 h-16 avatar-usa"
+                        alt="Mike"
+                    />
+
+                    <HomePageAvatar
+                        imgUrl={AVATAR_IMAGE_URLS["nathan"]}
+                        flagImgUrl={FLAGS_IMAGE_URLS["china"]}
+                        size={24}
+                        flagPosition={3}
+                        borerColor="orange"
+                        className="w-16 h-16 avatar-china"
+                        alt="Pan"
+                    />
+
+                    <HomePageAvatar
+                        imgUrl={AVATAR_IMAGE_URLS["pan"]}
+                        flagImgUrl={FLAGS_IMAGE_URLS["poland"]}
+                        size={24}
+                        flagPosition={3}
+                        borerColor="red"
+                        className="w-16 h-16 avatar-poland"
+                        alt="Pan"
+                    />
+
+                    <HomePageAvatar
+                        imgUrl={AVATAR_IMAGE_URLS["tom"]}
+                        flagImgUrl={FLAGS_IMAGE_URLS["brazil"]}
+                        size={24}
+                        flagPosition={3}
+                        borerColor="red"
+                        className="w-16 h-16 avatar-poland"
+                        alt="Pan"
+                    />
+
+
+
+
+
+                </div>
 			</div>
 			<div className="flex flex-col items-center mt:[-3.125rem] text-center px-4 text-white">
 				<h2

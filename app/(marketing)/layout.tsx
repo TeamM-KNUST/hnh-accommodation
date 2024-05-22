@@ -8,7 +8,9 @@ const marketingLayout = ({ children }: marketingLayoutProps) => {
 	return (
         <div>
             <Navbar/>
-			<main>{children}</main>
+			<main
+				className="pt-28 pb-16"
+			>{children}</main>
 		</div>
 	);
 };

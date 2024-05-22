@@ -1,32 +1,45 @@
+"use client";
+
 import Image from "next/image";
 
-import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Poppins } from "next/font/google";
+import { useMemo } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const font = Poppins({
-    subsets: ["latin"],
-    weight: ["600", "700", "800"],
+	subsets: ["latin"],
+	weight: ["600", "700", "800"],
 });
 
 export const Connect = () => {
+	const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
+	const getImageUrl = useMemo(() => {
+		return isSmallScreen
+			? "https://a.hwstatic.com/image/upload/f_auto,h_400,q_50/v1644922394/pwa/new/The_Spindrift_Hostel-img-sm.jpg"
+			: "https://a.hwstatic.com/image/upload/f_auto,h_568,q_50/v1644922394/pwa/new/The_Spindrift_Hostel-img.jpg";
+	}, [isSmallScreen]);
 	return (
-		<div className=" relative md:flex flex-col  max-w-[90rem] mx-auto xl:px-12 md:px-8 sm:px-2 px-4 items-center justify-center mb-16 m-auto ">
+		<div className=" relative w-full flex flex-col lg:flex-row max-w-[1520px] mx-auto xl:pl-28 md:pl-10 sm:pl-2">
 			<Image
-				src={
-					"https://a.hwstatic.com/image/upload/f_auto,h_568,q_50/v1644922394/pwa/new/The_Spindrift_Hostel-img.jpg"
-				}
+				src={getImageUrl}
 				alt="hostel"
-				className="h-auto max-w-full object-cover "
+				className="block mx-auto object-contain  max-h-[568px] w-[305px] tablet-large:w-[375px] lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0"
 				height={568}
 				width={504}
 			/>
-			<div className="flex flex-col items-center justify-center">
-				<p className={cn("text-sm md:text-lg lg:text-2xl xl:text-3xl mt-8 mb-1", font.className)}>
+			<div className="flex flex-col items-center justify-center lg:items-start pt-3">
+				<p
+					className={cn(
+						"text-sm md:text-lg lg:text-2xl xl:text-3xl mb-2 lg:mt-8 lg:mb-4 font-bold",
+						font.className
+					)}
+				>
 					This is the <span className="text-[#cc0074]">NEW</span> Hostelworld.
 				</p>
 				<h2
 					className={cn(
-						"font-medium sm:text-2xl md:text-3xl lg:4xl xl:text-5xl text-center hyphens-auto",
+						"font-medium sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center hyphens-auto lg:text-left lg:leading-tight lg:mt-4 lg:mb-8",
 						font.className
 					)}
 				>

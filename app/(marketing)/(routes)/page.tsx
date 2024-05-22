@@ -1,6 +1,8 @@
 import { Container } from "@/components/container";
 import { Poppins } from "next/font/google";
+import { Connect } from "./_components/navbar/connect";
 import { Hero } from "./_components/navbar/hero";
+import { InterSection } from "./_components/navbar/intersection";
 
 const font = Poppins({
 	subsets: ["latin"],
@@ -8,10 +10,13 @@ const font = Poppins({
 });
 
 export default function Home() {
-	return <Container>
-		<div className="flex flex-col gap-y-4">
-
-		<Hero/>
-		</div>
-	</Container>;
+	return (
+		<Container>
+			<div className="flex flex-col gap-y-6">
+				<Hero />
+				<Connect />
+				<InterSection/>
+			</div>
+		</Container>
+	);
 }

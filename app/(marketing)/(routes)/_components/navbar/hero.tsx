@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
 	return (
-		<section className="flex gap-6 ">
+		<section className="flex gap-6 mb-16">
 			<div className="w-2/3 xl:w-1/3  lg:w-1/2   flex flex-col gap-y-4 ">
 				<h1 className="text-3xl sm:text-xl md:text-2xl xl:text-6xl, lg:text-5xl font-medium ">
 					Connecting
@@ -22,7 +22,7 @@ export const Hero = () => {
 					booking and get all necessary information concerning them
 				</p>
 				<Button
-					className="from-orange-600 to-purple-600 w-full "
+					className="from-orange-500 to-purple-500 bg-gradient-to-r cursor-pointer w-autoshut"
 					variant="default"
 					size="lg"
 				>
@@ -30,7 +30,7 @@ export const Hero = () => {
 				</Button>
 			</div>
 			<div
-				className="relative w-full  shadow-md rounded-lg overflow-hidden bg-no-repeat bg-cover bg-center"
+				className="relative w-full  shadow-md rounded-lg overflow-hidden bg-no-repeat bg-cover bg-center z-0"
 				style={{ backgroundImage: "url('image/hostel.jpg')" }}
 			/>
 		</section>

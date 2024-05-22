@@ -12,6 +12,15 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    height: 53.1875rem;
 }
 
 
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(30deg);
+    }
+}

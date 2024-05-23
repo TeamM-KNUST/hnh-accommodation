@@ -1,0 +1,187 @@
+.say-hello-section {
+  overflow-x: hidden;
+}
+.say-hello-section .say-hello-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: wds-rem(-84px);
+  margin-right: 0;
+  position: relative;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container {
+  position: relative;
+  min-width: wds-rem(420px);
+  max-width: wds-rem(900px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 34px;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading {
+  margin-left: wds-rem(84px);
+  padding: 0 34px;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading .sh-heading-title {
+  margin-bottom: 12px;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading .sh-heading-title :deep(> span) {
+  color: purple;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading .sh-heading-title :deep(> span)::after {
+  content: "\a";
+  white-space: pre;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 200px;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large {
+  display: none;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows {
+  position: relative;
+  margin: wds-rem(156px) auto 0 wds-rem(192px);
+  height: wds-rem(430px);
+  width: wds-rem(246px);
+  box-shadow: 0 11px 21px rgba(0, 0, 0, 0.15);
+  border-radius: 200px;
+  z-index: 1;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows .sh-chat-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows .sh-chat-window:nth-child(2), .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows .sh-chat-window:nth-child(3) {
+  display: none;
+}
+.say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper {
+  display: none;
+}
+@media screen and (width >= 1135px) {
+  .say-hello-section .say-hello-wrapper .say-hello-container {
+    display: block;
+    max-width: wds-rem(1000px);
+    margin-bottom: 45px;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading {
+    margin: 0 0 wds-rem(320px);
+    padding-left: 45px;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading .sh-heading-title {
+    margin-top: 0;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .say-hello-heading .sh-heading-subtitle {
+    max-width: wds-rem(500px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.small {
+    display: none;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large {
+    display: initial;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large.top-left {
+    top: wds-rem(94px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large.top-left.step-active-1 {
+    transform: translateY(55px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large.top-left.step-active-2 {
+    transform: translateY(90px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large.bottom-right {
+    top: unset;
+    left: unset;
+    right: 0;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large.bottom-right.step-active-1 {
+    transform: translateY(-55px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-image.large.bottom-right.step-active-2 {
+    transform: translateY(-90px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows {
+    margin-left: wds-rem(312px);
+    height: wds-rem(656px);
+    width: wds-rem(375px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows .sh-chat-window {
+    display: none;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-chat-windows .sh-chat-window.step-active {
+    display: block;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: wds-rem(175px);
+    width: wds-rem(995px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper::before, .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper::after {
+    content: "";
+    position: absolute;
+    height: wds-rem(50px);
+    border-left: 3px dashed lighter;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper::before {
+    left: wds-rem(-42px);
+    top: wds-rem(30px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper::after {
+    left: wds-rem(-42px);
+    top: wds-rem(101px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .dashed-circle {
+    position: absolute;
+    width: wds-rem(33px);
+    height: wds-rem(33px);
+    z-index: 2;
+    left: wds-rem(-57px);
+    transition: 0.3s;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .dashed-circle.step-1 {
+    top: 0;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .dashed-circle.step-2 {
+    top: wds-rem(74px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .dashed-circle.step-3 {
+    top: wds-rem(147px);
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .step {
+    cursor: pointer;
+    position: relative;
+    max-width: wds-rem(283px);
+    max-height: wds-rem(28px);
+    transition: 0.3s;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .step::before {
+    position: absolute;
+    left: wds-rem(-51px);
+    top: wds-rem(6px);
+    content: "";
+    border-radius: 50%;
+    background-color: lightblue;
+    width: wds-rem(21px);
+    height: wds-rem(21px);
+    box-shadow: 0 0 0 3px white;
+    z-index: 1;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .step.step-active::before {
+    background-color: purple;
+  }
+  .say-hello-section .say-hello-wrapper .say-hello-container .sh-steps-wrapper .step-active {
+    line-height: 1.75rem;
+    color: purple;
+  }
+}/*# sourceMappingURL=sayhello.css.map */

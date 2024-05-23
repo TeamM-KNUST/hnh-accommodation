@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { Connect } from "./_components/homePage/connect";
 import { Hero } from "./_components/homePage/hero";
 import { InterSection } from "./_components/homePage/intersection";
+import { Sayhello } from "./_components/homePage/sayhello";
 const font = Poppins({
 	subsets: ["latin"],
 	weight: ["600"],
@@ -14,7 +15,8 @@ export default function Home() {
 			<div className="flex flex-col gap-y-6">
 				<Hero />
 				<Connect />
-				<InterSection/>
+				<InterSection />
+				<Sayhello/>
 			</div>
 		</Container>
 	);

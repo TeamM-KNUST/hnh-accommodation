@@ -61,7 +61,7 @@ export const InterSection = () => {
 	}, []);
 
 	return (
-		<div className="section-wrapper" ref={imageRef}>
+		<div className="section-wrapper z-0" ref={imageRef}>
 			<div
 				className={cn(
 					`animate-container w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out relative`,

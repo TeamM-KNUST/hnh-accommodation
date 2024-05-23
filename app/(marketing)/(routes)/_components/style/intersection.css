@@ -1,3 +1,7 @@
+:root {
+  --wds-spacing-xxl: 40px; /* Define your spacing variable here */
+}
+
 .section-wrapper {
   position: relative;
   width: calc(100% + 3rem);
@@ -15,17 +19,7 @@
   height: 53.1875rem;
 }
 
-@keyframes disperse-and-return {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(1rem);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
+/* prettier-ignore */
 @media screen and (width >= 1024px) and (prefers-reduced-motion: no-preference) {
   .animate .card {
     animation: card-rotate 2s cubic-bezier(0.6, -0.28, 0.69, 1.58) forwards;
@@ -38,4 +32,359 @@
       transform: rotate(-3deg);
     }
   }
+  .animate .avatar {
+    animation-timing-function: cubic-bezier(0.6, -0.28, 0.69, 1.58);
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+  .animate .dot {
+    animation-timing-function: cubic-bezier(0.6, -0.28, 0.69, 1.58);
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+  .animate .dot-1 {
+    animation-name: swig-animation-dot-1;
+  }
+  .animate .dot-2 {
+    animation-name: swig-animation-dot-2;
+  }
+  .animate .dot-3 {
+    animation-name: swig-animation-dot-3;
+  }
+  .animate .dot-4 {
+    animation-name: swig-animation-dot-4;
+  }
+  .animate .dot-5 {
+    animation-name: swig-animation-dot-5;
+  }
+  .animate .dot-6 {
+    animation-name: swig-animation-dot-6;
+  }
+  .animate .dot-7 {
+    animation-name: swig-animation-dot-7;
+  }
+  .animate .dot-8 {
+    animation-name: swig-animation-dot-8;
+  }
+  .animate .dot-9 {
+    animation-name: swig-animation-dot-9;
+  }
+  .animate .dot-10 {
+    animation-name: swig-animation-dot-10;
+  }
+  .animate .dot-11 {
+    animation-name: swig-animation-dot-11;
+  }
+  @keyframes swig-animation-dot-1 {
+    from {
+      transform: translate(200px, -140px);
+    }
+    to {
+      transform: translate(300px, -170px);
+    }
+  }
+  @keyframes swig-animation-dot-2 {
+    from {
+      transform: translate(-120px, 20px);
+    }
+    to {
+      transform: translate(-530px, 30px);
+    }
+  }
+  @keyframes swig-animation-dot-3 {
+    from {
+      transform: translate(230px, -70px);
+    }
+    to {
+      transform: translate(330px, -100px);
+    }
+  }
+  @keyframes swig-animation-dot-4 {
+    from {
+      transform: translate(-180px, 140px);
+    }
+    to {
+      transform: translate(-250px, 160px);
+    }
+  }
+  @keyframes swig-animation-dot-5 {
+    from {
+      transform: translate(-140px, -120px);
+    }
+    to {
+      transform: translate(-350px, -175px);
+    }
+  }
+  @keyframes swig-animation-dot-6 {
+    from {
+      transform: translate(140px, -80px);
+    }
+    to {
+      transform: translate(570px, -220px);
+    }
+  }
+  @keyframes swig-animation-dot-7 {
+    from {
+      transform: translate(270px, 0);
+    }
+    to {
+      transform: translate(530px, -30px);
+    }
+  }
+  @keyframes swig-animation-dot-8 {
+    from {
+      transform: translate(-100px, 0);
+    }
+    to {
+      transform: translate(-260px, -25px);
+    }
+  }
+  @keyframes swig-animation-dot-9 {
+    from {
+      transform: translate(-40px, 60px);
+    }
+    to {
+      transform: translate(170px, 70px);
+    }
+  }
+  @keyframes swig-animation-dot-10 {
+    from {
+      transform: translate(120px, 0);
+    }
+    to {
+      transform: translate(310px, 35px);
+    }
+  }
+  @keyframes swig-animation-dot-11 {
+    from {
+      transform: translate(-240px, 100px);
+    }
+    to {
+      transform: translate(-550px, 210px);
+    }
+  }
+}
+
+/* prettier-ignore */
+.avatar-usa {
+  transform: translate(125px, -90px);
+  z-index: 102;
+}
+.avatar-poland {
+  transform: translate(-60px, -220px);
+  z-index: 103;
+}
+.avatar-ireland {
+  transform: translate(170px, 30px);
+  z-index: 106;
+}
+.avatar-brazil {
+  transform: translate(-220px, -155px);
+  z-index: 106;
+}
+.avatar-germany {
+  transform: translate(-330px, -135px);
+  z-index: 104;
+}
+.avatar-portugal {
+  transform: translate(-260px, -195px);
+  z-index: 102;
+}
+.avatar-italy {
+  transform: translate(240px, -200px);
+  z-index: 103;
+}
+.avatar-china {
+  transform: translate(-210px, 70px);
+  z-index: 105;
+}
+.avatar-france {
+  transform: translate(-300px, 50px);
+  z-index: 101;
+}
+.avatar-korea {
+  transform: translate(370px, -150px);
+  z-index: 105;
+}
+.avatar-spain {
+  transform: translate(120px, 160px);
+  z-index: 104;
+}
+
+/* prettier-ignore */
+@media screen and (width >= 1368px) {
+  .avatar-usa {
+    transform: translate(-225px, 0px);
+  }
+  .avatar-poland {
+    transform: translate(-170px, -60px);
+  }
+  .avatar-ireland {
+    transform: translate(140px, 30px);
+  }
+  .avatar-brazil {
+    transform: translate(-250px, 0);
+  }
+  .avatar-germany {
+    transform: translate(-100px, 160px);
+  }
+  .avatar-portugal {
+    transform: translate(-340px, -80px);
+  }
+  .avatar-italy {
+    transform: translate(110px, -110px);
+  }
+  .avatar-china {
+    transform: translate(530px, 0px);
+  }
+  .avatar-france {
+    transform: translate(-40px, 60px);
+  }
+  .avatar-korea {
+    transform: translate(120px, 0);
+  }
+  .avatar-spain {
+    transform: translate(120px, 90px);
+  }
+}
+/* prettier-ignore */
+.dot-1 {
+  transform: translate(20px, -200px);
+}
+.dot-2 {
+  transform: translate(-90px, -240px);
+}
+.dot-3 {
+  transform: translate(-90px, 210px);
+}
+.dot-4 {
+  transform: translate(-165px, 20px);
+}
+.dot-5 {
+  transform: translate(-160px, -185px);
+}
+.dot-6 {
+  transform: translate(-190px, -15px);
+}
+.dot-7 {
+  transform: translate(310px, 80px);
+}
+.dot-8 {
+  transform: translate(-260px, -45px);
+}
+.dot-9 {
+  transform: translate(60px, 220px);
+}
+.dot-10 {
+  transform: translate(100px, -200px);
+}
+.dot-11 {
+  transform: translate(350px, -230px);
+}
+
+/* prettier-ignore */
+@media screen and (width >= 1368px) {
+  .dot-1 {
+    transform: translate(200px, -140px);
+  }
+  .dot-2 {
+    transform: translate(-120px, 20px);
+  }
+  .dot-3 {
+    transform: translate(230px, -70px);
+  }
+  .dot-4 {
+    transform: translate(-180px, 140px);
+  }
+  .dot-5 {
+    transform: translate(-140px, -120px);
+  }
+  .dot-6 {
+    transform: translate(140px, -80px);
+  }
+  .dot-7 {
+    transform: translate(270px, 0);
+  }
+  .dot-8 {
+    transform: translate(-100px, 0);
+  }
+  .dot-9 {
+    transform: translate(-40px, 60px);
+  }
+  .dot-10 {
+    transform: translate(120px, 0);
+  }
+  .dot-11 {
+    transform: translate(-240px, 100px);
+  }
+}
+/* prettier-ignore */
+.card {
+  position: absolute;
+  top: wds-rem(182px);
+  left: calc(50% - 139px);
+  transform: rotate(-3deg);
+  z-index: 1000;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@media screen and (width >= 1368px) {
+  .card {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes compress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.avatar-usa {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-poland {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-china {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-portugal {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-brazil {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-germany {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-france {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-italy {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-korea {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-spain {
+  animation: compress 2s ease-in-out;
+}
+
+.avatar-ireland {
+  animation: compress 2s ease-in-out;
 }/*# sourceMappingURL=intersection.css.map */

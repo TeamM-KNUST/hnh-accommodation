@@ -22,7 +22,6 @@ const inter = Inter({
 
 const useScreen = () => {
 	const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
-
 	useEffect(() => {
 		const handleResize = () => {
 			setIsLargeScreen(window.innerWidth > 768);
@@ -65,9 +64,7 @@ export const InterSection = () => {
 		<div className="section-wrapper" ref={imageRef}>
 			<div
 				className={cn(
-					` w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out ${
-						shouldAnimate ? "animate" : ""
-					}`
+					`animate-container w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out relative`,shouldAnimate ? "animate" : ""
 				)}
 			>
 				<Image
@@ -112,7 +109,7 @@ export const InterSection = () => {
 					<HomePageAvatar
 						imgUrl={AVATAR_IMAGE_URLS.luiza}
 						flagImgUrl={FLAGS_IMAGE_URLS.brazil}
-						size={isLargeScreen ? 162 : 89}
+						size={isLargeScreen ? 168 : 89}
 						flagPosition={isLargeScreen ? 14 : 0}
 						borderColor="blue"
 						className="avatar-brazil"
@@ -181,20 +178,22 @@ export const InterSection = () => {
 						className="avatar-spain"
 						alt="Victoria"
 					/>
+				
+
 					<HomePageAvatarDot
 						size={12}
 						fill={false}
 						color="pink"
-						className="dot-1"
-					/>
+						className="dot-1 "
+						/>
 					<HomePageAvatarDot
 						size={12}
 						fill={false}
 						color="violet"
-						className="dot-2"
+						className="dot-2 "
 					/>
 					<HomePageAvatarDot size={10} color="green" className="dot-3" />
-					<HomePageAvatarDot size={10} color="pink" className="dot-4" />
+					<HomePageAvatarDot size={10} color="pink" className="dot-4 " />
 					<HomePageAvatarDot size={20} color="orange" className="dot-5" />
 					<HomePageAvatarDot size={20} color="red" className="dot-6" />
 					<HomePageAvatarDot
@@ -202,17 +201,18 @@ export const InterSection = () => {
 						fill={false}
 						color="aqua"
 						className="dot-7"
-					/>
+						/>
 					<HomePageAvatarDot size={16} color="aqua" className="dot-8" />
 					<HomePageAvatarDot
 						size={16}
 						fill={false}
 						color="violet"
 						className="dot-9"
-					/>
+						/>
 					<HomePageAvatarDot size={16} color="yellow" className="dot-10" />
 					<HomePageAvatarDot size={18} color="yellow" className="dot-11" />
 				</div>
+					
 			</div>
 			<div className="flex flex-col items-center mt:[-3.125rem] text-center px-4 text-white">
 				<h2
@@ -225,7 +225,7 @@ export const InterSection = () => {
 				</h2>
 				<p
 					className={cn(
-						"my-2 sm:text-2xl md:text-3xl lg:text-4xl xl:text-xl",
+						"my-2 sm:text-xs md:text-sm lg:text-xl xl:text-2xl",
 						inter.className
 					)}
 				>

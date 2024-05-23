@@ -5,11 +5,10 @@ interface HomePageAvatarProps {
 	flagImgUrl: string;
 	size: number;
 	flagPosition: number;
-	borerColor: string;
+	borderColor: string;
 	className: string;
-	alt: string;
-	width?: number;
-	height?: number;
+	alt?: string;
+	
 }
 
 export const HomePageAvatar = ({
@@ -17,35 +16,29 @@ export const HomePageAvatar = ({
 	flagImgUrl,
 	size,
 	flagPosition,
-	borerColor,
+	borderColor,
 	className,
-	alt,
 }: HomePageAvatarProps) => {
 	return (
-		<div className="relative">
-			<Image
+		<div
+			className={`relative inline-block rounded-full overflow-hidden border-2 ${className}`}
+			style={{ width: `${size}px`, height: `${size}px`, borderColor }}
+		>
+			<img
 				src={imgUrl}
-				alt={alt}
-				className={className}
-				style={{
-					objectPosition: flagPosition,
-					border: borerColor,
-					borderRadius: "50%",
-				}}
-				width={size}
-				height={size}
+				alt="Avatar"
+				className="w-full h-full object-cover rounded-full"
 			/>
-			<Image
+			<img
 				src={flagImgUrl}
-				alt={alt}
-				className="absolute top-0 left-0"
+				alt="Flag"
+				className="absolute rounded-full"
 				style={{
-					objectPosition: flagPosition,
-					border: `${borerColor}`,
-					borderRadius: "50%",
+					top: `${flagPosition}px`,
+					right: `${flagPosition}px`,
+					width: `${size * 0.2}px`,
+					height: `${size * 0.2}px`,
 				}}
-				width={size}
-				height={size}
 			/>
 		</div>
 	);

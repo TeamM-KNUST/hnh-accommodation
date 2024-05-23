@@ -1,0 +1,626 @@
+.section-wrapper {
+	position: relative;
+	width: calc(100% + 2 * 1.5rem);
+	margin-left: -1.5rem;
+	margin-right: -1.5rem;
+	background-color: #7f32cd;
+	clip-path: polygon(0 calc(100% - 3rem), 0 3rem, 100% 0, 100% 100%);
+	padding-bottom: 5rem;
+	width: 100vw;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	height: 53.1875rem;
+}
+
+/* prettier-ignore */
+&.animate {
+    @media screen and (width >=1024px) and (prefers-reduced-motion: no-preference) {
+      .card {
+        animation: card-rotate 2s cubic-bezier(0.6, -0.28, 0.69, 1.58) forwards;
+
+        @keyframes card-rotate {
+          from {
+            transform: rotate(15deg);
+          }
+
+          to {
+            transform: rotate(-3deg);
+          }
+        }
+      }
+
+      .avatar {
+        animation-timing-function: cubic-bezier(.6, -0.28, .69, 1.58);
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+
+        &-usa {
+          animation-name: swig-animation-usa
+        }
+
+        &-poland {
+          animation-name: swig-animation-poland
+        }
+
+        &-ireland {
+          animation-name: swig-animation-ireland
+        }
+
+        &-brazil {
+          animation-name: swig-animation-brazil
+        }
+
+        &-germany {
+          animation-name: swig-animation-germany
+        }
+
+        &-portugal {
+          animation-name: swig-animation-portugal
+        }
+
+        &-italy {
+          animation-name: swig-animation-italy
+        }
+
+        &-china {
+          animation-name: swig-animation-china
+        }
+
+        &-france {
+          animation-name: swig-animation-france
+        }
+
+        &-korea {
+          animation-name: swig-animation-korea
+        }
+
+        &-spain {
+          animation-name: swig-animation-spain
+        }
+      }
+
+      @keyframes swig-animation-usa {
+        from {
+          transform: translate(125px, -20px);
+        }
+
+        to {
+          transform: translate(145px, -20px);
+        }
+      }
+
+      @keyframes swig-animation-poland {
+        from {
+          transform: translate(-170px, -60px);
+        }
+
+        to {
+          transform: translate(-200px, -70px);
+        }
+      }
+
+      @keyframes swig-animation-ireland {
+        from {
+          transform: translate(140px, 30px);
+        }
+
+        to {
+          transform: translate(400px, 30px);
+        }
+      }
+
+      @keyframes swig-animation-brazil {
+        from {
+          transform: translate(-100px, 0);
+        }
+
+        to {
+          transform: translate(-540px, -180px);
+        }
+      }
+
+      @keyframes swig-animation-germany {
+        from {
+          transform: translate(-100px, 160px);
+        }
+
+        to {
+          transform: translate(-460px, 150px);
+        }
+      }
+
+      @keyframes swig-animation-portugal {
+        from {
+          transform: translate(-140px, -80px);
+        }
+
+        to {
+          transform: translate(-260px, -195px);
+        }
+      }
+
+      @keyframes swig-animation-italy {
+        from {
+          transform: translate(110px, -110px);
+        }
+
+        to {
+          transform: translate(130px, -190px);
+        }
+      }
+
+      @keyframes swig-animation-china {
+        from {
+          transform: translate(-100px, 100px);
+        }
+
+        to {
+          transform: translate(-730px, 20px);
+        }
+      }
+
+      @keyframes swig-animation-france {
+        from {
+          transform: translate(-40px, 60px);
+        }
+
+        to {
+          transform: translate(-270px, 60px);
+        }
+      }
+
+      @keyframes swig-animation-korea {
+        from {
+          transform: translate(120px, 0);
+        }
+
+        to {
+          transform: translate(500px, -180px);
+        }
+      }
+
+      @keyframes swig-animation-spain {
+        from {
+          transform: translate(120px, 90px);
+        }
+
+        to {
+          transform: translate(230px, 100px);
+        }
+      }
+
+      .dot {
+        animation-timing-function: cubic-bezier(0.6, -0.28, 0.69, 1.58);
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+
+        &-1 {
+          animation-name: swig-animation-dot-1;
+        }
+
+        &-2 {
+          animation-name: swig-animation-dot-2;
+        }
+
+        &-3 {
+          animation-name: swig-animation-dot-3;
+        }
+
+        &-4 {
+          animation-name: swig-animation-dot-4;
+        }
+
+        &-5 {
+          animation-name: swig-animation-dot-5;
+        }
+
+        &-6 {
+          animation-name: swig-animation-dot-6;
+        }
+
+        &-7 {
+          animation-name: swig-animation-dot-7;
+        }
+
+        &-8 {
+          animation-name: swig-animation-dot-8;
+        }
+
+        &-9 {
+          animation-name: swig-animation-dot-9;
+        }
+
+        &-10 {
+          animation-name: swig-animation-dot-10;
+        }
+
+        &-11 {
+          animation-name: swig-animation-dot-11;
+        }
+      }
+
+      @keyframes swig-animation-dot-1 {
+        from {
+          transform: translate(200px, -140px);
+        }
+
+        to {
+          transform: translate(300px, -170px);
+        }
+      }
+
+      @keyframes swig-animation-dot-2 {
+        from {
+          transform: translate(-120px, 20px);
+        }
+
+        to {
+          transform: translate(-530px, 30px);
+        }
+      }
+
+      @keyframes swig-animation-dot-3 {
+        from {
+          transform: translate(230px, -70px);
+        }
+
+        to {
+          transform: translate(330px, -100px);
+        }
+      }
+
+      @keyframes swig-animation-dot-4 {
+        from {
+          transform: translate(-180px, 140px);
+        }
+
+        to {
+          transform: translate(-250px, 160px);
+        }
+      }
+
+      @keyframes swig-animation-dot-5 {
+        from {
+          transform: translate(-140px, -120px);
+        }
+
+        to {
+          transform: translate(-350px, -175px);
+        }
+      }
+
+      @keyframes swig-animation-dot-6 {
+        from {
+          transform: translate(140px, -80px);
+        }
+
+        to {
+          transform: translate(570px, -220px);
+        }
+      }
+
+      @keyframes swig-animation-dot-7 {
+        from {
+          transform: translate(270px, 0);
+        }
+
+        to {
+          transform: translate(530px, -30px);
+        }
+      }
+
+      @keyframes swig-animation-dot-8 {
+        from {
+          transform: translate(-100px, 0);
+        }
+
+        to {
+          transform: translate(-260px, -25px);
+        }
+      }
+
+      @keyframes swig-animation-dot-9 {
+        from {
+          transform: translate(-40px, 60px);
+        }
+
+        to {
+          transform: translate(170px, 70px);
+        }
+      }
+
+      @keyframes swig-animation-dot-10 {
+        from {
+          transform: translate(120px, 0);
+        }
+
+        to {
+          transform: translate(310px, 35px);
+        }
+      }
+
+      @keyframes swig-animation-dot-11 {
+        from {
+          transform: translate(-240px, 100px);
+        }
+
+        to {
+          transform: translate(-550px, 210px);
+        }
+      }
+    }
+  }
+/* prettier-ignore */
+.avatar {
+  &-usa {
+    transform: translate(125px, -90px);
+    z-index: 102;
+  }
+
+  &-poland {
+    transform: translate(-60px, -220px);
+    z-index: 103;
+  }
+
+  &-ireland {
+    transform: translate(170px, 30px);
+    z-index: 106;
+  }
+
+  &-brazil {
+    transform: translate(-220px, -155px);
+    z-index: 106;
+  }
+
+  &-germany {
+    transform: translate(-330px, -135px);
+    z-index: 104;
+  }
+
+  &-portugal {
+    transform: translate(-260px, -195px);
+    z-index: 102;
+  }
+
+  &-italy {
+    transform: translate(240px, -200px);
+    z-index: 103;
+  }
+
+  &-china {
+    transform: translate(-210px, 70px);
+    z-index: 105;
+  }
+
+  &-france {
+    transform: translate(-300px, 50px);
+    z-index: 101;
+  }
+
+  &-korea {
+    transform: translate(370px, -150px);
+    z-index: 105;
+  }
+
+  &-spain {
+    transform: translate(120px, 160px);
+    z-index: 104;
+  }
+}
+
+/* prettier-ignore */
+@media screen and (width >=1368px) {
+  .avatar {
+    &-usa {
+      transform: translate(125px, -20px);
+    }
+
+    &-poland {
+      transform: translate(-170px, -60px);
+    }
+
+    &-ireland {
+      transform: translate(140px, 30px);
+    }
+
+    &-brazil {
+      transform: translate(-100px, 0);
+    }
+
+    &-germany {
+      transform: translate(-100px, 160px);
+    }
+
+    &-portugal {
+      transform: translate(-140px, -80px);
+    }
+
+    &-italy {
+      transform: translate(110px, -110px);
+    }
+
+    &-china {
+      transform: translate(-100px, 100px);
+    }
+
+    &-france {
+      transform: translate(-40px, 60px);
+    }
+
+    &-korea {
+      transform: translate(120px, 0);
+    }
+
+    &-spain {
+      transform: translate(120px, 90px);
+    }
+  }
+}
+
+/* prettier-ignore */
+.dot {
+  &-1 {
+    transform: translate(20px, -200px);
+  }
+
+  &-2 {
+    transform: translate(-90px, -240px);
+  }
+
+  &-3 {
+    transform: translate(-90px, 210px);
+  }
+
+  &-4 {
+    transform: translate(-165px, 20px);
+  }
+
+  &-5 {
+    transform: translate(-160px, -185px);
+  }
+
+  &-6 {
+    transform: translate(-190px, -15px);
+  }
+
+  &-7 {
+    transform: translate(310px, 80px);
+  }
+
+  &-8 {
+    transform: translate(-260px, -45px);
+  }
+
+  &-9 {
+    transform: translate(60px, 220px);
+  }
+
+  &-10 {
+    transform: translate(100px, -200px);
+  }
+
+  &-11 {
+    transform: translate(350px, -230px);
+  }
+}
+
+/* prettier-ignore */
+@media screen and (width >=1368px) {
+  .dot {
+    &-1 {
+      transform: translate(200px, -140px);
+    }
+
+    &-2 {
+      transform: translate(-120px, 20px);
+    }
+
+    &-3 {
+      transform: translate(230px, -70px);
+    }
+
+    &-4 {
+      transform: translate(-180px, 140px);
+    }
+
+    &-5 {
+      transform: translate(-140px, -120px);
+    }
+
+    &-6 {
+      transform: translate(140px, -80px);
+    }
+
+    &-7 {
+      transform: translate(270px, 0);
+    }
+
+    &-8 {
+      transform: translate(-100px, 0);
+    }
+
+    &-9 {
+      transform: translate(-40px, 60px);
+    }
+
+    &-10 {
+      transform: translate(120px, 0);
+    }
+
+    &-11 {
+      transform: translate(-240px, 100px);
+    }
+  }
+}
+
+.swis-section-wrapper {
+	padding-bottom: wds-rem(80px);
+
+	@media screen and (width >=768px) {
+		height: wds-rem(821px);
+	}
+
+	@media screen and (width >=1024px) {
+		height: wds-rem(851px);
+	}
+
+	background-color: $wds-color-purple;
+	clip-path: polygon(
+		0 calc(100% - #{$wds-spacing-xxl}),
+		0 #{$wds-spacing-xxl},
+		100% 0,
+		100% 100%
+	);
+	position: relative;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: $wds-color-white;
+	text-align: center;
+	margin-top: wds-rem(-50px);
+	padding-left: $wds-spacing-m;
+	padding-right: $wds-spacing-m;
+
+	&-header {
+		font-family: $font-family-poppins;
+
+		@include title-1-bld;
+
+		@media screen and (width >=1024px) {
+			font-size: wds-rem(64px);
+			line-height: wds-rem(64px);
+			font-weight: 700;
+		}
+
+		:deep(span) {
+			color: $wds-color-sunset-light;
+		}
+	}
+
+	&-body {
+		@include title-6-bld;
+
+		margin-top: $wds-spacing-l;
+		font-family: $font-family-inter;
+		margin-bottom: $wds-spacing-xl;
+	}
+}
+
+.card {
+	position: absolute;
+	top: wds-rem(182px);
+	left: calc(50% - 139px);
+	transform: rotate(-3deg);
+	z-index: $wds-z-index-toast;
+	border-radius: $wds-border-radius-xl;
+	box-shadow: $wds-shadow-dark-xl;
+
+	@media screen and (width >=1368px) {
+		transform: rotate(15deg);
+	}
+}

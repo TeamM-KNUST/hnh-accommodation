@@ -73,6 +73,7 @@ export const InterSection = () => {
 						"https://a.hwstatic.com/image/upload/f_auto/v1645010222/pwa/whosgoing/los-patios-card_png.jpg"
 					}
 					alt="Connect with travellers"
+					className="card"
 					width={289}
 					height={328}
 					loading="lazy"

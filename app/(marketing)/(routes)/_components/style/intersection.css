@@ -1,36 +1,41 @@
-
-.section-wrapper{
-    position: relative;
-    width: calc(100% + 2 * 1.5rem);
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    background-color: #7f32cd;
-    clip-path: polygon(0 calc(100% - 3rem), 0 3rem, 100% 0, 100% 100%);
-    padding-bottom: 5rem;
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    height: 53.1875rem;
+.section-wrapper {
+  position: relative;
+  width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  background-color: #7f32cd;
+  -webkit-clip-path: polygon(0 calc(100% - 3rem), 0 3rem, 100% 0, 100% 100%);
+          clip-path: polygon(0 calc(100% - 3rem), 0 3rem, 100% 0, 100% 100%);
+  padding-bottom: 5rem;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 53.1875rem;
 }
 
 @keyframes disperse-and-return {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(1rem);
-    }
-    100% {
-        transform: translateY(0);
-    }
-    
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
-
-.animate {
-  animation-timing-function: cubic-bezier(.6, -0.28, .69, 1.58);
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  animation-name: disperse-and-return;
-}
+@media screen and (width >= 1024px) and (prefers-reduced-motion: no-preference) {
+  .animate .card {
+    animation: card-rotate 2s cubic-bezier(0.6, -0.28, 0.69, 1.58) forwards;
+  }
+  @keyframes card-rotate {
+    from {
+      transform: rotate(15deg);
+    }
+    to {
+      transform: rotate(-3deg);
+    }
+  }
+}/*# sourceMappingURL=intersection.css.map */

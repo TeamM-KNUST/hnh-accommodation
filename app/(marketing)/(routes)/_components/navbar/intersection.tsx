@@ -1,14 +1,14 @@
 "use client";
 
-
 import Image from "next/image";
 import "../style/intersection.css";
 
+import { AVATAR_IMAGE_URLS, FLAGS_IMAGE_URLS } from "@/data/constant";
 import { cn } from "@/lib/utils";
 import { Inter, Poppins } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-import { AVATAR_IMAGE_URLS, FLAGS_IMAGE_URLS } from "@/data/constant";
 import { HomePageAvatar } from "../homePage/homepageavatar";
+import { HomePageAvatarDot } from "../homePage/homepageavatardot";
 
 const font = Poppins({
 	subsets: ["latin"],
@@ -20,7 +20,6 @@ const inter = Inter({
 	weight: ["800"],
 });
 
-
 const useScreen = () => {
 	const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
 
@@ -31,16 +30,14 @@ const useScreen = () => {
 
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
-		
-	}, [])
+	}, []);
 	return { isLargeScreen };
-}
+};
 
 export const InterSection = () => {
 	const imageRef = useRef<HTMLDivElement>(null);
-	const { isLargeScreen } = useScreen();;
+	const { isLargeScreen } = useScreen();
 	const [shouldAnimate, setShouldAnimate] = useState(false);
-	
 
 	useEffect(() => {
 		const currentImage = imageRef.current;
@@ -54,7 +51,7 @@ export const InterSection = () => {
 			},
 			{ threshold: 0.5 }
 		);
-		if(currentImage) {
+		if (currentImage) {
 			observer.observe(currentImage);
 		}
 		return () => {
@@ -66,7 +63,13 @@ export const InterSection = () => {
 
 	return (
 		<div className="section-wrapper" ref={imageRef}>
-			<div className={cn(` w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out ${shouldAnimate ? 'animate': ""}`)}>
+			<div
+				className={cn(
+					` w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out ${
+						shouldAnimate ? "animate" : ""
+					}`
+				)}
+			>
 				<Image
 					sizes="(min-width: 640px) 50vw, 100vw"
 					src={
@@ -178,6 +181,37 @@ export const InterSection = () => {
 						className="avatar-spain"
 						alt="Victoria"
 					/>
+					<HomePageAvatarDot
+						size={12}
+						fill={false}
+						color="pink"
+						className="dot-1"
+					/>
+					<HomePageAvatarDot
+						size={12}
+						fill={false}
+						color="violet"
+						className="dot-2"
+					/>
+					<HomePageAvatarDot size={10} color="green" className="dot-3" />
+					<HomePageAvatarDot size={10} color="pink" className="dot-4" />
+					<HomePageAvatarDot size={20} color="orange" className="dot-5" />
+					<HomePageAvatarDot size={20} color="red" className="dot-6" />
+					<HomePageAvatarDot
+						size={16}
+						fill={false}
+						color="aqua"
+						className="dot-7"
+					/>
+					<HomePageAvatarDot size={16} color="aqua" className="dot-8" />
+					<HomePageAvatarDot
+						size={16}
+						fill={false}
+						color="violet"
+						className="dot-9"
+					/>
+					<HomePageAvatarDot size={16} color="yellow" className="dot-10" />
+					<HomePageAvatarDot size={18} color="yellow" className="dot-11" />
 				</div>
 			</div>
 			<div className="flex flex-col items-center mt:[-3.125rem] text-center px-4 text-white">

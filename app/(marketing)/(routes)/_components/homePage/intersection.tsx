@@ -7,8 +7,8 @@ import { AVATAR_IMAGE_URLS, FLAGS_IMAGE_URLS } from "@/data/constant";
 import { cn } from "@/lib/utils";
 import { Inter, Poppins } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-import { HomePageAvatar } from "../homePage/homepageavatar";
-import { HomePageAvatarDot } from "../homePage/homepageavatardot";
+import { HomePageAvatar } from "./_components/homepageavatar";
+import { HomePageAvatarDot } from "./_components/homepageavatardot";
 
 const font = Poppins({
 	subsets: ["latin"],
@@ -64,7 +64,8 @@ export const InterSection = () => {
 		<div className="section-wrapper" ref={imageRef}>
 			<div
 				className={cn(
-					`animate-container w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out relative`,shouldAnimate ? "animate" : ""
+					`animate-container w-full flex items-center h-[40.625rem] justify-center overflow-x-hidden break-out relative`,
+					shouldAnimate ? "animate" : ""
 				)}
 			>
 				<Image
@@ -178,14 +179,13 @@ export const InterSection = () => {
 						className="avatar-spain"
 						alt="Victoria"
 					/>
-				
 
 					<HomePageAvatarDot
 						size={12}
 						fill={false}
 						color="pink"
 						className="dot-1 "
-						/>
+					/>
 					<HomePageAvatarDot
 						size={12}
 						fill={false}
@@ -201,18 +201,17 @@ export const InterSection = () => {
 						fill={false}
 						color="aqua"
 						className="dot-7"
-						/>
+					/>
 					<HomePageAvatarDot size={16} color="aqua" className="dot-8" />
 					<HomePageAvatarDot
 						size={16}
 						fill={false}
 						color="violet"
 						className="dot-9"
-						/>
+					/>
 					<HomePageAvatarDot size={16} color="yellow" className="dot-10" />
 					<HomePageAvatarDot size={18} color="yellow" className="dot-11" />
 				</div>
-					
 			</div>
 			<div className="flex flex-col items-center mt:[-3.125rem] text-center px-4 text-white">
 				<h2

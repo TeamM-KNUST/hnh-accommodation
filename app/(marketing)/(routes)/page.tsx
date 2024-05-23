@@ -1,9 +1,8 @@
 import { Container } from "@/components/container";
 import { Poppins } from "next/font/google";
-import { Connect } from "./_components/navbar/connect";
-import { Hero } from "./_components/navbar/hero";
-import { InterSection } from "./_components/navbar/intersection";
-
+import { Connect } from "./_components/homePage/connect";
+import { Hero } from "./_components/homePage/hero";
+import { InterSection } from "./_components/homePage/intersection";
 const font = Poppins({
 	subsets: ["latin"],
 	weight: ["600"],

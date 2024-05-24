@@ -1,18 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import "../style/intersection.css";
+import "../../style/intersection.css";
 
-import { AVATAR_IMAGE_URLS, FLAGS_IMAGE_URLS } from "@/data/constant";
+import { AVATAR_IMAGE_URLS, FLAGS_IMAGE_URLS } from "@/app/(marketing)/(routes)/_components/homePage/Interconection/constant";
 import { cn } from "@/lib/utils";
 import { Inter, Poppins } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-import { HomePageAvatar } from "./_components/homepageavatar";
-import { HomePageAvatarDot } from "./_components/homepageavatardot";
+import { HomePageAvatar } from "../_components/homepageavatar";
+import { HomePageAvatarDot } from "../_components/homepageavatardot";
 
 const font = Poppins({
 	subsets: ["latin"],
-	weight: [ "700"],
+	weight: ["700"],
 });
 
 const inter = Inter({

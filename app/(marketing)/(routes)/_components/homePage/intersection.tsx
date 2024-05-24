@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 const useScreen = () => {
-	const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+	const [isLargeScreen, setIsLargeScreen] = useState(false);
 	useEffect(() => {
 		const handleResize = () => {
 			setIsLargeScreen(window.innerWidth > 768);

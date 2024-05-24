@@ -20,7 +20,7 @@ export const Connect = () => {
 			: "https://a.hwstatic.com/image/upload/f_auto,h_568,q_50/v1644922394/pwa/new/The_Spindrift_Hostel-img.jpg";
 	}, [isSmallScreen]);
 	return (
-		<div className=" relative w-full flex flex-col lg:flex-row max-w-[1220px] mx-auto xl:pl-28 md:pl-10 sm:pl-2">
+		<div className=" relative w-full flex flex-col lg:flex-row max-w-[1800px] mx-auto xl:pl-28 md:pl-10 sm:pl-2">
 			<Image
 				src={getImageUrl}
 				alt="hostel"
@@ -39,7 +39,7 @@ export const Connect = () => {
 				</p>
 				<h2
 					className={cn(
-						"font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center hyphens-auto lg:text-left lg:mt-4 lg:mb-8 leading-relaxed",
+						"font-medium sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center hyphens-auto lg:text-left lg:mt-4 lg:mb-8 leading-[3.4rem] tracking-tight",
 						font.className
 					)}
 				>

@@ -20,7 +20,7 @@ export const UserMenu = () => {
 					<Button
 						className="text-sm font-semibold bg-blue-800 "
 						size="lg"
-						onClick={() => signOut()}
+						onClick={() => router.push("auth/register")}
 					>
 						Sign Up
 					</Button>

@@ -1,7 +1,10 @@
+import { CardsCarousel } from "../_components/cardsCarousel"
+
 export const SoloToSocial = () => {
     return (
-        <div>
-            Solo To Social Pages Content
-        </div>
+        <section className="py-16">
+            <CardsCarousel/>
+            
+        </section>
     )
 }

@@ -1,4 +1,4 @@
-export const CardsCarousel = () => {
+export const CommunityCards = () => {
     return (
         <div>
             Card Carousel Pages Content

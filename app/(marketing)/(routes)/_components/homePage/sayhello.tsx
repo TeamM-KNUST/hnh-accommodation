@@ -49,13 +49,13 @@ export const Sayhello = () => {
         }
     });
 	return (
-		<section className="overflow-x-hidden my-16 mb-16 say-hello-section">
-			<div className="relative flex flex-col justify-center items-center mr-0 say-hello-wrapper">
-				<div className="relative flex my-0 mx-auto min-w-[26.25rem] say-hello-container">
-					<div className="flex-1 ml-1 mt-4 p-0 say-hello-heading">
+		<section className=" say-hello-section">
+			<div className="say-hello-wrapper">
+				<div className="say-hello-container">
+					<div className="mb-60 say-hello-heading">
 						<h2
 							className={cn(
-								"sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl mt-12 mb-15 sh-heading-title",
+								"sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl mt-12 mb-4 sh-heading-title",
 								font.className
 							)}
 						>
@@ -67,25 +67,15 @@ export const Sayhello = () => {
 							volleyball!
 						</p>
 					</div>
-					<div className="h-[30rem] mt-12 ml-6 w-[17.5rem] sh-chat-windows">
+					<div className="sh-chat-windows">
 						<Image
 							src="https://a.hwstatic.com/image/upload/f_auto,h_656,w_375,q_50/v1645433308/pwa/chat/chat-hostel.png"
 							alt="chat hostel"
 							width={375}
 							height={656}
 							loading="lazy"
-							className={`sh-chat-window ${
-								currentIndex === 0 ? "step-ative" : ""
-							}`}
-						/>
-						<Image
-							src="https://a.hwstatic.com/image/upload/f_auto,h_656,w_375,q_50/v1645433308/pwa/chat/chat-direct.png"
-							alt="chat direct"
-							width={375}
-							height={656}
-							loading="lazy"
 							className={`sh-chat-window${
-								currentIndex === 2 ? "step-ative" : ""
+								currentIndex === 0 ? "step-ative" : ""
 							}`}
 						/>
 						<Image
@@ -95,9 +85,19 @@ export const Sayhello = () => {
 							height={656}
 							loading="lazy"
 							className={`sh-chat-window${
-								currentIndex === 1 ? "step-ative" : ""
+                                currentIndex === 1 ? "step-ative" : ""
 							}`}
 						/>
+                            <Image
+                                src="https://a.hwstatic.com/image/upload/f_auto,h_656,w_375,q_50/v1645433308/pwa/chat/chat-direct.png"
+                                alt="chat direct"
+                                width={375}
+                                height={656}
+                                loading="lazy"
+                                className={`sh-chat-window${
+                                    currentIndex === 2 ? "step-ative" : ""
+                                }`}
+                            />
 					</div>
 					<Image
 						src="https://a.hwstatic.com/image/upload/f_auto,h_226,w_370,q_50/v1644506518/pwa/chat/chat-image-1-sm.jpg"
@@ -105,7 +105,7 @@ export const Sayhello = () => {
 						width={370}
 						height={226}
 						loading="lazy"
-						className="sh-chat-image small"
+						className="sh-chat-image small" 
 					/>
 					<Image
 						src="https://a.hwstatic.com/image/upload/f_auto,h_480,w_320,q_50/v1644506520/pwa/chat/chat-image-1.jpg"
@@ -113,7 +113,7 @@ export const Sayhello = () => {
 						width={320}
 						height={480}
 						loading="lazy"
-						className={` sh-chat-image large top-left step-active-${currentIndex}`}
+						className={`sh-chat-image large top-left step-active-${currentIndex}`}
 					/>
 					<Image
 						src="https://a.hwstatic.com/image/upload/f_auto,h_480,w_320,q_50/v1644506518/pwa/chat/chat-image-2.jpg"
@@ -123,29 +123,29 @@ export const Sayhello = () => {
 						loading="lazy"
 						className={`sh-chat-image large bottom-right step-active-${currentIndex}`}
 					/>
-					<div className=" sh-steps-wrapper">
+					<div className="sh-steps-wrapper">
 						<Image
 							src="/image/dashed-circle.svg"
 							alt="dashed circle"
 							width={33}
 							height={33}
 							loading="lazy"
-							className={`dashed-circle step-${currentIndex + 1} `}
+							className={`step-${currentIndex + 1} `}
 						/>
 						<div
-							className={`step ${currentIndex === 0 ? "active" : ""}`}
+							className={`step-${currentIndex === 0 ? "active" : ""}`}
 							onClick={() => forceStepSlection(0)}
 						>
 							Hostel Chat
 						</div>
 						<div
-							className={`step ${currentIndex === 1 ? "active" : ""}`}
+							className={`step-${currentIndex === 1 ? "active" : ""}`}
 							onClick={() => forceStepSlection(1)}
 						>
 							Direct Message
 						</div>
 						<div
-							className={`step ${currentIndex === 2 ? "active" : ""}`}
+							className={`step-${currentIndex === 2 ? "active" : ""}`}
 							onClick={() => forceStepSlection(2)}
 						>
 							Homestel Chat

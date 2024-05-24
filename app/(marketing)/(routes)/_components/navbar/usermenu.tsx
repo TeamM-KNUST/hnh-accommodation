@@ -1,27 +1,19 @@
 "use client";
-import getCurrentUser from "@/actions/getCurrentUser";
 import { Button } from "@/components/ui/button";
-import { usePopoverModal } from "@/hooks/use-popover-modal";
 import { signOut } from "next-auth/react";
-import { AvatarImg } from "./avatarImage";
+import { useRouter } from "next/navigation";
+
 
 export const UserMenu = () => {
-	const currentUser = getCurrentUser();
-	const { onOpen } = usePopoverModal();
-	console.log(onOpen);
+	const router = useRouter();
 
 	return (
 		<div className="relative">
-			{currentUser ? (
-				<AvatarImg
-					alt="user profile image"
-					className="cursor-pointer"
-					onClick={onOpen}
-					
-				/>
-			) : (
+		
 				<div className="flex item-center justify-between gap-4 ">
-					<Button className="text-sm font-semibold" variant="outline" size="lg">
+				<Button className="text-sm font-semibold" variant="outline" size="lg"
+					onClick={() => router.push("auth/login")}
+				>
 						Login
 					</Button>
 
@@ -33,7 +25,7 @@ export const UserMenu = () => {
 						Sign Up
 					</Button>
 				</div>
-			)}
+		
 		</div>
 	);
 };

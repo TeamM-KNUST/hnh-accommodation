@@ -61,9 +61,9 @@ export const CardsCarousel = () => {
 	};
 
 	return (
-		<div className="relative flex w-full justify-center mb-8 overflow-x-hidden h-[36.25rem]">
+		<div className="relative flex w-full justify-center mb-8 overflow-x-hidden h-[39.25rem] ">
 		
-				<div className="flex items-center gap-x-2 ">	
+				<div className="flex items-center gap-x-2 opacity-50 blur-md mb-24">	
 					{filterItems.map((item, index) => (
 						<CommunityCards
 							key={item.title}
@@ -80,15 +80,15 @@ export const CardsCarousel = () => {
 					))}
 				</div>
 			
-			<div className="absolute flex items-center max-w-[100vw] h-[6.375rem] md:top-[22.5rem] top-[27.5rem] md:gap-x-2 gap-x-6" >
+			<div className="absolute flex items-center max-w-[100vw] h-[6.375rem] top-[22.5rem] md:top-[31.5rem] gap-x-2 md:gap-x-6" >
 				{filterItems.map((item, index) => (
 					<div
 						key={item.thumbnailUrl}
 						className={`h-12 w-12 transition-all duration-300 ease-in-out${
-							item.title === getMiddleItemTitle  && "h-[4.5rem] w-[4.5rem]" 
+							item.title === getMiddleItemTitle ? "active": "" 
 						}`}
 					>
-						<HomePageAvatar imgUrl={item.thumbnailUrl} size={48} alt="" />
+						<HomePageAvatar imgUrl={item.thumbnailUrl} size={60} alt="" />
 						<span className="inline-block overflow-hidden w-full text-xs font-normal text-center whitespace-nowrap overflow-ellipsis tracking-[0.125rem]">{item.title}</span>
 					</div>
 				))}

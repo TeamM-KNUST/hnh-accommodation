@@ -28,7 +28,7 @@ export const CommunityCards = ({
 }: CommunityCardsProps) => {
 	const isVideoUrl = /(mp4)$/m.test(frameUrl);
 	return (
-		<div className="relative md:h-[34.25rem] md:w-[18.1875rem] h-[19.75rem] w-[11.5rem]">
+		<div className="relative md:h-[30.25rem] md:w-[18.1875rem] h-[19.75rem] w-[11.5rem]">
 			{isVideoUrl ? (
 				<video
 					autoPlay
@@ -36,7 +36,7 @@ export const CommunityCards = ({
 					muted
 					playsInline
 					title=""
-					className="absolute w-full h-full rounded-lg object-cover"
+					className="absolute w-full h-full rounded-3xl object-cover"
 				>
 					<source src={frameUrl} type="video/mp4" />
 				</video>
@@ -44,7 +44,7 @@ export const CommunityCards = ({
 				<Image
 					src={frameUrl}
 					alt=""
-					className="absolute w-full h-full rounded-lg object-cover"
+					className="absolute w-full h-full rounded-3xl object-cover"
 					width={32}
 					height={32}
 				/>
@@ -85,7 +85,7 @@ export const CommunityCards = ({
 							<div className="self-end">{`+${participantsCount} coming`}</div>
 							<Button
 								variant="purple"
-								className="flex items-center font-semibold text-sm justify-center  tracking-[-0.01875rem]  ml-6"
+								className="flex items-center font-semibold text-sm justify-center  tracking-[-0.01875rem] ml-6"
 								size="sm"
 							>
 								Join

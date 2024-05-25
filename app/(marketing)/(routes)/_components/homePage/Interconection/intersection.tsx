@@ -86,7 +86,7 @@ export const InterSection = () => {
 						size={72}
 						flagPosition={2}
 						borderColor="aqua"
-						className="avatar-usa"
+						className="avatar-usa rounded-full"
 						alt="Mike"
 					/>
 					<HomePageAvatar
@@ -95,7 +95,7 @@ export const InterSection = () => {
 						size={64}
 						flagPosition={4}
 						borderColor="green"
-						className="avatar-poland"
+						className="avatar-poland  rounded-full"
 						alt="Anna"
 					/>
 					<HomePageAvatar
@@ -104,7 +104,7 @@ export const InterSection = () => {
 						size={108}
 						flagPosition={isLargeScreen ? 4 : 8}
 						borderColor="blue"
-						className="avatar-ireland"
+						className="avatar-ireland  rounded-full"
 						alt="Eve"
 					/>
 					<HomePageAvatar
@@ -113,7 +113,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 168 : 89}
 						flagPosition={isLargeScreen ? 14 : 0}
 						borderColor="blue"
-						className="avatar-brazil"
+						className="avatar-brazil  rounded-full"
 						alt="Luiza"
 					/>
 					<HomePageAvatar
@@ -122,7 +122,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 120 : 48}
 						flagPosition={isLargeScreen ? 8 : -4}
 						borderColor="violet"
-						className="avatar-germany"
+						className="avatar-germany  rounded-full"
 						alt="Jenny"
 					/>
 					<HomePageAvatar
@@ -131,7 +131,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 72 : 48}
 						flagPosition={0}
 						borderColor="yellow"
-						className="avatar-portugal"
+						className="avatar-portugal  rounded-full"
 						alt="Laura"
 					/>
 					<HomePageAvatar
@@ -140,7 +140,7 @@ export const InterSection = () => {
 						size={80}
 						flagPosition={0}
 						borderColor="orange"
-						className="avatar-italy"
+						className="avatar-italy  rounded-full"
 						alt="Luka"
 					/>
 					<HomePageAvatar
@@ -149,7 +149,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 156 : 116}
 						flagPosition={isLargeScreen ? 18 : 0}
 						borderColor="orange"
-						className="avatar-china"
+						className="avatar-china  rounded-full"
 						alt="Pan"
 					/>
 					<HomePageAvatar
@@ -158,7 +158,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 80 : 64}
 						flagPosition={0}
 						borderColor="pink"
-						className="avatar-france"
+						className="avatar-france  rounded-full"
 						alt="Pierre"
 					/>
 					<HomePageAvatar
@@ -167,7 +167,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 128 : 86}
 						flagPosition={isLargeScreen ? 8 : 0}
 						borderColor="pink"
-						className="avatar-korea"
+						className="avatar-korea  rounded-full"
 						alt="Tom"
 					/>
 					<HomePageAvatar
@@ -176,7 +176,7 @@ export const InterSection = () => {
 						size={isLargeScreen ? 96 : 72}
 						flagPosition={0}
 						borderColor="aqua"
-						className="avatar-spain"
+						className="avatar-spain  rounded-full"
 						alt="Victoria"
 					/>
 

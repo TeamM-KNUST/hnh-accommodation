@@ -3,6 +3,7 @@ import { ArrowRight, Clock5 } from "lucide-react";
 import Image from "next/image";
 import { FaVenus } from "react-icons/fa";
 import { HomePageAvatar } from "./homepageavatar";
+import { cn } from "@/lib/utils";
 interface CommunityCardsProps {
 	frameUrl: string;
 	participantsAvatarUrls: string[];
@@ -36,7 +37,10 @@ export const CommunityCards = ({
 					muted
 					playsInline
 					title=""
-					className="absolute w-full h-full rounded-3xl object-cover"
+					className={cn(
+						"absolute w-full h-full rounded-3xl object-cover",
+						className
+					)}
 				>
 					<source src={frameUrl} type="video/mp4" />
 				</video>
@@ -44,7 +48,10 @@ export const CommunityCards = ({
 				<Image
 					src={frameUrl}
 					alt=""
-					className="absolute w-full h-full rounded-3xl object-cover"
+					className={cn(
+						"absolute w-full h-full rounded-3xl object-cover",
+						className
+					)}
 					width={32}
 					height={32}
 				/>
@@ -52,7 +59,7 @@ export const CommunityCards = ({
 			<div className="relative w-full h-full flex flex-col justify-between items-center text-white rounded-md px-3 py-2 z-20">
 				<div className="flex items-center top-4 left-4 ">
 					<div className="relative mr-2">
-						<HomePageAvatar imgUrl={avatarUrl} size={50} alt=""  />
+						<HomePageAvatar imgUrl={avatarUrl} size={50} alt="" />
 					</div>
 					<div className="font-semibold text-xs translate-y-[-6px]">{name}</div>
 				</div>
@@ -86,7 +93,7 @@ export const CommunityCards = ({
 							<Button
 								variant="purple"
 								className="flex items-center font-semibold text-sm justify-center  tracking-[-0.01875rem] ml-6"
-								size="sm"
+								size="lg"
 							>
 								Join
 								<ArrowRight size={16} className="text-white" />

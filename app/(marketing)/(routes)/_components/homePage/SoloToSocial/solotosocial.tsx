@@ -18,15 +18,22 @@ export const SoloToSocial = () => {
 
 	const filterItems = items.slice(0, 3);
 	return (
-		<section className="py-16 h-[41.25rem] mb-0 ml-[(cal50%-800px)] w-[(cal50%-800px)] flex">
+		<section className="py-16 h-[41.25rem] mb-0 ml-[(cal50%-800px)] w-[(cal50%-800px)] flex flex-col lg:flex-row">
 			<CardsCarousel />
-			<div className="relative flex flex-col m-auto px-8 max-w-[40rem]">
-				<header className={cn( "font-medium sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl  hyphens-auto lg:mt-4 lg:mb-4 h2", font.className)}>
+			<div className="relative flex flex-col  m-auto px-8 max-w-[40rem]">
+				<header
+					className={cn(
+						"font-medium sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl  hyphens-auto lg:mt-4 lg:mb-4 h3",
+						font.className
+					)}
+				>
 					Go from
 					<span className="text-[#00e0ce]"> solo to social</span>, in just a few
 					taps!
 				</header>
-				<p className="py-4 m-0 relative block text-xl">Join Linkups to explore and hang out with travellers.</p>
+				<p className="py-4 m-0 relative block text-xl">
+					Join Linkups to explore and hang out with travellers.
+				</p>
 			</div>
 		</section>
 	);

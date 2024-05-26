@@ -216,7 +216,7 @@ export const InterSection = () => {
 			<div className="flex flex-col items-center mt:[-3.125rem] text-center px-4 text-white">
 				<h2
 					className={cn(
-						"sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl",
+						"font-medium sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl  hyphens-auto ",
 						font.className
 					)}
 				>

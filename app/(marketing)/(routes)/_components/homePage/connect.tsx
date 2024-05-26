@@ -25,7 +25,7 @@ export const Connect = () => {
 			<Image
 				src={getImageUrl}
 				alt="hostel"
-				className="block mx-auto object-contain  max-h-[568px] w-[305px] tablet-large:w-[375px] lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0"
+				className="block mx-auto object-contain  max-h-[568px] w-[305px] lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0"
 				height={568}
 				width={504}
 			/>
@@ -40,7 +40,7 @@ export const Connect = () => {
 				</p>
 				<h2
 					className={cn(
-						"font-medium sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center hyphens-auto lg:text-left lg:mt-4 lg:mb-8 h2",
+						"font-medium sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl  hyphens-auto lg:mt-4 lg:mb-4 h3",
 						font.className
 					)}
 				>

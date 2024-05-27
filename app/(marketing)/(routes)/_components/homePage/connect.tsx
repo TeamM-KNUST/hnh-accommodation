@@ -25,7 +25,7 @@ export const Connect = () => {
 			<Image
 				src={getImageUrl}
 				alt="hostel"
-				className="block mx-auto object-contain  max-h-[568px] w-[305px] lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0"
+				className="block mx-auto object-contain  max-h-[568px] w-[305px]exi lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0"
 				height={568}
 				width={504}
 			/>

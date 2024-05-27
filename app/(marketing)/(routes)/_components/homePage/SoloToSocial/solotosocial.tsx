@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { CardsCarousel } from "../_components/cardsCarousel";
-import { CARD_ITEMS } from "./constant";
 
-import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Poppins } from "next/font/google";
 import "../../style/connect.css";
 
 const font = Poppins({
@@ -14,13 +12,10 @@ const font = Poppins({
 });
 
 export const SoloToSocial = () => {
-	const [items, setItems] = useState(CARD_ITEMS);
-
-	const filterItems = items.slice(0, 3);
 	return (
-		<section className="py-16 h-[41.25rem] mb-0 ml-[(cal50%-800px)] w-[(cal50%-800px)] flex flex-col lg:flex-row">
+		<section className="py-16 h-[41.25rem] mb-0  flex flex-col lg:flex-row max-w-[1600px] mx-auto xl:pl-32 md:pl-10 sm:pl-2">
 			<CardsCarousel />
-			<div className="relative flex flex-col  m-auto px-8 max-w-[40rem]">
+			<div className="relative flex items-center justify-center flex-col m-auto px-8 max-w-[40rem]">
 				<header
 					className={cn(
 						"font-medium sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl  hyphens-auto lg:mt-4 lg:mb-4 h3",

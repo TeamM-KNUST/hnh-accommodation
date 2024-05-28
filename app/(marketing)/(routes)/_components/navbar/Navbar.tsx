@@ -11,11 +11,11 @@ export const Navbar = () => {
 
 	return (
 		<div
-			className={`fixed w-full bg-white x-10  z-50 ${
+			className={`fixed w-full bg-white  z-50 px-10 py-4 ${
 				isScrolled ? "border-b-[1px] shadow-sm" : ""
 			}`}
 		>
-			<div className="py-4">
+			<div className="h-[48px] ">
 				<Container>
 					<div className="flex items-center justify-between gap-3 md:gap-0">
 						<Logo />

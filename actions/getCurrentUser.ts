@@ -1,9 +1,12 @@
+import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { getSession } from "next-auth/react";
+
+
 
 export default async function getCurrentUser() {
 	try {
-		const session = await getSession();
+		const session = await auth();
+
 		if (!session?.user?.email) {
 			return null;
 		}
@@ -13,11 +16,9 @@ export default async function getCurrentUser() {
 				email: session.user.email,
 			},
 		});
-
-		if (!currentUser) {
-			return null;
-		}
-	} catch (error: any) {
+		return currentUser;
+		
+	} catch (error) {
 		return null;
 	}
 }

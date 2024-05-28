@@ -13,7 +13,7 @@ export const AvatarImg =({src, alt, onClick, className}:AvatarImgProps) => {
     
     return (
         <Avatar onClick={onClick} >
-            <AvatarImage src={src||'/image/user.svg'  } alt={alt} className={className} />
+            <AvatarImage src={src||'/image/placeholder.jpg'  } alt={alt} className={className} />
             <AvatarFallback>
                 {alt}
             </AvatarFallback>

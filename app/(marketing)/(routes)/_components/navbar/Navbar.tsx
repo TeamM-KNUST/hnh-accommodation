@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { Logo } from "./logo";
 import { UserMenu } from "./usermenu";
+import { Search } from "./search";
 
 export const Navbar = () => {
 	const isScrolled = useScrollTop();
@@ -18,6 +19,7 @@ export const Navbar = () => {
 				<Container>
 					<div className="flex items-center justify-between gap-3 md:gap-0">
 						<Logo />
+						<Search />
 						<UserMenu />
 					</div>
 				</Container>

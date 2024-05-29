@@ -8,7 +8,7 @@
 export const publicRoutes = [
     "/",
     "/auth/confirm",
-    "/dasboard",
+  
     
 ];
 
@@ -23,7 +23,8 @@ export const authRoutes = [
     "/auth/register",
     "/auth/reset",
     "/auth/new-password",
-    "/auth/error"
+    "/auth/error",
+   
 ];
 
 

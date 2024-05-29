@@ -14,14 +14,8 @@ Explore the live demonstration of the project: [nextjs14-notion](https://notion-
 
 <details><summary><b>Folder Structure</b></summary>
 
-<details><summary><b>Folder Structure</b></summary>
-
 ```bash
-nextjs14-notion/
-<details><summary><b>Folder Structure</b></summary>
-
-```bash
-nextjs14-notion/
+## nextjs14-notion/
 ├── app/
 ├   ├── (main)/
 ├   ├   ├── (routes)/

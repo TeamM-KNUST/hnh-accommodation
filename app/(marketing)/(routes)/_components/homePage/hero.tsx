@@ -32,10 +32,9 @@ export const Hero = () => {
           booking and get all necessary information concerning them.
         </p>
         <Button
-          className=" cursor-pointer w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/3 xl:w-1/4 text-sm font-semibold bg-blue-800 items-center justify-center text-white h-12 mx-auto hover:bg-blue-900 hover:text-white"
-          variant="outline"
+          
+          variant="destructive"
           size="lg"
-          onClick={() => router.push("/dashboard")}
         >
           Browse Hostels
         </Button>

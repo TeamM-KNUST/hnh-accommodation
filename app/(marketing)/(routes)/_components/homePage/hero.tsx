@@ -1,6 +1,13 @@
+"use client";
+
+
+
+
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const font = Poppins({
 	subsets: ["latin"],
@@ -8,6 +15,7 @@ const font = Poppins({
 });
 
 export const Hero = () => {
+	const router = useRouter();
 	return (
 		<section className="flex flex-col lg:flex-row gap-8 mb-16">
 			<div
@@ -31,6 +39,7 @@ export const Hero = () => {
 					className=" cursor-pointer w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/3 xl:w-1/4 text-sm font-semibold bg-blue-800 items-center justify-center text-white h-12 mx-auto hover:bg-blue-900 hover:text-white"
 					variant="outline"
 					size="lg"
+					onClick={() => router.push("/dashboard")}
 				>
 					Browse Hostels
 				</Button>

@@ -8,6 +8,7 @@
 export const publicRoutes = [
     "/",
     "/auth/confirm",
+    "/dasboard",
     
 ];
 

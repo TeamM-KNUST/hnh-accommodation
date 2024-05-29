@@ -1,6 +1,6 @@
 # Next.js 14 Notion
 
-![demo](/public/Screenshot%20from%202024-05-07%2012-52-00.png)
+![demo](/public/image/Screenshot%20from%202024-05-29%2021-50-41.png)
 
 
 
@@ -14,8 +14,8 @@ Explore the live demonstration of the project: [nextjs14-notion](https://notion-
 
 <details><summary><b>Folder Structure</b></summary>
 
-```bash
-nextjs14-notion/
+
+## nextjs14-notion/
 app
 ├── api
 │   └── auth
@@ -82,7 +82,6 @@ app
         │       └── sayhello.scss
         └── page.tsx
 
-```
 
 </details>
 
@@ -245,23 +244,37 @@ Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment)
 
 ## 💡 Features
 
-- Real-time database 🔗
-- Notion-style editor 📝
-- Light and Dark mode 🌓
-- Infinite children documents 🌲
-- Trash can & soft delete 🗑️
-- Authentication 🔐
-- File upload
-- File deletion
-- File replacement
-- Icons for each document (changes in real-time) 🌠
-- Expandable sidebar ➡️🔀⬅️
-- Full mobile responsiveness 📱
-- Publish your note to the web 🌐
-- Fully collapsable sidebar ↕️
-- Landing page 🛬
-- Cover image of each document 🖼️
-- Recover deleted files 🔄📄
+- 🚀 Next.js 14 with server actions
+- 🔑 Credentials Provider
+- 🌐 OAuth Provider (Social login with Google & GitHub)
+- 🔒 Forgot password functionality
+- ✉️ Email verification
+- 📱 Two factor verification
+- 👥 User roles (Admin & User)
+- 🔓 Login component (Opens in redirect or modal)
+- 📝 Register component
+- 🤔 Forgot password component
+- ✅ Verification component
+- ⚠️ Error component
+- 🔘 Login button
+- 🚪 Logout button
+- 🚧 Role Gate
+- 🔍 Exploring next.js middleware
+- 📈 Extending & Exploring next-auth session
+- 🔄 Exploring next-auth callbacks
+- 👤 useCurrentUser hook
+- 🛂 useRole hook
+- 🧑 currentUser utility
+- 👮 currentRole utility
+- 🖥️ Example with server component
+- 💻 Example with client component
+- 👑 Render content for admins using RoleGate component
+- 🛡️ Protect API Routes for admins only
+- 🔐 Protect Server Actions for admins only
+- 📧 Change email with new verification in Settings page
+- 🔑 Change password with old password confirmation in Settings page
+- 🔔 Enable/disable two-factor auth in Settings page
+- 🔄 Change user role in Settings page (for development purposes only)
 
 ## 🔧 Contributing
 

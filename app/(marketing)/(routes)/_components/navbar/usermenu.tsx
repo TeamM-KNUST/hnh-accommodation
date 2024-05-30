@@ -11,6 +11,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AvatarImg } from "./avatarImage";
+import { MenuIcon } from "lucide-react";
 
 export const UserMenu = () => {
   const router = useRouter();
@@ -27,36 +28,61 @@ export const UserMenu = () => {
   return (
     <div className="relative">
       <div className="flex item-center justify-end gap-2 ">
-        {/* <div className="flex items-center justify-center w-auto shadow-lg rounded-full px-6 cursor-pointer hover:bg-blue-800 hover:text-white h-12">
-					List your property
-				</div> */}
-
-        <Button
-          className="text-sm font-semibold"
-          variant="outline"
-          size="lg"
-          onClick={() => router.push("auth/login")}
+        <div
+          className="hidden
+        md:block
+        text-sm
+        font-semibold
+        py-3
+        px-4
+        rounded-full
+        hover:bg-neutral-100
+        transition-all *:duration-200 *:ease-in-out
+        cursor-pointer
+        "
         >
-          Login
-        </Button>
+          hostel your home
+        </div>
 
-        <Button
-          className="text-sm font-semibold bg-blue-800 "
-          size="lg"
-          onClick={() => router.push("auth/register")}
+        <div
+          className="
+        p-4 md:py-1
+        md:px-2
+        border-[1px]
+        border-neutral-200
+        rounded-full
+        transition-all
+        duration-200
+        ease-in-out
+        hover:shadow-md
+
+        "
         >
-          Sign Up
-        </Button>
-
-        <div className="relative inline-flex items-center justify-center">
           <Popover>
             <PopoverTrigger asChild>
-              <div className="cursor-pointer">
+              <div className="cursor-pointer flex items-center gap-3 ">
+                <MenuIcon size={24} />
                 <AvatarImg alt="user" />
               </div>
             </PopoverTrigger>
             <PopoverContent>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-y-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => router.push("auth/login")}
+                  
+                >
+                  Login
+                </Button>
+
+                <Button
+                  size="sm"
+                  className="bg-blue-500 text-white"
+                  onClick={() => router.push("auth/register")}
+                >
+                  Sign Up
+                </Button>
                 <Button variant="outline" size="sm" onClick={() => signOut()}>
                   Logout
                 </Button>

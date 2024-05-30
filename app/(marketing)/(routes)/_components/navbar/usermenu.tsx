@@ -47,8 +47,8 @@ export const UserMenu = () => {
         <div
           className="
           p-2
-       md:py-2
-        md:px-2
+       md:py-1
+        md:px-4
         border-[1px]
         border-neutral-200
         rounded-full
@@ -74,7 +74,6 @@ export const UserMenu = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => router.push("auth/login")}
-                  
                 >
                   Login
                 </Button>

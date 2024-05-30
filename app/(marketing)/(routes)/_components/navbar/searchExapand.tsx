@@ -3,7 +3,8 @@ import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import {  SearchIcon } from "lucide-react";
 
-export const Search = () => {
+export const SearchExapnd
+  = () => {
     const isScrolled = useScrollTop();
     return (
       <div

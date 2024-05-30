@@ -13,7 +13,7 @@ const font = Poppins({
 
 export const SoloToSocial = () => {
 	return (
-		<section className="py-16 h-[41.25rem] mb-0  flex flex-col lg:flex-row max-w-[1600px] mx-auto xl:pl-32 md:pl-10 sm:pl-2">
+		<section className="py-16 h-[41.25rem] mb-0  flex flex-col lg:flex-row max-w-[1890px] mx-auto xl:pl-32 md:pl-10 sm:pl-2">
 			<CardsCarousel />
 			<div className="relative flex items-center justify-center flex-col m-auto px-8 max-w-[40rem]">
 				<header

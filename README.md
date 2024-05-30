@@ -314,4 +314,49 @@ project and made it possible:
 
 
 
+## 📚 References
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Rea>ct Documentation](https://reactjs.org/docs/getting-started.html)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Convex Documentation](https://convex.dev/docs)
+- [Clerk Documentation](https://docs.clerk.dev/)
+- [EdgeStore Documentation](https://edgestore.dev/docs)
+- [BlockNote Documentation](https://blocknote.dev/docs)
+- [Zustand Documentation](https://docs.pmnd.rs/zustand/getting-started/introduction)
+- [useHooks TS Documentation](https://usehooks-ts.com/)
+- [Sonner Documentation](https://sonner.emilkowal.ski/)
+- [Next Themes Documentation](https://ui.shadcn.com/docs/dark-mode/next)
+- [Emoji Picker React Documentation](https://www.npmjs.com/package/emoji-picker-react)
+- [React Dropzone Documentation](https://react-dropzone.js.org/)
+- [React Textarea Autosize Documentation](https://www.npmjs.com/package/react-textarea-autosize)
+- [Vercel Documentation](https://vercel.com/docs)
+
+
+## 📞 Contact Us
+-[Twitter](https://twitter.com/abudusamad)
+-[LinkedIn](https://www.linkedin.com/in/abubakar-samad-0b0b3b1b4/)
+-[Email](mailto:abudusamadu.yahoo.com)
+-[Portfolio](https://abudusamad.github.io/)
+
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<detail><summary> License</summary>
+
+```md
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+```
+
+</details>
+
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+<details>
+<summary>Contributors</summary>
 

@@ -31,7 +31,7 @@ export const UserMenu = () => {
         <div
           className="hidden
         md:block
-        text-sm
+        text-[1rem]
         font-semibold
         py-3
         px-4
@@ -41,12 +41,13 @@ export const UserMenu = () => {
         cursor-pointer
         "
         >
-          hostel your home
+          Hostel your home
         </div>
 
         <div
           className="
-        p-4 md:py-1
+          p-2
+       md:py-2
         md:px-2
         border-[1px]
         border-neutral-200
@@ -55,6 +56,8 @@ export const UserMenu = () => {
         duration-200
         ease-in-out
         hover:shadow-md
+        flex
+        items-center
 
         "
         >

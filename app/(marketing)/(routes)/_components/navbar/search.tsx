@@ -1,14 +1,36 @@
+import { SearchIcon } from "lucide-react";
+
 export const Search = () => {
     return (
-        <div className="flex items-center justify-center gap-4">
-            <input
-                type="text"
-                placeholder="Search"
-                className="border-2 border-gray-300 p-2 rounded-md outline-none w-96"
-            />
-            <button className="bg-blue-500 p-2 rounded-md text-white">
-                Search
-            </button>
+        <div className="
+        border-[1px]
+        w-full
+        md:w-auto
+        py-2
+        px-2
+        rounded-full
+        shadow-sm
+        hover:shadow-md
+        transition-all
+        duration-200
+        ease-in-out
+        cursor-pointer
+        ">
+            <div className="flex items-center justify-between">
+                <div className="text-[1rem] font-semibold px-6">
+                    Search
+                </div>
+                <div className=" hidden sm:block text-[1rem] font-semibold px-6 border-x-[1px] flex-1 text-center">
+                    location
+                </div>
+                <div className="tex-[1rem] pl-6 pr-2 text-gray-600 flex items-center gap-3">
+                    <div className="hidden sm:block">guestLabel</div>
+                </div>
+                <div className="p-2 bg-rose-500 rounded-full text-white pr-2">
+                    <SearchIcon size={18}/>
+                </div>
+            </div>
+            
         </div>
     );
 }

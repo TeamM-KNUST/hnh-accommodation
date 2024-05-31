@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-  "seed": "ts-node scripts/seed.ts"
-
+    "seed": "ts-node scripts/seed.ts"
   },
   "dependencies": {
     "@auth/core": "^0.28.0",

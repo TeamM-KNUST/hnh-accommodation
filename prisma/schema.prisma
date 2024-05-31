@@ -108,6 +108,18 @@ model Category{
   id  String @id @default(uuid())
   name String @unique
   listing Listing[]
+
+  areaId String?
+  area Area? @relation(fields: [areaId], references: [id])
+
+  @@unique([areaId])
+}
+
+model Area{
+  id String@id @default(uuid())
+  name String @unique
+
+  category Category[]
 }
 // Define the Reservation model with the following fields:
 model Reservation {

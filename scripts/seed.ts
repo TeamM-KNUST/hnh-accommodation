@@ -19,3 +19,24 @@ async function main(){
 }
 
 main();
+
+
+async function area() {
+    try {
+        await prismadb.area.createMany({
+            data: [
+                { name: "Ayeduase" },
+                {name: "Boadi"},
+            ]
+        })
+        console.log("Sucess")
+    }
+    catch (error) {
+        console.log("Failed to seeding area", error)
+    }
+    finally {
+        await prismadb.$disconnect();
+    }
+}
+
+area();

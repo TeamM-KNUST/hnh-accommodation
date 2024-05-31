@@ -101,6 +101,7 @@ model Listing {
   favorites       Favorite[]
 
   @@index([createdAt])
+  @@index([categoryId])
 }
 
 model Category{

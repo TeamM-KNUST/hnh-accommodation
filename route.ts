@@ -8,6 +8,7 @@
 export const publicRoutes = [
     "/",
     "/auth/confirm",
+    "/dashboard"
   
     
 ];
@@ -41,4 +42,4 @@ export const apiAuthPrefix = "/api/auth";
  * @type {string}
  */
 
-export const DEFAULT_LOGIN_REDIRECT = "/";
+export const DEFAULT_LOGIN_REDIRECT = "/dashboard";

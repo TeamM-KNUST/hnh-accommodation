@@ -74,6 +74,8 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+
+
 // Define the Listing model with the following fields:
 model Listing {
   id                 String  @id @default(cuid())
@@ -81,16 +83,17 @@ model Listing {
   description     String
   imageSrc        String
   createdAt       DateTime @default(now())
-  category        String
   roomCount       Int
   bathroomCount   Int
   guestCount      Int
   locationValue   String
   userId          String   
   price           Int
+  categoryId String?
 
   // Define the relation with User model
   user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category Category? @relation(fields: [categoryId], references: [id])
 
 
   // Define the relation with other models
@@ -100,7 +103,11 @@ model Listing {
   @@index([createdAt])
 }
 
-
+model Category{
+  id  String @id @default(uuid())
+  name String @unique
+  listing Listing[]
+}
 // Define the Reservation model with the following fields:
 model Reservation {
   id                 String  @id @default(cuid())

@@ -17,7 +17,7 @@ export const Navbar = () => {
 	return (
 		<div
 			className={`fixed w-full bg-white  z-50 px-10 py-4 ${
-				!isScrolled ? "border-b-[1px] shadow-md h-[7rem]" : "border-b-[1px] shadow-sm"
+				!isScrolled ? "border-b-[1px] shadow-md h-[7rem]" : ""
 			}`}
 		>
 			<div className="h-[48px] ">

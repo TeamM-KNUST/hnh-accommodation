@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { User } from "@prisma/client";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AvatarImg } from "./avatarImage";
@@ -15,15 +15,9 @@ import { MenuIcon } from "lucide-react";
 
 export const UserMenu = () => {
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const user = await getCurrentUser();
-      setCurrentUser(user);
-    };
-    fetchUser();
-  }, []);
+  const { data: session, status } = useSession();
+  if (status === "loading") return null;
 
   return (
     <div className="relative">
@@ -65,30 +59,38 @@ export const UserMenu = () => {
             <PopoverTrigger asChild>
               <div className="cursor-pointer flex items-center gap-3 ">
                 <MenuIcon size={24} />
-                <AvatarImg alt="user" />
+                <AvatarImg src={session?.user?.image} alt="user" />
               </div>
             </PopoverTrigger>
             <PopoverContent>
-              <div className="flex flex-col gap-y-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => router.push("auth/login")}
-                >
-                  Login
-                </Button>
+              {!session ? (
+                <div className="flex flex-col gap-y-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => router.push("auth/login")}
+                  >
+                    Login
+                  </Button>
 
-                <Button
-                  size="sm"
-                  className="bg-blue-500 text-white"
-                  onClick={() => router.push("auth/register")}
-                >
-                  Sign Up
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => signOut()}>
+                  <Button
+                    size="sm"
+                    className="bg-blue-500 text-white"
+                    onClick={() => router.push("auth/register")}
+                  >
+                    Sign Up
+                  </Button>
+                </div>
+              ) : (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => signOut()}
+                    className="w-full text-center"
+                  >
                   Logout
                 </Button>
-              </div>
+              )}
             </PopoverContent>
           </Popover>
         </div>

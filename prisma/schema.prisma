@@ -84,8 +84,6 @@ model Listing {
   imageSrc        String
   createdAt       DateTime @default(now())
   roomCount       Int
-  bathroomCount   Int
-  guestCount      Int
   locationValue   String
   userId          String   
   price           Int

@@ -1,10 +1,11 @@
 import { VerificationForm } from "@/components/auth/verification-form";
+import { Suspense } from "react";
 
 
 const Confirm = () => {
-    return (<div>
+    return (<Suspense fallback ={<div>Loading ...</div>}>
        <VerificationForm/>
-    </div>)
+    </Suspense>)
 }
  
 export default Confirm;

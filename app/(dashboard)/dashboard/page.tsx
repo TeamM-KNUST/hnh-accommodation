@@ -12,12 +12,8 @@ const DashboardPage = async ({ params }: { params: { listingId: string } }) => {
 
   return (
     <div>
-      <CategoryForm
-        options={categories.map((category) => ({
-          label: category.name,
-          value: category.id,
-        }))}
-      />
+        <h1 className="text-3xl font-bold ">Dashboard</h1>
+       
     </div>
   );
 };

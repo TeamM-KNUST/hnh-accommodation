@@ -11,19 +11,19 @@ const font = Poppins({
 
 export const Roamies = () => {
   return (
-    <section className="relative bg-[#121417] flex flex-col xl:flex-row items-center justify-center min-h-[50rem] section">
+    <section className=" bg-[#121417] flex flex-col xl:flex-row items-center justify-center min-h-[50rem] section">
       <div className="text-white text-center xl:mb-0 xl:mr-[6.875rem] xl:max-w-[36.375rem] xl:text-left">
         <h2 className={cn("text-5xl xl:text-7xl mb-4", font.className)}>
           <span className="text-[#cc0074]">Small group tours </span>
           in epic places
         </h2>
-        <p className="text-xl">
+        <p className="text-xl px-8 xl:px-0">
           Explore somewhere new, with a ready-made crew! Adventurous tours, with
           local guides, and sociable hostels.
         </p>
       </div>
       <div className="flex items-center mb-8 mt-16 max-h-[23.375rem] min-w-[21.4375rem]  xl:max-w-[48.75rem] xl:max-h-[38.75rem]">
-        <div className="mr-[-1rem] xl:mr-6 xl:mt-16 ">
+        <div className="mr-[-1rem] xl:mr-6 xl:mt-16 overflow-hidden max-w-full ">
           <Image
             src={
               "https://a.hwstatic.com/image/upload/f_auto,h_260,w_355,q_50/v1651737425/pwa/roamies/roamies.d.2.png"
@@ -56,7 +56,7 @@ export const Roamies = () => {
             />
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-4 overflow-hidden max-w-full">
           <Image
             src={
               "https://a.hwstatic.com/image/upload/f_auto,h_302,w_287,q_50/v1651737425/pwa/roamies/roamies.d.1.png"
@@ -75,7 +75,7 @@ export const Roamies = () => {
             width={135}
             height={173}
             loading="lazy"
-            className="xl:hidden"
+            className="xl:hidden max-w-full h-auto"
           />
           <Image
             src={

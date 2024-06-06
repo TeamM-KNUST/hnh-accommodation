@@ -3,20 +3,16 @@
 }
 
 .section-wrapper {
-  position: relative;
-  width: calc(100% + 3rem);
-  margin-left: -1.5rem;
-  margin-right: -1.5rem;
   background-color: #7f32cd;
   -webkit-clip-path: polygon(0 calc(100% - 3rem), 0 3rem, 100% 0, 100% 100%);
           clip-path: polygon(0 calc(100% - 3rem), 0 3rem, 100% 0, 100% 100%);
   padding-bottom: 5rem;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   height: 53.1875rem;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;
+  max-width: 100% vw;
+  box-sizing: border-box;
 }
 
 /* prettier-ignore */

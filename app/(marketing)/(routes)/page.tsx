@@ -19,7 +19,7 @@ export default function Home() {
         <InterSection />
         <Sayhello />
         <SoloToSocial />
-        <Roamies/>
+        <Roamies />
       </div>
     </Container>
   );

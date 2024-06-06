@@ -107,13 +107,13 @@ model Category{
   name String @unique
   listing Listing[]
 
-  areaId String?
-  area Area? @relation(fields: [areaId], references: [id])
+  locationId String?
+  location Location? @relation(fields: [locationId], references: [id])
 
-  @@unique([areaId])
+  @@unique([locationId])
 }
 
-model Area{
+model Location{
   id String@id @default(uuid())
   name String @unique
 

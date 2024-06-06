@@ -21,7 +21,7 @@ async function main(){
 main();
 
 
-async function areas() {
+async function location() {
     try {
         await prismadb.area.createMany({
             data: [
@@ -39,4 +39,4 @@ async function areas() {
     }
 }
 
-areas();
+location();

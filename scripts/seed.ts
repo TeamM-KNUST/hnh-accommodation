@@ -21,12 +21,23 @@ async function main(){
 main();
 
 
-async function location() {
+async function locate() {
     try {
-        await prismadb.area.createMany({
+        await prismadb.location.createMany({
             data: [
-                { name: "Ayeduase" },
-                {name: "Boadi"},
+                { name: "Ayeduase New-Site" },
+                { name: "Boadi" },
+                { name: "Kotei" },
+                { name: "Bomso" },
+                { name: "Ayeduase, North-Side " },
+                { name: "Emena" },
+                { name: "Ayigya" },
+                { name: "Kentikrono" },
+                { name: "Ahinsan" },
+                { name: "Gaza" },
+                { name: "Maxima" },
+                { name: "Ayeduase, South-Side" },
+                { name: "Gyinase" }                   
             ]
         })
         console.log("Sucess")
@@ -39,4 +50,4 @@ async function location() {
     }
 }
 
-location();
+locate();

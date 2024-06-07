@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 
-type usePopoverStore = {
+interface usePopoverStore{
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;

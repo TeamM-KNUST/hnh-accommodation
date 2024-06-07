@@ -10,10 +10,20 @@ const DashboardPage = async ({ params }: { params: { listingId: string } }) => {
     },
   });
 
+  const locations = await db.location.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  });
+
   return (
     <div>
-        <h1 className="text-3xl font-bold ">Dashboard</h1>
-       
+      <CategoryForm
+        options={categories.map((category) => ({
+          label: category.name,
+          value: category.id,
+        }))}
+      />
     </div>
   );
 };

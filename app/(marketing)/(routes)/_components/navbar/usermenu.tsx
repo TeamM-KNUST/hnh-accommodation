@@ -82,12 +82,12 @@ export const UserMenu = () => {
                   </Button>
                 </div>
               ) : (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => signOut()}
-                    className="w-full text-center"
-                  >
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => signOut()}
+                  className="w-full text-center"
+                >
                   Logout
                 </Button>
               )}

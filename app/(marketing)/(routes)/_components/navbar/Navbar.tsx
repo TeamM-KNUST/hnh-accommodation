@@ -1,34 +1,40 @@
-"use client";
-
 import { Container } from "@/components/container";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { Logo } from "./logo";
 import { UserMenu } from "./usermenu";
 import { Search } from "./search";
-import { usePathname, useSearchParams } from "next/navigation";
-import path from "path";
+import { Categories } from "./categories";
+import { db } from "@/lib/db";
 
-export const Navbar = () => {
-	const isScrolled = useScrollTop();
-	const pathname = usePathname();
+export const Navbar = async () => {
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
-	const dasboardPathname = pathname.includes("dashboard");
-
-	return (
-		<div
-			className={`fixed w-full bg-white  z-50 px-10 py-4 ${
-				!isScrolled ? "border-b-[1px] shadow-md h-[7rem]" : ""
-			}`}
-		>
-			<div className="h-[48px] ">
-				<Container>
-					<div className="flex items-center justify-between gap-3 md:gap-0">
-						<Logo />
-						{!dasboardPathname && <Search />}
-						<UserMenu />
-					</div>
-				</Container>
-			</div>
-		</div>
-	);
+  return (
+    <div
+      className="fixed w-full bg-white z-50 px-10 shadow-sm"
+    >
+      <div className="border-b-[1px py-4">
+        <Container>
+          <div className="flex items-center justify-between gap-3 md:gap-0">
+            <Logo />
+            <Search />
+            <UserMenu />
+          </div>
+        </Container>
+      </div>
+      <Categories
+        categories={categories.map((category) => {
+          return {
+            name: category.name,
+            id: category.id,
+            locationId: null,
+          };
+        })}
+      />
+    </div>
+  );
 };

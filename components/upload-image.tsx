@@ -1,26 +1,60 @@
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
-import { Button } from "./ui/button";
+import { PlusCircle } from "lucide-react";
+import { useCallback } from "react";
+import Image from "next/image";
 
-export const UploadImage = () => {
+declare global {
+  var cloudinary: any;
+}
+
+interface UploadImageProps {
+  onChange: (value: string) => void;
+  value: string;
+}
+
+export const UploadImage = ({ onChange, value }: UploadImageProps) => {
+  const hnadleUpload = useCallback(
+    (result: any) => {
+      onChange?.(result.info.secure_url);
+    },
+    [onChange]
+  );
+
   return (
-   
-      <CldUploadWidget
+    <CldUploadWidget
       uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
-      >
-          {({ open }) => {
-            return (
-              <Button
-                className="bg-blue-500 text-white p-2 rounded-lg"
-                onClick={() => open()}
-              >
-                Upload Image
-              </Button>
-            );
-          
-          }}
-       
-      </CldUploadWidget>
+      onUploadAdded={hnadleUpload}
+      options={{
+        maxFiles: 1,
+      }}
+    >
+      {({ open }) => {
+        return (
+          <div
+            className="relative cursor-pointer hover:opacity-70
+                transition duration-200 ease-in-out
+                border-dashed border-2 p-20 border-neutral-300 flex flex-col items-center justify-center gap-4 text-neutral-600"
+                onClick={()=>open()}
+          >
+            <PlusCircle size={34} />
+            <div className="font-semibold text-lg">Click to upload image</div>
+          </div>
+        );
+        {
+          value && (
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                fill
+                src={value}
+                alt="uploaded"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          );
+        }
+      }}
+    </CldUploadWidget>
   );
 };

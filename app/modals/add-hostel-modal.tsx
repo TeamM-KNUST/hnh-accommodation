@@ -4,6 +4,7 @@ import useAddHostel from "@/hooks/addhostel";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { Heading } from "@/components/heading";
+import { UploadImage } from "@/components/upload-image";
 
 const Modal = dynamic(() => import("./modal").then((mod)=> mod.Modal), { ssr: false });
 
@@ -18,6 +19,7 @@ export const AddHostelModal = () => {
         title="Add Photo to your place"
         subTitle="How guests what your place looks like"
       />
+      <UploadImage />
 
     </div>
   );

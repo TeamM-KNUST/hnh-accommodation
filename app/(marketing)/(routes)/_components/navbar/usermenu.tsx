@@ -12,10 +12,12 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AvatarImg } from "./avatarImage";
 import { MenuIcon } from "lucide-react";
+import useAddHostel from "@/hooks/addhostel";
 
 export const UserMenu = () => {
   const router = useRouter();
 
+  const addHostel = useAddHostel();
   const { data: session, status } = useSession();
   if (status === "loading") return null;
 

@@ -3,17 +3,16 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
+import useAddHostel from "@/hooks/addhostel";
 import { useCallback, useEffect, useState } from "react";
 
 interface ModalProps {
-  trigger: React.ReactNode;
   body?: React.ReactNode;
   footer?: React.ReactNode;
   title?: string;
@@ -21,13 +20,13 @@ interface ModalProps {
   onClose: () => void;
   onSubmit: () => void;
   secondaryAction?: () => void;
-  actionLabel: string;
+  actionLabel?: string;
   secondaryActionLabel?: string;
   disabled?: boolean;
+  description?: string;
 }
 
 export const Modal = ({
-  trigger,
   body,
   footer,
   title,
@@ -38,6 +37,7 @@ export const Modal = ({
   onClose,
   isOpen,
   disabled,
+  description,
 }: ModalProps) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -69,13 +69,12 @@ export const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
+    <Dialog onOpenChange={handleClose} open={isOpen} modal defaultOpen={isOpen}>
       <DialogContent className="sm:max-w-[425]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>
-            Add a new hostel to your listing
+            {description}
           </DialogDescription>
           <div className="text-lg font-semibold">{body}</div>
           <DialogFooter>

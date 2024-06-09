@@ -36,6 +36,7 @@ export const UserMenu = () => {
         transition-all *:duration-200 *:ease-in-out
         cursor-pointer
         "
+          onClick={() => addHostel.onOpen()}
         >
           Hostel
         </div>

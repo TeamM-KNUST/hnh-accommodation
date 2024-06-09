@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AvatarImg } from "./avatarImage";
 import { MenuIcon } from "lucide-react";
-import { AddHostelModal } from "@/app/modals/add-hostel";
 
 export const UserMenu = () => {
   const router = useRouter();
@@ -36,15 +35,7 @@ export const UserMenu = () => {
         cursor-pointer
         "
         >
-            
-          <AddHostelModal
-            trigger={
-              <div className="flex items-center gap-3">
-                <span>Add Hostel</span>
-              </div>
-            }
-          />
-         
+          Hostel
         </div>
 
         <div

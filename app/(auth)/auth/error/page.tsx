@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const AuthErrorPage = () => {
   return (
-    <Suspense fallback={<div>Loading ...</div>}>
+    <Suspense >
       <ErrorCard />
     </Suspense>
   );

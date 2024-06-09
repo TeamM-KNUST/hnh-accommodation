@@ -1,3 +1,6 @@
+"use client";
+
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -25,9 +28,11 @@ export const AddHostelModal = ({ trigger }: AddHostelModalProps) => {
           <DialogDescription>
             Add a new hostel to your listing
           </DialogDescription>
-          <div></div>
+                  <div>
+                      
+          </div>
           <DialogFooter>
-            <div className="flex flex-row items-center justify-between gap-8">
+            <div className="flex flex-row items-center justify-between gap-4">
               <Button variant="outline" size="default">Back</Button>
               <Button variant="default" size="default" disabled={isLoading}>Next</Button>
             </div>

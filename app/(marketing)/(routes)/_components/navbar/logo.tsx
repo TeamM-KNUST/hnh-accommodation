@@ -15,7 +15,7 @@ export const Logo = () => {
 				className="hidden md:block cursor-pointer"
 				onClick={() => router.push("/")}
 			/>
-			<h2 className="text-3xl text-blue-700 hidden md:block">Accomodation</h2>
+			<h2 className="text-3xl text-blue-700 hidden xl:block">Accomodation</h2>
 		</div>
 	);
 };

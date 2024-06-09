@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 const PasswordRestPage = () => {
   return (
-    <Suspense fallback={<div>Loading ...</div>}>
+    <Suspense >
       <PassswordResetForm />
     </Suspense>
   );

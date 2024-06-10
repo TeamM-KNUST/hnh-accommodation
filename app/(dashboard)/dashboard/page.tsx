@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { CategoryForm } from "@/components/category-form";
+import { UploadImage } from "@/components/upload-image";
 import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
 
@@ -16,11 +17,7 @@ const DashboardPage = async ({ params }: { params: { listingId: string } }) => {
     },
   });
 
-  return (
-    <div>
-      oksafdasfdasdf
-    </div>
-  );
+  return <div></div>;
 };
 
 export default DashboardPage;

@@ -69,7 +69,6 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel="Add Hostel"
       secondaryActionLabel="Cancel"
-      secondaryAction={addModal.onClose}
       body={bodyContent}
     />
   );

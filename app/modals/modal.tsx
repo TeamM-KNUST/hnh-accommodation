@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
-import useAddHostel from "@/hooks/addhostel";
 import { useCallback, useEffect, useState } from "react";
 
 interface ModalProps {
@@ -69,14 +68,14 @@ export const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <Dialog onOpenChange={handleClose} open={isOpen} modal defaultOpen={isOpen}>
+    <Dialog  open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>
             {description}
           </DialogDescription>
-          <div className="text-lg font-semibold">{body}</div>
+        {body}
           <DialogFooter>
             <div className="flex flex-row items-center justify-between gap-4">
               {secondaryAction && secondaryActionLabel && (

@@ -7,6 +7,10 @@ import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./modal";
+
+import axios from "axios";
+
+
 // const Modal = dynamic(() => import("./modal").then((mod) => mod.Modal), {
 //   ssr: false,
 // });
@@ -26,11 +30,14 @@ export const AddHostelModal = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
+      title: "",
       description: "",
       price: 0,
-      location: "",
+      locationValue: "",
       imageSrc: "",
+      category: "",
+      roomCount: 0,
+      
     },
   });
 
@@ -45,6 +52,18 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+
+    axios.post("/api/hostels", data).then(() => {
+      console.log("Hostel added successfully");
+      addModal.onClose();
+    }).catch(() => {
+      console.log("Error adding hostel");
+    }
+    ).finally(() => {
+      setIsLoading(false);
+    });
+
     console.log(data);
   };
 

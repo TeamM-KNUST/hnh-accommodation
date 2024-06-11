@@ -89,7 +89,7 @@ const Modal: React.FC<ModalProps> = ({
           className="
           relative 
           w-full
-          md:w-5/6
+          md:w-4/6
           lg:w-3/6
           xl:w-2/6
           my-6
@@ -168,6 +168,7 @@ const Modal: React.FC<ModalProps> = ({
                       disabled={disabled}
                       label={secondaryActionLabel}
                       onClick={handleSecondaryAction}
+                      variant="outline"
                     >
                       {secondaryActionLabel}
                     </Button>

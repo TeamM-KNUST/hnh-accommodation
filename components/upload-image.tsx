@@ -8,7 +8,6 @@ import Image from "next/image";
 declare global {
   var cloudinary: any;
 }
-const uploadPreset = "szu1fqku";
 
 interface UploadImageProps {
   onChange?: (value: string) => void;
@@ -26,7 +25,7 @@ export const UploadImage = ({ onChange, value }: UploadImageProps) => {
 
   return (
     <CldUploadWidget
-      uploadPreset={uploadPreset}
+      uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
       onSuccess
       ={handleUpload}
       options={{

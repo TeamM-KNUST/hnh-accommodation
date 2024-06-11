@@ -4,6 +4,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				hostname: "a.hwstatic.com",
+				hostname: "res.cloudinary.com",
 			}
 		]
 	},

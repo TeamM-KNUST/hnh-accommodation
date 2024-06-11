@@ -6,10 +6,12 @@ import dynamic from "next/dynamic";
 import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Modal from "./modal";
+// const Modal = dynamic(() => import("./modal").then((mod) => mod.Modal), {
+//   ssr: false,
+// });
 
-const Modal = dynamic(() => import("./modal").then((mod) => mod.Modal), {
-  ssr: false,
-});
+
 
 export const AddHostelModal = () => {
   const addModal = useAddHostel();
@@ -64,11 +66,11 @@ export const AddHostelModal = () => {
       disabled={isLoading}
       isOpen={addModal.isOpen}
       title="Add Hostel"
-      description="Add a new hostel to your account"
+      description="Add a new hostel to your listing"
       onClose={addModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       actionLabel="Add Hostel"
-      secondaryActionLabel="Cancel"
+      secondaryActionLabel="okay"
       body={bodyContent}
     />
   );

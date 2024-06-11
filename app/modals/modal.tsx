@@ -1,43 +1,36 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { useCallback, useEffect, useState } from "react";
+import { IoMdClose } from "react-icons/io";
 
 interface ModalProps {
-  body?: React.ReactNode;
-  footer?: React.ReactNode;
-  title?: string;
   isOpen?: boolean;
   onClose: () => void;
   onSubmit: () => void;
-  secondaryAction?: () => void;
-  actionLabel?: string;
-  secondaryActionLabel?: string;
+  title?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
+  actionLabel: string;
   disabled?: boolean;
+  secondaryAction?: () => void;
+  secondaryActionLabel?: string;
   description?: string;
 }
 
-export const Modal = ({
-  body,
-  footer,
-  title,
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
   onSubmit,
+  title,
+  body,
+  actionLabel,
+  footer,
+  disabled,
   secondaryAction,
   secondaryActionLabel,
-  actionLabel,
-  onClose,
-  isOpen,
-  disabled,
   description,
-}: ModalProps) => {
+}) => {
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
@@ -45,7 +38,9 @@ export const Modal = ({
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     setShowModal(false);
     setTimeout(() => {
@@ -54,48 +49,145 @@ export const Modal = ({
   }, [onClose, disabled]);
 
   const handleSubmit = useCallback(() => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     onSubmit();
   }, [onSubmit, disabled]);
 
   const handleSecondaryAction = useCallback(() => {
-    if (disabled || !secondaryAction) return;
+    if (disabled || !secondaryAction) {
+      return;
+    }
 
-    secondaryAction && secondaryAction();
+    secondaryAction();
   }, [secondaryAction, disabled]);
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
-    <Dialog  open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425]">
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>
-            {description}
-          </DialogDescription>
-        {body}
-          <DialogFooter>
-            <div className="flex flex-row items-center justify-between gap-4">
-              {secondaryAction && secondaryActionLabel && (
-                <Button
-                  variant="outline"
-                  onClick={handleSecondaryAction}
-                  disabled={disabled}
+    <>
+      <div
+        className="
+          justify-center 
+          items-center 
+          flex 
+          overflow-x-hidden 
+          overflow-y-auto 
+          fixed 
+          inset-0 
+          z-50 
+          outline-none 
+          focus:outline-none
+          bg-neutral-800/70
+        "
+      >
+        <div
+          className="
+          relative 
+          w-full
+          md:w-5/6
+          lg:w-3/6
+          xl:w-2/6
+          my-6
+          mx-auto 
+          h-full 
+          lg:h-auto
+          md:h-auto
+          "
+        >
+          {/*content*/}
+          <div
+            className={`
+            translate
+            duration-300
+            h-full
+            ${showModal ? "translate-y-0" : "translate-y-full"}
+            ${showModal ? "opacity-100" : "opacity-0"}
+          `}
+          >
+            <div
+              className="
+              translate
+              h-full
+              lg:h-auto
+              md:h-auto
+              border-0 
+              rounded-lg 
+              shadow-lg 
+              relative 
+              flex 
+              flex-col 
+              w-full 
+              bg-white 
+              outline-none 
+              focus:outline-none
+            "
+            >
+              {/*header*/}
+              <div
+                className="
+                flex 
+                items-center 
+                p-6
+                rounded-t
+                justify-center
+                relative
+                border-b-[1px]
+                "
+              >
+                <button
+                  className="absolute right-9 transition outline-none hover:text-neutral-500"
+                  onClick={handleClose}
                 >
-                  {secondaryActionLabel}
-                </Button>
-              )}
-              <Button disabled={disabled} onClick={handleSubmit}>
-                {actionLabel}
-              </Button>
+                  <IoMdClose size={34} />
+                </button>
+                <div className="flex flex-col gap-1">
+                  <div className="text-lg font-semibold">{title}</div>
+                  <div className="text-sm font-light">{description}</div>
+                </div>
+              </div>
+              {/*body*/}
+              <div className="relative p-6 flex-auto">{body}</div>
+              {/*footer*/}
+              <div className="flex flex-col gap-2 p-6">
+                <div
+                  className="
+                    flex 
+                    flex-row 
+                    items-center 
+                    gap-4 
+                    w-full
+                  "
+                >
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button
+                      disabled={disabled}
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                    >
+                      {secondaryActionLabel}
+                    </Button>
+                  )}
+                  <Button
+                    disabled={disabled}
+                    label={actionLabel}
+                    onClick={handleSubmit}
+                  >
+                    {actionLabel}
+                  </Button>
+                </div>
+                {footer}
+              </div>
             </div>
-
-            {footer}
-          </DialogFooter>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
+
+export default Modal;

@@ -11,11 +11,29 @@ import Modal from "./modal";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { set } from "zod";
 
-// const Modal = dynamic(() => import("./modal").then((mod) => mod.Modal), {
-//   ssr: false,
-// });
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+const formSchema = z.object({
+  description: z.string().min(4, {
+    message: "Description should be at least 4 characters",
+  }),
+  title: z.string().min(4, { 
+    message: "Title should be at least 4 characters",
+  }),
+});
+
+
 
 enum STEPS {
   IMAGES = 0,
@@ -30,6 +48,16 @@ export const AddHostelModal = () => {
   const [step, setStep] = useState(STEPS.IMAGES);
   const router = useRouter();
 
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      description: "",
+      title: "",
+    },
+  });
+
+  const { isSubmitting, isValid } = form.formState;
+
   const {
     register,
     handleSubmit,
@@ -40,10 +68,14 @@ export const AddHostelModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       imageSrc: "",
+      description: "",
+      category: "",
     },
   });
 
   const imageSrc = watch("imageSrc");
+  const description = watch("description");
+  const category = watch("category");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -99,7 +131,7 @@ export const AddHostelModal = () => {
     return "Back";
   }, [step]);
 
-  const bodyContent = (
+  let bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
         title="Add Photo to your place"
@@ -111,6 +143,66 @@ export const AddHostelModal = () => {
       />
     </div>
   );
+
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="How would you describe your place?"
+          subTitle="Describe your place to your guests"
+        />
+
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-4"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="eg. 'Happy Hostel'"
+                      disabled={isSubmitting}
+                      className="outline-none focus-visible:ring-0 focus-visible:ring-muted"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-4"
+          >
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="eg. 'A cozy place in the heart of the city' "
+                      disabled={isSubmitting}
+                      className="outline-none focus-visible:ring-0 focus-visible:ring-muted"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+      </div>
+    );
+  }
 
   return (
     <Modal

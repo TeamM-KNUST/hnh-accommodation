@@ -81,8 +81,8 @@ model Listing {
   id                 String  @id @default(cuid())
   imageSrc        String
   userId          String   
-  // title           String?
-  // description     String?
+  title           String
+  description     String
   createdAt       DateTime? @default(now())
   // roomCount       Int?
   // locationValue   String?

@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { User } from "@prisma/client";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AvatarImg } from "./avatarImage";
 import { MenuIcon } from "lucide-react";
@@ -16,16 +16,19 @@ import useAddHostel from "@/hooks/addhostel";
 
 export const UserMenu = () => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const hostel = pathname.includes("dashboard");
 
   const addHostel = useAddHostel();
   const { data: session } = useSession();
 
-
   return (
     <div className="relative">
       <div className="flex item-center justify-end gap-2 ">
-        <div
-          className="hidden
+        {hostel && (
+          <div
+            className="hidden
         md:block
         text-[1rem]
         font-semibold
@@ -36,10 +39,11 @@ export const UserMenu = () => {
         transition-all *:duration-200 *:ease-in-out
         cursor-pointer
         "
-          onClick={() => addHostel.onOpen()}
-        >
-          Hostel
-        </div>
+            onClick={() => addHostel.onOpen()}
+          >
+            Hostel
+          </div>
+        )}
 
         <div
           className="

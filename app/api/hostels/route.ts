@@ -17,15 +17,13 @@ export async function POST(req: Request) {
 
         
 
-        const {
-
+    const {
     imageSrc,
-     } = body;
-    
-            if (!imageSrc) {
-                return new NextResponse("All fields are required", { status: 400 });
-            }
-
+        } = body;
+        
+        if (!imageSrc) {
+            return new NextResponse("ImageSrc is required", { status: 400 });
+        }
     const listing = await db.listing.create({
         data: {
             imageSrc,

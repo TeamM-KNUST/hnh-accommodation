@@ -6,7 +6,7 @@
 
 ## 🌐 Live Demo
 
-Explore the live demonstration of the project: [nextjs14-notion](https://notion-clone-jade-three.vercel.app)
+Explore the live demonstration of the project: [hnh-accommodation](https://front-end-smoky-eight.vercel.app/)
 
 ## 📝 Description
 
@@ -90,25 +90,27 @@ app
 
 <details><summary>Table of Contents</summary>
 
-- [Live Demo](#-live-demo)
-- [Description](#-description)
-- [Technologies Used](#-technologies-used)
-- [Get Started](#-get-started)
-  - [Prerequisites](#-prerequisites)
-  - [Installation and Run Locally](#-installation-and-run-locally)
-  - [Scripts](#-scripts)
-- [Environment Variables](#-environment-variables)
-- [Deployment](#-deployment)
-  - [Deploy to production (manual)](#-deploy-to-production-manual)
-  - [Deploy on Vercel (recommended)](#-deploy-on-vercel-recommended)
-  - [Deploy on Netlify](#-deploy-on-netlify)
-- [Features](#-features)
-- [Contributing](#-contributing)
-  - [Bug / Feature Request](#-bug--feature-request)
-- [Acknowledgements](#-acknowledgements)
-- [References](#-references)
-- [Contact Us](#-contact-us)
-- [License](#-license)
+- [Next.js 14 Notion](#nextjs-14-notion)
+  - [🌐 Live Demo](#-live-demo)
+  - [📝 Description](#-description)
+  - [📖 Table of Contents](#-table-of-contents)
+  - [✨ Technologies Used](#-technologies-used)
+  - [🧰 Get Started](#-get-started)
+    - [📋 Prerequisites](#-prerequisites)
+    - [⚙️ Installation and Run Locally](#️-installation-and-run-locally)
+    - [📜 Scripts](#-scripts)
+  - [🔒 Environment Variables](#-environment-variables)
+  - [🚀 Deployment](#-deployment)
+      - [Deploy to production (manual)](#deploy-to-production-manual)
+      - [Deploy on Vercel (recommended)](#deploy-on-vercel-recommended)
+      - [Deploy on Netlify](#deploy-on-netlify)
+  - [💡 Features](#-features)
+  - [🔧 Contributing](#-contributing)
+  - [💎 Acknowledgements](#-acknowledgements)
+  - [📚 References](#-references)
+  - [📞 Contact Us](#-contact-us)
+  - [📜 License](#-license)
+  - [Contributors](#contributors)
 
 </details>
 
@@ -224,6 +226,12 @@ GOOGLE_CLIENT_SECRET=<GOOGLE_SECRET>
 GITHUB_ID=<GITHUB_ID>
 GITHUB_SECRET=<GITHUB_SECRET>
 NEXTAUTH_SECRET=<AUTH_SECRET>
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
 ```
 
 ## 🚀 Deployment

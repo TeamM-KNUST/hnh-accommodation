@@ -1,10 +1,13 @@
+
 import getCurrentUser from "@/actions/getCurrentUser";
+import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 
 export async function POST(req: Request) {
     try {
+       
         const currentUser = await getCurrentUser();
         if (!currentUser) {
             return new NextResponse("Unauthorized", { status: 401 });
@@ -38,7 +41,6 @@ export async function POST(req: Request) {
                 locationValue: location.value,
                 price: parseInt(price, 10),
                 userId: currentUser.id,
-
             }
         })
 

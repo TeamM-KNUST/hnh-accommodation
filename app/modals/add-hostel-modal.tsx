@@ -1,7 +1,7 @@
 "use client";
 
 import useAddHostel from "@/hooks/addhostel";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
@@ -17,10 +17,17 @@ import { set } from "zod";
 //   ssr: false,
 // });
 
+enum STEPS {
+  IMAGES = 0,
+  DESCRIPTION = 1,
+  CATEGORY = 2,
+}
+
 export const AddHostelModal = () => {
   const addModal = useAddHostel();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [step, setStep] = useState(STEPS.IMAGES);
   const router = useRouter();
 
   const {
@@ -33,7 +40,6 @@ export const AddHostelModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       imageSrc: "",
-      
     },
   });
 
@@ -47,14 +53,24 @@ export const AddHostelModal = () => {
     });
   };
 
+  const onBack = () => {
+    setStep((value) => value - 1);
+  };
+
+  const onNext = () => {
+    setStep((value) => value + 1);
+  };
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (step !== STEPS.CATEGORY) {
+      return onNext();
+    }
     setIsLoading(true);
-    console.log("Data", data);
 
     axios
       .post("/api/hostels", data)
       .then((response) => {
-        console.log("Response Data", response.data)
+        console.log("Response Data", response.data);
         toast.success("Hostel added successfully");
         router.refresh();
         reset();
@@ -62,12 +78,26 @@ export const AddHostelModal = () => {
       })
       .catch((error) => {
         toast.error("Error adding hostel");
-         console.log("Error response", error.response.data);
+        console.log("Error response", error.response.data);
       })
       .finally(() => {
         setIsLoading(false);
-      })
+      });
   };
+
+  const actionLabel = useMemo(() => {
+    if (step === STEPS.CATEGORY) {
+      return "Create";
+    }
+    return "Next";
+  }, [step]);
+
+  const secondaryActionLabel = useMemo(() => {
+    if (step === STEPS.IMAGES) {
+      return undefined;
+    }
+    return "Back";
+  }, [step]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -90,8 +120,9 @@ export const AddHostelModal = () => {
       description="Add a new hostel to your listing"
       onClose={addModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
-      actionLabel="Add Hostel"
-      secondaryActionLabel="okay"
+      actionLabel={actionLabel}
+      secondaryActionLabel={secondaryActionLabel}
+      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       body={bodyContent}
     />
   );

@@ -9,18 +9,18 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./modal";
 
 import axios from "axios";
-
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 // const Modal = dynamic(() => import("./modal").then((mod) => mod.Modal), {
 //   ssr: false,
 // });
 
-
-
 export const AddHostelModal = () => {
   const addModal = useAddHostel();
 
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -28,6 +28,7 @@ export const AddHostelModal = () => {
     setValue,
     watch,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       title: "",
@@ -37,7 +38,6 @@ export const AddHostelModal = () => {
       imageSrc: "",
       category: "",
       roomCount: 0,
-      
     },
   });
 
@@ -54,15 +54,20 @@ export const AddHostelModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    axios.post("/api/hostels", data).then(() => {
-      console.log("Hostel added successfully");
-      addModal.onClose();
-    }).catch(() => {
-      console.log("Error adding hostel");
-    }
-    ).finally(() => {
-      setIsLoading(false);
-    });
+    axios
+      .post("/api/hostel", data)
+      .then(() => {
+        toast.success("Hostel added successfully");
+        router.refresh();
+        reset();
+        addModal.onClose();
+      })
+      .catch(() => {
+        toast.error("Error adding hostel");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
 
     console.log(data);
   };

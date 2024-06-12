@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         
         })
 
-        const listing = await db.listing.create({
+    const listing = await db.listing.create({
             data: {
                title,
     description,

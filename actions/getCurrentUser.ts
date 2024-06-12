@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 
 
 export default async function getCurrentUser() {
-	try {
+
 		const session = await auth();
 
 		if (!session?.user?.email) {
@@ -17,8 +17,5 @@ export default async function getCurrentUser() {
 			},
 		});
 		return currentUser;
-		
-	} catch (error) {
-		return null;
-	}
+	
 }

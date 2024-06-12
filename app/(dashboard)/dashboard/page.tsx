@@ -1,23 +1,20 @@
-import { auth } from "@/auth";
-import { CategoryForm } from "@/components/category-form";
-import { UploadImage } from "@/components/upload-image";
-import { getUserById } from "@/data/user";
-import { db } from "@/lib/db";
+import getListings from "@/actions/getLisiting";
 
-const DashboardPage = async ({ params }: { params: { listingId: string } }) => {
-  const categories = await db.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  });
+import { ListingCard } from "./_components/listingCard";
+import { Container } from "@/components/container";
 
-  const locations = await db.location.findMany({
-    orderBy: {
-      name: "desc",
-    },
-  });
+const DashboardPage = async () => {
+  const listings = await getListings();
 
-  return <div></div>;
+  return (
+    <Container>
+      <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+        {listings.map((listing) => (
+          <ListingCard key={listing.id} data={listing} />
+        ))}
+      </div>
+    </Container>
+  );
 };
 
 export default DashboardPage;

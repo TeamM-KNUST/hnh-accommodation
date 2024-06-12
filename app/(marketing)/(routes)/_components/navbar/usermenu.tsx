@@ -18,8 +18,8 @@ export const UserMenu = () => {
   const router = useRouter();
 
   const addHostel = useAddHostel();
-  const { data: session, status } = useSession();
-  if (status === "loading") return null;
+  const { data: session } = useSession();
+
 
   return (
     <div className="relative">

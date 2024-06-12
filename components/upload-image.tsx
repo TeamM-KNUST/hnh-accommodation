@@ -39,7 +39,7 @@ export const UploadImage = ({ onChange, value }: UploadImageProps) => {
             className="relative hover:opacity-70
                 transition duration-200 ease-in-out cursor-pointer
                 border-dashed border-2 p-20 border-neutral-300 flex flex-col items-center justify-center gap-4 text-neutral-600"
-            onClick={()=>open()}
+            onClick={()=>open?.()}
           >
             <ImageMinus size={34} />
             <div className="font-semibold text-lg">Click to upload image</div>

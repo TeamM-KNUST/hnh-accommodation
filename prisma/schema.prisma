@@ -79,15 +79,15 @@ model Account {
 // Define the Listing model with the following fields:
 model Listing {
   id                 String  @id @default(cuid())
-  title           String
-  description     String
   imageSrc        String
-  createdAt       DateTime @default(now())
-  roomCount       Int
-  locationValue   String
   userId          String   
-  price           Int
-  categoryId String?
+  // title           String?
+  // description     String?
+  createdAt       DateTime? @default(now())
+  // roomCount       Int?
+  // locationValue   String?
+  // price           Int?
+   categoryId String?
 
   // Define the relation with User model
   user            User @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -11,6 +11,7 @@ import Modal from "./modal";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { set } from "zod";
 
 // const Modal = dynamic(() => import("./modal").then((mod) => mod.Modal), {
 //   ssr: false,
@@ -31,13 +32,8 @@ export const AddHostelModal = () => {
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      title: "",
-      description: "",
-      price: 0,
-      locationValue: "",
       imageSrc: "",
-      category: "",
-      roomCount: 0,
+      
     },
   });
 
@@ -53,23 +49,24 @@ export const AddHostelModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+    console.log("Data", data);
 
     axios
-      .post("/api/hostel", data)
-      .then(() => {
+      .post("/api/hostels", data)
+      .then((response) => {
+        console.log("Response Data", response.data)
         toast.success("Hostel added successfully");
         router.refresh();
         reset();
         addModal.onClose();
       })
-      .catch(() => {
+      .catch((error) => {
         toast.error("Error adding hostel");
+         console.log("Error response", error.response.data);
       })
       .finally(() => {
         setIsLoading(false);
-      });
-
-    console.log(data);
+      })
   };
 
   const bodyContent = (

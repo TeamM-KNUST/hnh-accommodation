@@ -11,33 +11,12 @@ import Modal from "./modal";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  description: z.string().min(4, {
-    message: "Description should be at least 4 characters",
-  }),
-  title: z.string().min(4, {
-    message: "Title should be at least 4 characters",
-  }),
-  category: z.string().min(2),
-  imageSrc: z.string().min(2),
-});
+import { Input } from "@/components/Input";
 
 enum STEPS {
   IMAGES = 0,
   DESCRIPTION = 1,
+  CATEGORY = 2,
 }
 
 export const AddHostelModal = () => {
@@ -47,34 +26,22 @@ export const AddHostelModal = () => {
   const [step, setStep] = useState(STEPS.IMAGES);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FieldValues>({
     defaultValues: {
-      description: "",
-      title: "",
-      category: "",
       imageSrc: "",
-
+      title: "",
+      description: "",
     },
   });
 
-  const { isSubmitting, isValid } = form.formState;
-
-const {
-  handleSubmit,
-  control,
-  register,
-  watch,
-  setValue,
-  reset,
-  formState: { errors },
-} = useForm({
-  resolver: zodResolver(formSchema),
-});
-
-
   const imageSrc = watch("imageSrc");
-
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -96,6 +63,8 @@ const {
     if (step !== STEPS.DESCRIPTION) {
       return onNext();
     }
+
+    console.log("Data", data);
     setIsLoading(true);
 
     axios
@@ -152,54 +121,35 @@ const {
           subTitle="Describe your place to your guests"
         />
 
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 mt-4"
-          >
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="eg. 'Happy Hostel'"
-                      disabled={isSubmitting}
-                      className="outline-none focus-visible:ring-0 focus-visible:ring-muted"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </form>
-        </Form>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 mt-4"
-          >
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="eg. 'A cozy place in the heart of the city' "
-                      disabled={isSubmitting}
-                      className="outline-none focus-visible:ring-0 focus-visible:ring-muted"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </form>
-        </Form>
+        <Input
+          id="title"
+          label="Title"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+        />
+        <hr />
+
+        <Input
+          id="description"
+          label="Description"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.CATEGORY) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="What category does your place fall under?"
+          subTitle="Select the category that best describes your place"
+        />
       </div>
     );
   }
@@ -214,7 +164,7 @@ const {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.IMAGES ? undefined : onBack}
+      secondaryAction={step === STEPS.DESCRIPTION ? undefined : onBack}
       body={bodyContent}
     />
   );

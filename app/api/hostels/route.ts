@@ -18,8 +18,8 @@ export async function POST(req: Request) {
 
     const {
         imageSrc,
+        title,
         description,
-        title
 
         } = body;
         
@@ -28,9 +28,9 @@ export async function POST(req: Request) {
         }
     const listing = await db.listing.create({
         data: {
-            description,
-            title,
             imageSrc,
+            title,
+            description,
             userId:currentUser.id
            }
     })
@@ -45,3 +45,7 @@ export async function POST(req: Request) {
         return new NextResponse("Internal server error", { status: 500 });
     }
 }
+
+
+
+  

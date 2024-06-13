@@ -28,12 +28,11 @@ const formSchema = z.object({
   description: z.string().min(4, {
     message: "Description should be at least 4 characters",
   }),
-  title: z.string().min(4, { 
+  title: z.string().min(4, {
     message: "Title should be at least 4 characters",
   }),
+  categoryId: z.string().min(2),
 });
-
-
 
 enum STEPS {
   IMAGES = 0,
@@ -74,8 +73,7 @@ export const AddHostelModal = () => {
   });
 
   const imageSrc = watch("imageSrc");
-  const description = watch("description");
-  const category = watch("category");
+
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {

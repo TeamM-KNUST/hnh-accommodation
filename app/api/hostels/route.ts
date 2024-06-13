@@ -8,7 +8,6 @@ export async function POST(req: Request) {
     try {
 
         const currentUser = await getCurrentUser();
-        console.log("Current User", currentUser);
         if (!currentUser?.id) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
@@ -18,14 +17,19 @@ export async function POST(req: Request) {
         
 
     const {
-    imageSrc,
+        imageSrc,
+        description,
+        title
+
         } = body;
         
-        if (!imageSrc) {
-            return new NextResponse("ImageSrc is required", { status: 400 });
+        if (!imageSrc || !description || !title) {
+            return new NextResponse("missing required fileds", { status: 400 });
         }
     const listing = await db.listing.create({
         data: {
+            description,
+            title,
             imageSrc,
             userId:currentUser.id
            }

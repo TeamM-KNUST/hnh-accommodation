@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 
 export default async function getCurrentUser() {
 	const session = await auth();
-  console.log("Session", session);
   
   if (!session || !session.user) {
     return null;

@@ -31,13 +31,13 @@ const formSchema = z.object({
   title: z.string().min(4, {
     message: "Title should be at least 4 characters",
   }),
-  categoryId: z.string().min(2),
+  category: z.string().min(2),
+  imageSrc: z.string().min(2),
 });
 
 enum STEPS {
   IMAGES = 0,
   DESCRIPTION = 1,
-  CATEGORY = 2,
 }
 
 export const AddHostelModal = () => {
@@ -52,25 +52,26 @@ export const AddHostelModal = () => {
     defaultValues: {
       description: "",
       title: "",
+      category: "",
+      imageSrc: "",
+
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<FieldValues>({
-    defaultValues: {
-      imageSrc: "",
-      description: "",
-      category: "",
-    },
-  });
+const {
+  handleSubmit,
+  control,
+  register,
+  watch,
+  setValue,
+  reset,
+  formState: { errors },
+} = useForm({
+  resolver: zodResolver(formSchema),
+});
+
 
   const imageSrc = watch("imageSrc");
 
@@ -92,7 +93,7 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.CATEGORY) {
+    if (step !== STEPS.DESCRIPTION) {
       return onNext();
     }
     setIsLoading(true);
@@ -104,6 +105,7 @@ export const AddHostelModal = () => {
         toast.success("Hostel added successfully");
         router.refresh();
         reset();
+        setStep(STEPS.IMAGES);
         addModal.onClose();
       })
       .catch((error) => {
@@ -116,7 +118,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) {
+    if (step === STEPS.DESCRIPTION) {
       return "Create";
     }
     return "Next";
@@ -212,7 +214,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+      secondaryAction={step === STEPS.IMAGES ? undefined : onBack}
       body={bodyContent}
     />
   );

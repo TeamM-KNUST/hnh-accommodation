@@ -78,7 +78,7 @@ export const AddHostelModal = () => {
         addModal.onClose();
       })
       .catch((error) => {
-        toast.error("Error adding hostel");
+        toast.error(error.response.data);
         console.log("Error response", error.response.data);
       })
       .finally(() => {

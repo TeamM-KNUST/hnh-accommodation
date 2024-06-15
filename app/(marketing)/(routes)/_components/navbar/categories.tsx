@@ -14,7 +14,7 @@ interface CategoriesProps {
 export const Categories = ({ categories, options }: CategoriesProps) => {
   const pathname = usePathname();
 
-  if (!pathname.includes("dashboard")) {
+  if (!pathname.includes("dashboard") || pathname.includes("listings")){
     return null;
   }
 

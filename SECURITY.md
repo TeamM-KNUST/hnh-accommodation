@@ -4,4 +4,8 @@ We will investigate all legitimate reports and do our best to quickly fix the pr
 
 Email responsible.disclosure@vercel.com to disclose any security vulnerabilities.
 
-https://vercel.com/security
+Please provide the following information:
+```
+bash
+https://abudusamed.gmail.com
+```

@@ -19,6 +19,14 @@ export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
             className="object-cover w-full h-full group-hover:scale-110 transition duration-300 ease-in-out"
           />
         </div>
+        <div className="flex flex-col gap-1">
+          <h3 className="text-lg font-semibold">{data.title}</h3>
+          <p className="text-sm text-gray-500">{data.description}</p>
+          <div className="flex justify-between items-center">
+            <p className="text-lg font-medium">₵{data.price}</p>
+            <p className="text-sm text-gray-500">{data.locationValue}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

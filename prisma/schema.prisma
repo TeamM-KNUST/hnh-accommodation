@@ -84,10 +84,10 @@ model Listing {
   title           String
   description     String
   createdAt       DateTime? @default(now())
-  // roomCount       Int?
-  // locationValue   String?
-  // price           Int?
-   categoryId String?
+  roomCount       Int?
+  locationValue   String?
+  price           Int?
+  categoryId String?
 
   // Define the relation with User model
   user            User @relation(fields: [userId], references: [id], onDelete: Cascade)

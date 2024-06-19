@@ -13,6 +13,9 @@ export default async function getCurrentUser() {
 
 		}
 	})
+	if (!currentUser) {
+		return null;
+	}
   
   return currentUser;
 }

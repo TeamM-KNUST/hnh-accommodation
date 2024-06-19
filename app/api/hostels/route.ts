@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 
+
 export async function POST(req: Request) {
     try {
 
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
             imageSrc,
             title,
             description,
-            price,
+            price:parseInt(price, 10),
             userId:currentUser.id
            }
     })

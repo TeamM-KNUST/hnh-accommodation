@@ -15,8 +15,9 @@ import { Input } from "@/components/Input";
 
 enum STEPS {
   IMAGES = 0,
-  DESCRIPTION = 1,
-  CATEGORY = 2,
+  PRICE = 1,
+  DESCRIPTION = 2,
+  CATEGORY = 3,
 }
 
 export const AddHostelModal = () => {
@@ -37,6 +38,7 @@ export const AddHostelModal = () => {
     defaultValues: {
       imageSrc: "",
       title: "",
+      price: 1,
       description: "",
     },
   });
@@ -112,6 +114,28 @@ export const AddHostelModal = () => {
       />
     </div>
   );
+
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="How much do you want to charge for your place?"
+          subTitle="Set a price for your guests"
+        />
+
+        <Input
+          id="price"
+          label="Price"
+          type="number"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+          formatPrice
+        />
+      </div>
+    );
+  }
 
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (

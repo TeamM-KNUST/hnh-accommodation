@@ -26,9 +26,9 @@ export async function POST(req: Request) {
 
         } = body;
         
-        // if (!imageSrc || !description || !title || !locationValue || !price || !roomCount) {
-        //     return new NextResponse("missing required fileds", { status: 400 });
-        // }
+        if (!imageSrc || !description || !title || !price) {
+            return new NextResponse("missing required fileds", { status: 400 });
+        }
     const listing = await db.listing.create({
         data: {
             imageSrc,

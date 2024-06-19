@@ -1,6 +1,9 @@
+"use client";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { Listing, User } from "@prisma/client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ListingCardProps {
   data: Listing;
@@ -8,8 +11,12 @@ interface ListingCardProps {
 }
 
 export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
+  const router = useRouter();
   return (
-    <div className="col-span-1 cursor-pointer group">
+    <div
+      onClick={() => router.push(`/dashboard/hostels/${data.id}`)}
+      
+      className="col-span-1 cursor-pointer group">
       <div className="flex flex-col gap-2 w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
           <Image

@@ -9,9 +9,9 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./modal";
 
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
+import { toast } from "react-toastify";
 
 enum STEPS {
   IMAGES = 0,

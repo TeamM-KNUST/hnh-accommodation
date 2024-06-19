@@ -14,7 +14,7 @@ export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/dashboard/hostels/${data.id}`)}
+      onClick={() => router.push(`/dashboard/listings/${data.id}`)}
       
       className="col-span-1 cursor-pointer group">
       <div className="flex flex-col gap-2 w-full">

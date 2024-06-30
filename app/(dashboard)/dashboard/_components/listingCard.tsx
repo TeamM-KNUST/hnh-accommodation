@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 
 interface ListingCardProps {
   data: Listing;
-  currentUser?: User;
+
 }
 
-export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
+export const ListingCard = ({ data }: ListingCardProps) => {
   const router = useRouter();
   return (
     <div

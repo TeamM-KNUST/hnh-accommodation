@@ -2,7 +2,6 @@
 
 import useAddHostel from "@/hooks/addhostel";
 import { useMemo, useState } from "react";
-import dynamic from "next/dynamic";
 import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -12,12 +11,14 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
+import { Combobox } from "@/components/ui/combobox";
 
 enum STEPS {
   IMAGES = 0,
   PRICE = 1,
   DESCRIPTION = 2,
   CATEGORY = 3,
+
 }
 
 export const AddHostelModal = () => {
@@ -40,10 +41,12 @@ export const AddHostelModal = () => {
       title: "",
       price: 1,
       description: "",
+      category:"",
     },
   });
 
   const imageSrc = watch("imageSrc");
+  const category = watch("category");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -62,7 +65,7 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.DESCRIPTION) {
+    if (step !== STEPS.CATEGORY) {
       return onNext();
     }
 
@@ -89,7 +92,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.DESCRIPTION) {
+    if (step === STEPS.CATEGORY) {
       return "Create";
     }
     return "Next";
@@ -174,6 +177,7 @@ export const AddHostelModal = () => {
           title="What category does your place fall under?"
           subTitle="Select the category that best describes your place"
         />
+        <Combobox location={category} />
       </div>
     );
   }
@@ -188,7 +192,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.DESCRIPTION ? undefined : onBack}
+      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       body={bodyContent}
     />
   );

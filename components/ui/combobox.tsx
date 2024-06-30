@@ -1,70 +1,75 @@
 "use client";
 
 import * as React from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
 
-import { Popover, PopoverTrigger, PopoverContent } from "./popover";
-import { Button } from "./button";
-
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
-  CommandGroup,
   CommandEmpty,
+  CommandGroup,
   CommandInput,
   CommandItem,
-} from "./command";
-import { Check, ChevronsUpDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Location } from "@prisma/client";
 
 interface ComboboxProps {
-  options: {
-    value: string;
-    label: string;
-  }[];
-  value?: string;
-  onChange: (value: string) => void;
+  location: Location[];
 }
 
-export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
-  const [open, setOPen] = React.useState(false);
+export const Combobox = ({ location }: ComboboxProps) => {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
   return (
-    <Popover open={open} onOpenChange={setOPen}>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between"
+          className="w-[200px] justify-between"
         >
           {value
-            ? options.find((option) => option.value === value)?.label
-            : "Select an option"}
+            ? location.find((framework) => framework.id === value)?.name
+            : "Select Location..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
+      <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search Options ... " />
-          <CommandEmpty>No options found</CommandEmpty>
-          <CommandGroup>
-            {options.map((option) => (
-              <CommandItem
-                key={option.value}
-                onSelect={() => {
-                  onChange(option.value === value ? "" : option.value);
-                  setOPen(false);
-                }}
-              >
-                <Check
-                  className={cn(
-                    "h-4 w-4 mr-2",
-                    option.value === value ? "text-primary" : "text-gray-400"
-                  )}
-                />
-                {option.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
+          <CommandInput placeholder="Search..." />
+          <CommandList>
+            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandGroup>
+              {Array.isArray(location) &&
+                location.map((framework) => (
+                  <CommandItem
+                    key={framework.id}
+                    value={framework.name}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === framework.id ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                    {framework.name}
+                  </CommandItem>
+                ))}
+            </CommandGroup>
+          </CommandList>
         </Command>
       </PopoverContent>
     </Popover>

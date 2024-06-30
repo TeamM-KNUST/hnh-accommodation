@@ -12,6 +12,13 @@ export const Navbar = async () => {
       name: "asc",
     },
   });
+  if (!categories) {
+    return (
+      <div className="flex items-center justify-center text-2xl">
+        No Categories Found
+      </div>
+    );
+  }
 
   return (
     <div className="fixed w-full bg-white z-10 px-10 shadow-sm">

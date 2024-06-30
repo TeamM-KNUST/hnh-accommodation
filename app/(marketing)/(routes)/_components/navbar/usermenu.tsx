@@ -20,7 +20,6 @@ export const UserMenu = () => {
 
   const hostel = pathname.includes("dashboard");
 
-
   const addHostel = useAddHostel();
   const { data: session } = useSession();
 

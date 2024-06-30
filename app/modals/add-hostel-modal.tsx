@@ -65,7 +65,7 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.CATEGORY) {
+    if (step !== STEPS.DESCRIPTION) {
       return onNext();
     }
 
@@ -92,7 +92,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) {
+    if (step === STEPS.DESCRIPTION) {
       return "Create";
     }
     return "Next";
@@ -192,7 +192,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+      secondaryAction={step === STEPS.DESCRIPTION ? undefined : onBack}
       body={bodyContent}
     />
   );

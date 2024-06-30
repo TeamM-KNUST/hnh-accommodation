@@ -56,7 +56,7 @@ export const CommunityCards = ({
 					height={32}
 				/>
 			)}
-			<div className="relative w-full h-full flex flex-col justify-between items-center text-white rounded-md px-3 py-2 z-20">
+			<div className="relative w-full h-full flex flex-col justify-between items-center text-white rounded-md px-3 py-2 z-6">
 				<div className="flex items-center top-4 left-4 ">
 					<div className="relative mr-2">
 						<HomePageAvatar imgUrl={avatarUrl} size={50} alt="" />

@@ -102,7 +102,7 @@ export const CardsCarousel = () => {
             key={item.thumbnailUrl}
             className={`h-12 w-12 transition-all duration-300 ease-in-out${
               item.title === getMiddleItemTitle
-                ? "w-[3rem] h-[3rem] transition-all duration-300 ease-in-out z-10 "
+                ? "w-[3rem] h-[3rem] transition-all duration-300 ease-in-out z-2 "
                 : ""
             }`}
           >

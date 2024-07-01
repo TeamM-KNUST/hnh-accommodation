@@ -1,34 +1,31 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+const { PrismaClient } = require('@prisma/client');
+const prismadb = new PrismaClient();
 
-async function main(){
+async function main() {
     try {
-        await prisma.category.createMany({
+        await prismadb.category.createMany({
            data: [
                 { name: "Hostel" },
                 { name: "Homestel" },
             ]
-       })
-        console.log("Seeding successful")
+       });
+        console.log("Seeding categories successful");
     } catch (error) {
-        console.log("Error seeding the database:", error)
+        console.error("Error seeding categories:", error);
     } finally {
-        await prisma.$disconnect();
+        await prismadb.$disconnect();
     }
 }
 
-main();
-
-
 async function locate() {
     try {
-        await prisma.location.createMany({
+        await prismadb.location.createMany({
             data: [
                 { name: "Ayeduase New-Site" },
                 { name: "Boadi" },
                 { name: "Kotei" },
                 { name: "Bomso" },
-                { name: "Ayeduase, North-Side " },
+                { name: "Ayeduase, North-Side" },
                 { name: "Emena" },
                 { name: "Ayigya" },
                 { name: "Kentikrono" },
@@ -38,15 +35,18 @@ async function locate() {
                 { name: "Ayeduase, South-Side" },
                 { name: "Gyinase" }                   
             ]
-        })
-        console.log("Sucess")
-    }
-    catch (error) {
-        console.log("Failed to seeding area", error)
-    }
-    finally {
-        await prisma.$disconnect();
+        });
+        console.log("Seeding locations successful");
+    } catch (error) {
+        console.error("Error seeding locations:", error);
+    } finally {
+        await prismadb.$disconnect();
     }
 }
 
-locate();
+async function seedDatabase() {
+    await main();
+    await locate();
+}
+
+seedDatabase();

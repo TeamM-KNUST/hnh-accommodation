@@ -12,13 +12,14 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
 import { Combobox } from "@/components/ui/combobox";
+import CountrySelect from "@/components/inputs/country-select";
 
 enum STEPS {
   IMAGES = 0,
   PRICE = 1,
   DESCRIPTION = 2,
-  CATEGORY = 3,
-
+  LOCATION = 3,
+  CATEGORY = 4,
 }
 
 export const AddHostelModal = () => {
@@ -41,12 +42,14 @@ export const AddHostelModal = () => {
       title: "",
       price: 1,
       description: "",
-      category:"",
+      category: "",
+      location: "",
     },
   });
 
   const imageSrc = watch("imageSrc");
   const category = watch("category");
+  const location = watch("location");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -65,7 +68,7 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.DESCRIPTION) {
+    if (step !== STEPS.LOCATION) {
       return onNext();
     }
 
@@ -92,7 +95,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.DESCRIPTION) {
+    if (step === STEPS.LOCATION) {
       return "Create";
     }
     return "Next";
@@ -169,6 +172,20 @@ export const AddHostelModal = () => {
       </div>
     );
   }
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="Where is your place located?"
+          subTitle="Enter the location of your place"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue("location", value)}
+        />
+      </div>
+    );
+  }
 
   if (step === STEPS.CATEGORY) {
     bodyContent = (
@@ -192,7 +209,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.DESCRIPTION ? undefined : onBack}
+      secondaryAction={step === STEPS.LOCATION ? undefined : onBack}
       body={bodyContent}
     />
   );

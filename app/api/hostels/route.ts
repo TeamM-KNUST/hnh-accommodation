@@ -23,17 +23,17 @@ export async function POST(req: Request) {
         description,
         locationValue,
         price,
-        roomCount,
 
         } = body;
         
-        if (!imageSrc || !description || !title || !price) {
+        if (!imageSrc || !description || !title || !price || !locationValue) {
             return new NextResponse("missing required fileds", { status: 400 });
         }
     const listing = await db.listing.create({
         data: {
             imageSrc,
             title,
+            locationValue,
             description,
             price:parseInt(price, 10),
             userId:currentUser.id

@@ -10,6 +10,12 @@ export type CountrySelectValue = {
   latlng: number[];
   region: string;
   value: string;
+  name: string;
+  code: string;
+  regio: string;
+  subregion: string;
+    capital: string[];
+  area: string;
 };
 
 type Props = {
@@ -23,32 +29,38 @@ function CountrySelect({ value, onChange }: Props) {
   return (
     <div>
       <Select
-        placeholder="Anywhere"
-        isClearable
-        options={getAll()}
         value={value}
+        isClearable
         onChange={(value) => onChange(value as CountrySelectValue)}
+        options={getAll()}
+        getOptionLabel={(option) => option.label}
+        getOptionValue={(option) => option.value}
+        placeholder="Select a country"
+        isSearchable
         formatOptionLabel={(option: any) => (
-          <div className="flex flex-row items-center gap-3">
-            <Flag code={option.value} className="w-5" />
+          <div className="flex items-center gap-3">
+            <div>{option.flag}</div>
             <div>
-              {option.label},
-              <span className="text-neutral-500 ml-1">{option.region}</span>
+              {option.label}
+              <span className="text-neutral-500 ml-2">{option.region}</span>
             </div>
+            <span className="text-neutral-500 ml-2">{option.capital}</span>
+            <span className="text-neutral-500 ml-2">{option.subregion}</span>
+            <span className="text-neutral-500 ml-2">{option.area}</span>
           </div>
         )}
         classNames={{
-          control: () => "p-3 border-2",
-          input: () => "text-lg",
-          option: () => "text-lg",
+          control: () => "p-3 border-2 border-neutral-200 rounded-xl",
+          option: () => "text-xl",
+          input: () => "text-xl",
         }}
         theme={(theme) => ({
           ...theme,
-          borderRadius: 6,
+          borderRadius: 0,
           colors: {
             ...theme.colors,
+            primary25: "#f9f9f9",
             primary: "black",
-            primary25: "#ffe4e6",
           },
         })}
       />

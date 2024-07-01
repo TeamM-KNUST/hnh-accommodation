@@ -21,20 +21,22 @@ export async function POST(req: Request) {
         imageSrc,
         title,
         description,
-        locationValue,
+        location,
         price,
 
         } = body;
         
-        if (!imageSrc || !description || !title || !price || !locationValue) {
-            return new NextResponse("missing required fileds", { status: 400 });
-        }
+        Object.keys(body).forEach((value: any) => {
+    if (!body[value]) {
+      NextResponse.error();
+    }
+  });
     const listing = await db.listing.create({
         data: {
             imageSrc,
             title,
-            locationValue,
             description,
+            locationValue: location.value,
             price:parseInt(price, 10),
             userId:currentUser.id
            }

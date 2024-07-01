@@ -42,13 +42,11 @@ export const AddHostelModal = () => {
       title: "",
       price: 1,
       description: "",
-      category: "",
-      location: "",
+      locationValue:null,
     },
   });
 
   const imageSrc = watch("imageSrc");
-  const category = watch("category");
   const location = watch("location");
 
   const setCustomValue = (id: string, value: any) => {
@@ -187,17 +185,17 @@ export const AddHostelModal = () => {
     );
   }
 
-  if (step === STEPS.CATEGORY) {
-    bodyContent = (
-      <div className="flex flex-col gap-4">
-        <Heading
-          title="What category does your place fall under?"
-          subTitle="Select the category that best describes your place"
-        />
-        <Combobox location={category} />
-      </div>
-    );
-  }
+  // if (step === STEPS.CATEGORY) {
+  //   bodyContent = (
+  //     <div className="flex flex-col gap-4">
+  //       <Heading
+  //         title="What category does your place fall under?"
+  //         subTitle="Select the category that best describes your place"
+  //       />
+  //       <Combobox location={category} />
+  //     </div>
+  //   );
+  // }
 
   return (
     <Modal

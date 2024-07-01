@@ -27,7 +27,7 @@ function CountrySelect({ value, onChange }: Props) {
   const { getAll } = useCountries();
 
   return (
-    <div>
+    <div className="z-10">
       <Select
         value={value}
         isClearable

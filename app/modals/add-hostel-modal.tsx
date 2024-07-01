@@ -11,8 +11,10 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
-import { Combobox } from "@/components/ui/combobox";
+
 import CountrySelect from "@/components/inputs/country-select";
+
+import dynamic from "next/dynamic";
 
 enum STEPS {
   IMAGES = 0,
@@ -42,7 +44,7 @@ export const AddHostelModal = () => {
       title: "",
       price: 1,
       description: "",
-      locationValue:null,
+      locationValue: null,
     },
   });
 
@@ -64,6 +66,16 @@ export const AddHostelModal = () => {
   const onNext = () => {
     setStep((value) => value + 1);
   };
+
+       const Map = useMemo(
+         () =>
+           dynamic(() => import("@/components/map"), {
+             ssr: false,
+           }),
+         [location]
+       );
+
+
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.LOCATION) {
@@ -172,7 +184,7 @@ export const AddHostelModal = () => {
   }
   if (step === STEPS.LOCATION) {
     bodyContent = (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-8">
         <Heading
           title="Where is your place located?"
           subTitle="Enter the location of your place"
@@ -181,6 +193,7 @@ export const AddHostelModal = () => {
           value={location}
           onChange={(value) => setCustomValue("location", value)}
         />
+        <Map center={location?.latlng} />
       </div>
     );
   }

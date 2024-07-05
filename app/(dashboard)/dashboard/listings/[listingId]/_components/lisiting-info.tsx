@@ -1,6 +1,5 @@
 "use client";
 
-
 import { AvatarImg } from "@/app/(marketing)/(routes)/_components/navbar/avatarImage";
 import { useCountries } from "@/hooks/useCountries";
 import { User } from "@prisma/client";
@@ -23,7 +22,8 @@ export const ListingInfo = ({
   description,
   locationValue,
 }: ListingInfoProps) => {
-
+  const { getByCode } = useCountries();
+  const coordinates = getByCode(locationValue || "");
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
@@ -47,12 +47,12 @@ export const ListingInfo = ({
         <hr />
         <p className="text-lg font-light text-neutral-500">{description}</p>
         <hr />
-        <Sleep/>
+        <Sleep />
         <hr />
-        <Offers/>
+        <Offers />
         <hr />
+
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
-      
       </div>
     </div>
   );

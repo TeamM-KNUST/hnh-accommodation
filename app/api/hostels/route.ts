@@ -36,7 +36,7 @@ export async function POST(req: Request) {
             imageSrc,
             title,
             description,
-            locationValue: location.value,
+            locationValue:location,
             price:parseInt(price, 10),
             userId:currentUser.id
            }

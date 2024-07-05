@@ -12,9 +12,8 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
 
-import CountrySelect from "@/components/inputs/country-select";
-
 import dynamic from "next/dynamic";
+import { Combobox } from "@/components/ui/combobox";
 
 enum STEPS {
   IMAGES = 0,
@@ -44,7 +43,7 @@ export const AddHostelModal = () => {
       title: "",
       price: 1,
       description: "",
-      locationValue: null,
+      location: " ",
     },
   });
 
@@ -189,8 +188,8 @@ export const AddHostelModal = () => {
           title="Where is your place located?"
           subTitle="Enter the location of your place"
         />
-        <CountrySelect
-          value={location}
+        <Combobox
+          data={location}
           onChange={(value) => setCustomValue("location", value)}
         />
         <Map center={location?.latlng} />

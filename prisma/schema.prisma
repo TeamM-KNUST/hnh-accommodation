@@ -32,7 +32,7 @@ model User {
   image         String?
   password      String?
   confirmPassword String?
-  phone        String?@default("000-000-0000")
+
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 

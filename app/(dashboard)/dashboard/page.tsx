@@ -4,6 +4,8 @@ import { ListingCard, ListingCardSkeleton } from "./_components/listingCard";
 import { Container } from "@/components/container";
 import { Suspense } from "react";
 
+
+
 const DashboardPage = async () => {
   const listings = await getListings();
   if (listings.length === 0) {

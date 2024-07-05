@@ -15,7 +15,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 	if (!validateFields.success) {
 		return validateFields.error;
 	}
-	const { email, password, name, confirmpassword } = validateFields.data;
+	const { email, password, name, confirmpassword} = validateFields.data;
 	const hashedPassword = await bcrypt.hash(password, 10);
 	const hashedConfirmPassword = await bcrypt.hash(confirmpassword, 10);
 

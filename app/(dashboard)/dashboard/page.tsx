@@ -1,13 +1,17 @@
-import getListings from "@/actions/getLisiting";
+import getListings, { IListingsParams } from "@/actions/getLisiting";
 
 import { ListingCard, ListingCardSkeleton } from "./_components/listingCard";
 import { Container } from "@/components/container";
 import { Suspense } from "react";
 
+interface HomeProps{
+  searchParams: IListingsParams;
+}
 
-
-const DashboardPage = async () => {
-  const listings = await getListings();
+const DashboardPage = async ({
+  searchParams
+}:HomeProps) => {
+  const listings = await getListings(searchParams);
   if (listings.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full mt-24">

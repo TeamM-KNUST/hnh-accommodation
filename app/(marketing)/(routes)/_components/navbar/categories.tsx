@@ -1,32 +1,28 @@
 "use client";
 
-import { Category } from "@prisma/client";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { categories } from "@/data/constant";
+import { CategoryBox } from "./categorybox";
 
-interface CategoriesProps {
-  categories: Category[];
-  options?: {
-    label: string;
-    value: string;
-  };
-}
-
-export const Categories = ({ categories, options }: CategoriesProps) => {
+export const Categories = () => {
+  const params = useSearchParams();
+  const category = params?.get("category");
   const pathname = usePathname();
 
-  if (!pathname.includes("dashboard") || pathname.includes("listings")){
+  const isMainPage = pathname === "/dashboard";
+
+  if (!isMainPage) {
     return null;
   }
 
   return (
     <div className="flex items-center justify-center overflow-x-auto p-4">
-      {categories.map((category) => (
-        <div
-          key={category.id}
-          className="flex items-center justify-center px-4 p-2 font-semibold text-gray-600 rounded-lg cursor-pointer hover:bg-gray-100 text-xl"
-        >
-          {category.name}
-        </div>
+      {categories.map((items) => (
+        <CategoryBox
+          key={items.id}
+          name={items.name}
+          selected={category === items.name}
+        />
       ))}
     </div>
   );

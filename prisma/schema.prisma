@@ -85,13 +85,13 @@ model Listing {
   description     String
   createdAt       DateTime? @default(now())
   roomCount       Int?
-  locationValue   String?
+  locationValue   String
   price           Int?
-  categoryId String?
+  category       String
 
   // Define the relation with User model
   user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  category Category? @relation(fields: [categoryId], references: [id])
+
 
 
   // Define the relation with other models
@@ -99,27 +99,10 @@ model Listing {
   favorites       Favorite[]
 
   @@index([createdAt])
-  @@index([categoryId])
+ 
 }
 
-model Category{
-  id  String @id @default(uuid())
-  name String @unique
-  listing Listing[]
 
-  locationId String?
-  location Location? @relation(fields: [locationId], references: [id])
-
-  @@unique([locationId])
-}
-
-model Location{
-  id String@id @default(uuid())
-  name String @unique
-
-  category Category[]
-}
-// Define the Reservation model with the following fields:
 model Reservation {
   id                 String  @id @default(cuid())
   userId           String 

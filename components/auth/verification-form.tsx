@@ -36,7 +36,7 @@ export const VerificationForm = () => {
 	return (
 		<CardWrapper
 			headerLabel="Confirm your email address"
-			backButtonHref="auth/login"
+			backButtonHref="/auth/login"
 			backButtonLabel="Back to login"
 		>
 			<div className="flex w-full items-center justify-center">

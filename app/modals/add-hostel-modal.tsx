@@ -5,6 +5,8 @@ import { useMemo, useState } from "react";
 import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+
+import { locations } from "@/data/location";
 import Modal from "./modal";
 
 import axios from "axios";
@@ -13,7 +15,8 @@ import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
 
 import dynamic from "next/dynamic";
-import { Combobox } from "@/components/ui/combobox";
+import { Combobox, ComboboxItem } from "@/components/ui/combobox";
+import { Category } from "@prisma/client";
 
 enum STEPS {
   IMAGES = 0,
@@ -23,7 +26,13 @@ enum STEPS {
   CATEGORY = 4,
 }
 
-export const AddHostelModal = () => {
+type Props = {
+  categories:Category[]
+}
+
+export const AddHostelModal = ({
+  categories
+}:Props) => {
   const addModal = useAddHostel();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -44,11 +53,13 @@ export const AddHostelModal = () => {
       price: 1,
       description: "",
       location: " ",
+      category: " ",
     },
   });
 
   const imageSrc = watch("imageSrc");
   const location = watch("location");
+  const category = watch("category");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -66,18 +77,16 @@ export const AddHostelModal = () => {
     setStep((value) => value + 1);
   };
 
-       const Map = useMemo(
-         () =>
-           dynamic(() => import("@/components/map"), {
-             ssr: false,
-           }),
-         [location]
-       );
-
-
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("@/components/map"), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.LOCATION) {
+    if (step !== STEPS.CATEGORY) {
       return onNext();
     }
 
@@ -104,7 +113,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.LOCATION) {
+    if (step === STEPS.CATEGORY) {
       return "Create";
     }
     return "Next";
@@ -189,25 +198,50 @@ export const AddHostelModal = () => {
           subTitle="Enter the location of your place"
         />
         <Combobox
+          onChange={(data) => setCustomValue("location", data)}
           data={location}
-          onChange={(value) => setCustomValue("location", value)}
-        />
+        >
+          {locations.map((location) => (
+            <ComboboxItem
+              key={location.id}
+              name={location.name}
+              id={location.id || ""}
+              onSelect={(name) => setCustomValue("location", name)}
+              selectedValue={location.name}
+            />
+          )) }
+        </Combobox>
+
         <Map center={location?.latlng} />
       </div>
     );
   }
 
-  // if (step === STEPS.CATEGORY) {
-  //   bodyContent = (
-  //     <div className="flex flex-col gap-4">
-  //       <Heading
-  //         title="What category does your place fall under?"
-  //         subTitle="Select the category that best describes your place"
-  //       />
-  //       <Combobox location={category} />
-  //     </div>
-  //   );
-  // }
+  if (step === STEPS.CATEGORY) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="What category does your place fall under?"
+          subTitle="Select the category that best describes your place"
+        />
+        <Combobox
+          onChange={(data) => setCustomValue("category", data)}
+          data={category}
+        >
+          {categories?.map((category) => (
+            <ComboboxItem
+              key={category.id}
+              id= {category.id}
+              name={category.name}
+              onSelect={(name) => setCustomValue("category", name)}
+              selectedValue={category.name}
+            />
+          )) || []}
+        </Combobox>
+    
+      </div>
+    );
+  }
 
   return (
     <Modal
@@ -219,7 +253,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.LOCATION ? undefined : onBack}
+      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       body={bodyContent}
     />
   );

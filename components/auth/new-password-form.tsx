@@ -49,12 +49,12 @@ export const NewPasswordForm = () => {
 		setError("");
 		setSuccess("");
 		startTransition(() => {
-			// newPassword(values, token).then((data) => {
-			// 	if (!(data instanceof z.ZodError)) {
-			// 		setError(data.error);
-			// 		setSuccess(data.success);
-			// 	}
-			// });
+			newPassword(values, token).then((data) => {
+				if (!(data instanceof z.ZodError)) {
+					setError(data.error);
+					setSuccess(data.success);
+				}
+			});
 		});
 	};
 	return (

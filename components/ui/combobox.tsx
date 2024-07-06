@@ -18,21 +18,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { locations } from "@/data/location";
 
-type Location = {
-  data?: string
-  onChange?: (value: string) => void
+type ComboboxProps = {
+  data?: string;
+  onChange?: (value: string) => void;
+  children: React.ReactNode;
 };
-export function Combobox({ data, onChange }: Location) {
+
+export function Combobox({ data, onChange, children }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(data || "");
 
-  const handleSelect = (locationName: string) => {
-    console.log(locationName);
-    setValue(locationName); // Update local state
+  const handleSelect = (itemName: string) => {
+    console.log(itemName);
+    setValue(itemName); // Update local state
     if (onChange) {
-      onChange(locationName); // Invoke onChange prop with new value
+      onChange(itemName); // Invoke onChange prop with new value
     }
     setOpen(false); // Close the popover
   };
@@ -46,30 +47,22 @@ export function Combobox({ data, onChange }: Location) {
           aria-expanded={open}
           className="w-[400px] justify-between"
         >
-          {value || "Select location..."}
+          {value || "Select..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search location..." />
+          <CommandInput placeholder="Search..." />
           <CommandList>
-            <CommandEmpty>No Location found.</CommandEmpty>
+            <CommandEmpty>No items found.</CommandEmpty>
             <CommandGroup>
-              {locations.map((location) => (
-                <CommandItem
-                  key={location.id}
-                  onSelect={() => handleSelect(location.name)}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === location.name ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {location.name}
-                </CommandItem>
-              ))}
+              {React.Children.map(children, (child) =>
+                React.cloneElement(child as React.ReactElement, {
+                  onSelect: handleSelect,
+                  selectedValue: value,
+                })
+              )}
             </CommandGroup>
           </CommandList>
         </Command>
@@ -78,3 +71,28 @@ export function Combobox({ data, onChange }: Location) {
   );
 }
 
+type ComboboxItemProps = {
+  id: string;
+  name: string;
+  onSelect: (name: string) => void;
+  selectedValue: string;
+};
+
+export function ComboboxItem({
+  id,
+  name,
+  onSelect,
+  selectedValue,
+}: ComboboxItemProps) {
+  return (
+    <CommandItem key={id} onSelect={() => onSelect(name)}>
+      <Check
+        className={cn(
+          "mr-2 h-4 w-4",
+          selectedValue === name ? "opacity-100" : "opacity-0"
+        )}
+      />
+      {name}
+    </CommandItem>
+  );
+}

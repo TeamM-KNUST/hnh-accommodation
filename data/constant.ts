@@ -13,3 +13,10 @@ export const locations = [
                 {id:"11", name: "Ayeduase, South-Side" },
                 {id:"12", name: "Gyinase" }                   
 ];
+
+
+
+export const categories = [
+    { id: "1", name: "Hostel" },
+    { id: "2", name: "Homestel" },
+]

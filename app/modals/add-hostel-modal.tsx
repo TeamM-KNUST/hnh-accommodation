@@ -6,7 +6,7 @@ import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import { locations } from "@/data/location";
+import { locations,categories } from "@/data/constant";
 import Modal from "./modal";
 
 import axios from "axios";
@@ -16,7 +16,6 @@ import { toast } from "react-toastify";
 
 import dynamic from "next/dynamic";
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
-import { Category } from "@prisma/client";
 
 enum STEPS {
   IMAGES = 0,
@@ -26,13 +25,8 @@ enum STEPS {
   CATEGORY = 4,
 }
 
-type Props = {
-  categories:Category[]
-}
 
-export const AddHostelModal = ({
-  categories
-}:Props) => {
+export const AddHostelModal = () => {
   const addModal = useAddHostel();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -228,15 +222,15 @@ export const AddHostelModal = ({
           onChange={(data) => setCustomValue("category", data)}
           data={category}
         >
-          {categories?.map((category) => (
+          {categories.map((category) => (
             <ComboboxItem
               key={category.id}
-              id= {category.id}
+              id={category.id}
               name={category.name}
               onSelect={(name) => setCustomValue("category", name)}
               selectedValue={category.name}
             />
-          )) || []}
+          ))}
         </Combobox>
     
       </div>

@@ -3,12 +3,13 @@ import { db } from "@/lib/db";
 export interface IListingsParams{
     currentUser?: string;
     locationValue?: string;
-    category?:string
+    category?: string
+    title?: string;
 }
 
 export default async function getListings(params: IListingsParams) {
     try {
-        const { currentUser, locationValue, category } = params;
+        const { currentUser, locationValue, category, title } = params;
         let query: any = {};
 
         if (currentUser) {
@@ -21,6 +22,14 @@ export default async function getListings(params: IListingsParams) {
 
         if (locationValue) {
             query.locationValue = locationValue;
+        }
+
+        if (title) {
+            query.title = {
+                contains: title,
+                mode: "insensitive",
+        
+            };
         }
 
 

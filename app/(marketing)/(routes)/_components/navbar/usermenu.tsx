@@ -1,15 +1,13 @@
 "use client";
-import getCurrentUser from "@/actions/getCurrentUser";
+
 import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { User } from "@prisma/client";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { AvatarImg } from "./avatarImage";
 import { MenuIcon } from "lucide-react";
 import useAddHostel from "@/hooks/addhostel";

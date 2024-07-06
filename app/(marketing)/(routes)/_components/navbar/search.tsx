@@ -1,33 +1,55 @@
-import { Input } from "@/components/ui/input";
-import { useScrollTop } from "@/hooks/use-scroll-top";
-import { cn } from "@/lib/utils";
-import { SearchIcon } from "lucide-react";
+"use client";
+import { Search } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import qs from "query-string";
 
-export const Search = () => {
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { Input } from "@/components/ui/input";
+import { useDebounce } from "@/hooks/use-debounce";
+
+interface SearchInputProps {
+  values?: string;
+  onChanges?: (value: string) => void;
+}
+
+export const SearchInput = ({ values, onChanges }: SearchInputProps) => {
+  const [value, setValue] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const debouncedValue = useDebounce(value, 500);
+
+  const generatedUrl = useMemo(() => {
+    return qs.stringifyUrl(
+      {
+        url: pathname,
+        query: {
+          title: debouncedValue,
+        },
+      },
+      { skipEmptyString: true, skipNull: true }
+    );
+  }, [pathname, debouncedValue]);
+
+  useEffect(() => {
+    router.push(generatedUrl);
+  }, [generatedUrl, router]);
+
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value),
+    []
+  );
+
   return (
-    <div
-      className={cn(
-        " border-[1px] w-full md:w-auto lg:w-auto py-2 px-2 rounded-full shadow-sm hover:shadow-md transition-all duration-200 ease-in-out cursor-pointer"
-      )}
-    >
-      <div className="flex items-center justify-between">
-        <div className="text-[1rem] flex items-center font-semibold px-6  text-gray-700 py-1 rounded-full hover:bg-neutral-200 transition-all duration-200 ease-in-out">
-          <SearchIcon size={20} className="block md:hidden" />
-          <Input
-            placeholder="Search destinations"
-            className="w-full bg-transparent border-none outline-none focus-visible:outline focus-visible:ring-transparent truncate text-gray-700"
-          />
-        </div>
-        <div className=" hidden md:block text-[1rem] font-semibold px-6 border-x-[1px] flex-1 text-center text-gray-700 hover:bg-neutral-200 hover:rounded-full transition-all duration-200 ease-in-out py-3">
-          location
-        </div>
-        <div className="tex-[1rem] pl-6 pr-2 text-gray-600 flex items-center gap-3 rounded-full hover:bg-neutral-200 transition-all duration-200 ease-in-out py-3">
-          <div className="hidden md:block">guestLabel</div>
-        </div>
-        <div className="p-2 bg-rose-500 rounded-full text-white pr-2">
-          <SearchIcon size={18} />
-        </div>
-      </div>
+    <div className="relative">
+      <Search className="h-4 w-4 absolute top-3  left-3 text-blue-700 dark:text-slate-200" />
+      <Input
+        value={value}
+        onChange={onChange} 
+        className="w-full md:w-[300px] pl-9 rounded-full bg-slate-100/10  focus-visible:ring-slate-200 "
+        placeholder="Search for a hostel ...."
+      />
     </div>
   );
 };

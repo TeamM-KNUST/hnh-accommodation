@@ -1,6 +1,6 @@
 "use client";
 
-import useAddHostel from "@/hooks/addhostel";
+
 import { useMemo, useState } from "react";
 import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 
 import dynamic from "next/dynamic";
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
+import useAddHostel from "@/hooks/addhostel";
 
 enum STEPS {
   IMAGES = 0,

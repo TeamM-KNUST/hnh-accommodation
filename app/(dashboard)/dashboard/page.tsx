@@ -16,7 +16,6 @@ const DashboardPage = async ({
     return (
       <div className="flex flex-col items-center justify-center h-full mt-24">
         <h1 className="text-3xl font-bold">No Listings Found</h1>
-        <p className="text-gray-500">Create your first listing</p>
       </div>
     );
   }

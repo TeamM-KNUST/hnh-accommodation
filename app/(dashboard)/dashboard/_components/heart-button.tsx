@@ -1,6 +1,5 @@
 "use client";
 
-
 import useFavorite from "@/hooks/use-favourite";
 import { User } from "@prisma/client";
 import React from "react";
@@ -23,11 +22,11 @@ function HeartButton({ listingId, currentUser }: Props) {
       className=" relative hover:opacity-80 transition cursor-pointer"
     >
       <AiOutlineHeart
-        size={28}
+        size={29}
         className="fill-white absolute -top-[2px] -right-[2px]"
       />
       <AiFillHeart
-        size={24}
+        size={25}
         className={hasFavorite ? "fill-rose-500" : "fill-neutral-500/70"}
       />
     </div>

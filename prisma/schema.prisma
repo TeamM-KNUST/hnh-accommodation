@@ -11,11 +11,8 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url  	    = env("DATABASE_URL")
-  // uncomment next line if you use Prisma <5.10
-  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
-// Define the enumeration for UserRole
 enum UserRole {
   ADMIN
   USER
@@ -39,7 +36,6 @@ model User {
 
   role          UserRole @default(USER)
 
-  // Define the relation with other models
   accounts      Account[]
   listings     Listing[]
   reservations Reservation[]
@@ -48,7 +44,6 @@ model User {
 
   isTwoFactorEnabled Boolean @default(false)
 
-  //Indexing for frequently used queries for performance
   @@index([role])
 
 }
@@ -69,7 +64,7 @@ model Account {
   id_token           String?  @db.Text
   session_state      String?
 
-  // Define the relation with User model
+ 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -90,12 +85,8 @@ model Listing {
   price           Int?
   category       String
 
-  // Define the relation with User model
   user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-
-
-  // Define the relation with other models
   reservations    Reservation[]
   favorites       Favorite[]
 
@@ -113,7 +104,6 @@ model Reservation {
   totalPrice       Int
   createdAt        DateTime @default(now())
 
-  // Define the relation with User and Listing models
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 
@@ -127,11 +117,8 @@ model Favorite {
   id                String  @id @default(cuid())
   userId          String
   listingId       String 
-
-  // Define the relation with User and Listing models
   user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing         Listing       @relation(fields: [listingId], references: [id], onDelete: Cascade)
-
 
   @@unique([userId, listingId])
 }

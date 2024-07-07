@@ -1,5 +1,6 @@
 "use client";
 
+import { Toaster } from "react-hot-toast";
 import { AddHostelModal } from "../modals/add-hostel-modal";
 import { ToasterProvider } from "./toaster-provider";
 
@@ -15,6 +16,7 @@ export const ModalProvider = () => {
     <>
       <ToasterProvider/>
       <AddHostelModal />
+      <Toaster />
     </>
   );
 };

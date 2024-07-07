@@ -1,51 +1,49 @@
-import { User } from "@prisma/client";
+import { Favorite, User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 
-type Props = {
-    listingId: string;
-    currentUser?: User | null;
+
+
+interface IUseFavorite {
+	listingId: string;
+	currentUser?: User | null;
+	favorite?:Favorite | null;
+	
 }
 
-function useFavorite({
-    listingId,
-    currentUser
-}:Props) {
+const useFavorite = ({ listingId, currentUser, favorite}: IUseFavorite) => {
+	const router = useRouter();
 
-    const router = useRouter();
+	const hasFavorite = currentUser?.favoriteIds?.includes(listingId) || favorite?.listingId === listingId;
 
-    const hasFavorite = useMemo(() => {
-        const list = currentUser?.favoriteIds || [];
+	const toggleFavorite = async (e: React.MouseEvent<HTMLDivElement>) => {
+		e.stopPropagation();
 
-        return list.includes(listingId);
-    }, [currentUser, listingId]);
+		if (!currentUser) {
+			return  router.push("/auth/login");
+		}
 
-    const toggleFavorite = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+		try {
+			if (hasFavorite) {
+				await axios.delete(`/api/favorites/${listingId}`);
+			} else {
+				await axios.post(`/api/favorites/${listingId}`);
+				console.log("listingId", listingId);
+			}
 
-        if (!currentUser) {
-            router.push("/auth/login");
-            return;
-        }
-        try {
-            let request;
+			router.refresh();
+			toast.success("Success");
+			console.log(hasFavorite);
+		} catch (error) {
+			toast.error("Something went wrong.");
+		}
+	};
 
-            if (hasFavorite) {
-                request = ()=> axios.delete(`/api/favorite/${listingId}`);
-            }else {
-                request = ()=> axios.post(`/api/favorite/${listingId}`);
-            }
-            await request();
-            router.refresh();
-            toast.success("Successfully updated favorite");
-        }catch(error:any) {
-            toast.error("Something went wrong");
-        }
-    }, [currentUser, hasFavorite, listingId, router]);
-    
-    return { hasFavorite, toggleFavorite };
-} 
+	return {
+		hasFavorite,
+		toggleFavorite,
+	};
+};
 
 export default useFavorite;

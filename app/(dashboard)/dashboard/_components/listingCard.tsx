@@ -4,19 +4,29 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Listing, User } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import HeartButton from "./heart-button";
 
 interface ListingCardProps {
   data: Listing;
+  currentUser?: User | null;
 
 }
 
-export const ListingCard = ({ data }: ListingCardProps) => {
+export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
   const router = useRouter();
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
       onClick={() => router.push(`/dashboard/listings/${data.id}`)}
-      
-      className="col-span-1 cursor-pointer group">
+      className="col-span-1 cursor-pointer group"
+    >
       <div className="flex flex-col gap-2 w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
           <Image
@@ -25,6 +35,9 @@ export const ListingCard = ({ data }: ListingCardProps) => {
             alt="hostel"
             className="object-cover w-full h-full group-hover:scale-110 transition duration-300 ease-in-out"
           />
+          <div className="absolute top-3 right-3">
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
         </div>
         <div className="flex flex-col gap-1">
           <h3 className="text-lg font-semibold">{data.title}</h3>
@@ -35,7 +48,7 @@ export const ListingCard = ({ data }: ListingCardProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 //loading skeleton

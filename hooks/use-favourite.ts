@@ -8,14 +8,13 @@ import { toast } from "react-toastify";
 interface IUseFavorite {
 	listingId: string;
 	currentUser?: User | null;
-	favorite?:Favorite | null;
-	
+
 }
 
-const useFavorite = ({ listingId, currentUser, favorite}: IUseFavorite) => {
+const useFavorite = ({ listingId, currentUser}: IUseFavorite) => {
 	const router = useRouter();
 
-	const hasFavorite = currentUser?.favoriteIds?.includes(listingId) || favorite?.listingId === listingId;
+	const hasFavorite = currentUser?.favoriteIds.includes(listingId) || false;
 
 	const toggleFavorite = async (e: React.MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
@@ -29,7 +28,6 @@ const useFavorite = ({ listingId, currentUser, favorite}: IUseFavorite) => {
 				await axios.delete(`/api/favorites/${listingId}`);
 			} else {
 				await axios.post(`/api/favorites/${listingId}`);
-				console.log("listingId", listingId);
 			}
 
 			router.refresh();

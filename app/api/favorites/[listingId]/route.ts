@@ -20,16 +20,19 @@ export async function POST(req: Request, { params }: {
             return new NextResponse("Invalid", {status:400})
         }
 
-        const favorite = await db.favorite.create({
+        const favorite = await db.user.update({
+            where: {
+                id: currentUser.id
+            },
             data: {
-                userId:currentUser.id,
-                listingId:params.listingId,
+                favoriteIds: {
+                    push: listingId
+               }
             }
         })
-
         
         return NextResponse.json(favorite)
-        console.log(favorite)
+    
         
     } catch (error) {
         console.log("[FAVORITE_LIKE_ERROR]", error)
@@ -56,19 +59,18 @@ export async function DELETE(req: Request, { params }: {
             return new NextResponse("Invalid", {status:400})
         }
 
-        const favorite = await db.favorite.delete({
+        const updatedFavoriteIds = currentUser.favoriteIds.filter((id) => id !== listingId)
+
+        const favorite = await db.user.update({
             where: {
-                userId_listingId: {
-                    userId: currentUser.id,
-                    listingId: listingId
-                
-                }
+                id: currentUser.id
+            },
+            data: {
+                favoriteIds: updatedFavoriteIds
             }
         })
-
         
         return NextResponse.json(favorite)
-        console.log(favorite)
         
     } catch (error) {
         console.log("[FAVORITE_UNLIKE_ERROR]", error)

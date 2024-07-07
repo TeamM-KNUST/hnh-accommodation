@@ -5,10 +5,10 @@ import { User } from "@prisma/client";
 import React from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
-type Props = {
+interface Props {
   listingId: string;
   currentUser?: User | null;
-};
+}
 
 function HeartButton({ listingId, currentUser }: Props) {
   const { hasFavorite, toggleFavorite } = useFavorite({

@@ -41,7 +41,7 @@ function useFavorite({
             router.refresh();
             toast.success("Successfully updated favorite");
         }catch(error:any) {
-            toast.error(error.response.data.message);
+            toast.error("Something went wrong");
         }
     }, [currentUser, hasFavorite, listingId, router]);
     

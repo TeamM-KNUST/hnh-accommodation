@@ -6,7 +6,6 @@ import { EmpltyState } from "@/components/empty-state";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
-
 export const metadata: Metadata = {
   title: "Favorites",
   description: "View all your favorite listings",
@@ -16,7 +15,7 @@ const FavoritesPage = async () => {
   const currentUser = await getCurrentUser();
   const listings = await getFavoriteListing();
 
-  if (!listings || listings.length === 0) {
+  if (!listings || listings.length === 0 || !currentUser) {
     return (
       <Suspense>
         <EmpltyState

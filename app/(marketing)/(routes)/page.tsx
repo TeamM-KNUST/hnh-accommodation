@@ -6,6 +6,7 @@ import { Hero } from "./_components/homePage/hero";
 import { Sayhello } from "./_components/homePage/sayhello";
 import { SoloToSocial } from "./_components/homePage/SoloToSocial/solotosocial";
 import { Roamies } from "./_components/homePage/roamies";
+import { Suspense } from "react";
 const font = Poppins({
   subsets: ["latin"],
   weight: ["600"],
@@ -14,13 +15,15 @@ const font = Poppins({
 export default function Home() {
   return (
     <Container>
-      <div className="flex flex-col gap-y-6">
-        <Connect />
-        <InterSection />
-        <Sayhello />
-        <SoloToSocial />
-        <Roamies />
-      </div>
+      <Suspense>
+        <div className="flex flex-col gap-y-6">
+          <Connect />
+          <InterSection />
+          <Sayhello />
+          <SoloToSocial />
+          <Roamies />
+        </div>
+      </Suspense>
     </Container>
   );
 }

@@ -17,20 +17,20 @@ const FavoritesPage = async () => {
 
   if (!listings || listings.length === 0 || !currentUser) {
     return (
-      <Suspense>
-        <EmpltyState
-          title="Unauthorized"
-          subtitle="You are not authorized to view this page. Please login to view your favorite listings."
-        />
-      </Suspense>
+      <EmpltyState
+        title="Unauthorized"
+        subtitle="You are not authorized to view this page. Please login to view your favorite listings."
+      />
     );
   }
 
   return (
-    <FavoritesClient
-      listings={listings}
-      currentUser={currentUser as unknown as User}
-    />
+    <Suspense>
+      <FavoritesClient
+        listings={listings}
+        currentUser={currentUser as unknown as User}
+      />
+    </Suspense>
   );
 };
 

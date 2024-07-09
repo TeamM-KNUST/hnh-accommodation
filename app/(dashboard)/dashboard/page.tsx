@@ -21,9 +21,9 @@ const DashboardPage = async ({ searchParams }: HomeProps) => {
     );
   }
   return (
-    <Container>
-      <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-        <Suspense fallback={<ListingCardSkeleton />}>
+    <Suspense fallback={<ListingCardSkeleton />}>
+      <Container>
+        <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
           {listings.map((listing) => (
             <ListingCard
               key={listing.id}
@@ -31,9 +31,9 @@ const DashboardPage = async ({ searchParams }: HomeProps) => {
               currentUser={currentUser}
             />
           ))}
-        </Suspense>
-      </div>
-    </Container>
+        </div>
+      </Container>
+    </Suspense>
   );
 };
 

@@ -3,8 +3,15 @@ import { Logo } from "./logo";
 import { UserMenu } from "./usermenu";
 import { Categories } from "./categories";
 import { SearchInput } from "./search";
+import { User } from "@prisma/client";
 
-export const Navbar = () => {
+interface NavbarProps{
+  currentUser?: User | null;
+}
+
+export const Navbar = ({
+  currentUser
+}:NavbarProps) => {
   return (
     <div className="fixed w-full bg-white z-10 px-10 shadow-sm">
       <div className="border-b-[1px] py-4">

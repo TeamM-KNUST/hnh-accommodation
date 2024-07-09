@@ -67,7 +67,7 @@ export const UserMenu = () => {
                 <AvatarImg src={session?.user?.image} alt="user" />
               </div>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent sideOffset={20} >
               {!session ? (
                 <div className="flex flex-col gap-y-4">
                   <Button

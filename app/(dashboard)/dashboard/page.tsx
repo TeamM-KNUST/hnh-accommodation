@@ -19,16 +19,16 @@ const DashboardPage = async ({
 
     if (listings.length === 0) {
       return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <>
           <EmptyState showReset />
-        </Suspense>
+        </>
       );
     }
 
     return (
-      <Suspense fallback={<ListingCardSkeleton />}>
-        <Container>
-          <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+      <Container>
+        <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+          <Suspense fallback={<ListingCardSkeleton />}>
             {listings.map((listing) => (
               <ListingCard
                 key={listing.id}
@@ -36,16 +36,16 @@ const DashboardPage = async ({
                 currentUser={currentUser}
               />
             ))}
-          </div>
-        </Container>
-      </Suspense>
+          </Suspense>
+        </div>
+      </Container>
     );
   } catch (error) {
     console.error("Error loading listings or current user:", error);
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <>
         <EmptyState showReset />
-      </Suspense>
+      </>
     );
   }
 };

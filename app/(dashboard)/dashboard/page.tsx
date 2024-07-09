@@ -4,7 +4,7 @@ import { ListingCard, ListingCardSkeleton } from "./_components/listingCard";
 import { Container } from "@/components/container";
 import { Suspense } from "react";
 import getCurrentUser from "@/actions/getCurrentUser";
-import { EmpltyState } from "@/components/empty-state";
+import { EmptyState } from "@/components/empty-state";
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -15,8 +15,8 @@ const DashboardPage = async ({ searchParams }: HomeProps) => {
   const currentUser = await getCurrentUser();
   if (listings.length === 0) {
     return (
-      <Suspense>
-        <EmpltyState showReset />
+      <Suspense fallback={<div> lodaing ... </div>}>
+        <EmptyState showReset />
       </Suspense>
     );
   }

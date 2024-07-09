@@ -21,7 +21,7 @@ const action: Action = {
   onClick: () => {},
 };
 
-export const EmpltyState = ({
+export const EmptyState = ({
   title = "No listings found",
   subtitle = "Try adjusting your search or filters to find what you're looking for.",
   showReset,

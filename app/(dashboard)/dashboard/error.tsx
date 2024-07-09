@@ -1,6 +1,6 @@
 "use client";
 
-import { EmpltyState } from "@/components/empty-state";
+import { EmptyState } from "@/components/empty-state";
 import { useEffect } from "react";
 
 type Props = {
@@ -12,7 +12,7 @@ function ErrorState({ error }: Props) {
     console.log("🚀 ~ file: error.tsx:12 ~ ErrorState ~ error:", error);
   }, [error]);
 
-  return <EmpltyState title="Uh Oh" subtitle="Something went wrong!" />;
+  return <EmptyState title="Uh Oh" subtitle="Something went wrong!" />;
 }
 
 export default ErrorState;

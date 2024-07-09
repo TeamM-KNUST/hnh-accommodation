@@ -5,6 +5,7 @@ import getFavoriteListing from "@/actions/getFavoriteListing";
 import { EmpltyState } from "@/components/empty-state";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Favorites",
@@ -15,7 +16,13 @@ const FavoritesPage = async () => {
   const currentUser = await getCurrentUser();
   const listings = await getFavoriteListing();
 
-  if (!listings || listings.length === 0 || !currentUser) {
+  if (!currentUser) {
+    return redirect("/auth/login")
+  }
+
+  
+
+  if (!listings || listings.length === 0 ) {
     return (
       <EmpltyState
         title="Unauthorized"

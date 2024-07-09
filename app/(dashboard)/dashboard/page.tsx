@@ -6,12 +6,9 @@ import { Suspense } from "react";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { EmptyState } from "@/components/empty-state";
 
-interface HomeProps {
-  searchParams: IListingsParams;
-}
 
-const DashboardPage = async ({ searchParams }: HomeProps) => {
-  const listings = await getListings(searchParams);
+const DashboardPage = async () => {
+  const listings = await getListings({});
   const currentUser = await getCurrentUser();
   if (listings.length === 0) {
     return (

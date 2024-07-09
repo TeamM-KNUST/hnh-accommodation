@@ -15,9 +15,9 @@ const DashboardPage = async ({ searchParams }: HomeProps) => {
   const currentUser = await getCurrentUser();
   if (listings.length === 0) {
     return (
-      <>
+      <Suspense>
         <EmpltyState showReset />
-      </>
+      </Suspense>
     );
   }
   return (

@@ -4,6 +4,7 @@ import { ListingCard, ListingCardSkeleton } from "./_components/listingCard";
 import { Container } from "@/components/container";
 import { Suspense } from "react";
 import getCurrentUser from "@/actions/getCurrentUser";
+import { EmpltyState } from "@/components/empty-state";
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -14,9 +15,9 @@ const DashboardPage = async ({ searchParams }: HomeProps) => {
   const currentUser = await getCurrentUser();
   if (listings.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full mt-24">
-        <h1 className="text-3xl font-bold">No Listings Found</h1>
-      </div>
+      <>
+        <EmpltyState showReset />
+      </>
     );
   }
   return (

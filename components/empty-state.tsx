@@ -37,15 +37,19 @@ export const EmpltyState = ({
           <Button
             variant="outline"
             label="Remove all filters"
-            onClick={() => router.push("/")}
-          ></Button>
+            onClick={() => router.push("/dashboard")}
+          >
+            Remove all filters
+          </Button>
         )}
         {action && (
           <Button
             variant="outline"
             label={action.text}
             onClick={action.onClick}
-          ></Button>
+          >
+            {action.text}
+          </Button>
         )}
       </div>
     </div>

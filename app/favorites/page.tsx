@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import FavoritesClient from "./_components/favorite-client";
 import getCurrentUser from "@/actions/getCurrentUser";
 import getFavoriteListing from "@/actions/getFavoriteListing";
-import { EmpltyState } from "@/components/empty-state";
+import { EmptyState } from "@/components/empty-state";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
@@ -24,7 +24,7 @@ const FavoritesPage = async () => {
 
   if (!listings || listings.length === 0 ) {
     return (
-      <EmpltyState
+      <EmptyState
         title="Unauthorized"
         subtitle="You are not authorized to view this page. Please login to view your favorite listings."
       />

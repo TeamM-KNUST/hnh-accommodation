@@ -11,6 +11,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AvatarImg } from "./avatarImage";
 import { MenuIcon } from "lucide-react";
 import useAddHostel from "@/hooks/addhostel";
+import { Separator } from "@/components/ui/separator";
 
 export const UserMenu = () => {
   const router = useRouter();
@@ -67,7 +68,7 @@ export const UserMenu = () => {
                 <AvatarImg src={session?.user?.image} alt="user" />
               </div>
             </PopoverTrigger>
-            <PopoverContent sideOffset={20} >
+            <PopoverContent sideOffset={20}>
               {!session ? (
                 <div className="flex flex-col gap-y-4">
                   <Button
@@ -87,14 +88,24 @@ export const UserMenu = () => {
                   </Button>
                 </div>
               ) : (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => signOut()}
-                  className="w-full text-center"
-                >
-                  Logout
-                </Button>
+                <div className="flex flex-col gap-y-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => router.push("/favorites")}
+                  >
+                    Favorites
+                  </Button>
+                  <Separator />
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => signOut()}
+                    className="w-full text-center"
+                  >
+                    Logout
+                  </Button>
+                </div>
               )}
             </PopoverContent>
           </Popover>

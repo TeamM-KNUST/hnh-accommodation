@@ -20,7 +20,6 @@ const FavoritesPage = async () => {
     return redirect("/auth/login")
   }
 
-  
 
   if (!listings || listings.length === 0 ) {
     return (

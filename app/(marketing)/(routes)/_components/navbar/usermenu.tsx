@@ -92,6 +92,13 @@ export const UserMenu = () => {
                   <Button
                     variant="outline"
                     size="sm"
+                    onClick={() => router.push("/properties")}
+                  >
+                    Properties
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => router.push("/favorites")}
                   >
                     Favorites

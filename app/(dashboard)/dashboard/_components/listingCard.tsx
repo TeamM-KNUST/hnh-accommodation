@@ -1,19 +1,48 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { Listing, User } from "@prisma/client";
+import { Listing, User, Reservation } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import HeartButton from "./heart-button";
+import { useCallback } from "react";
+import { Button } from "@/components/ui/button";
 
 interface ListingCardProps {
   data: Listing;
   currentUser?: User | null;
+  reservation?: Reservation;
+  onAction?: (id: string) => void;
+  disabled?: boolean;
+  actionLabel?: string;
+  actionId?: string;
 }
 
-export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
+export const ListingCard = ({
+  data,
+  currentUser,
+  reservation,
+  onAction,
+  disabled,
+  actionId,
+  actionLabel,
+}: ListingCardProps) => {
   const router = useRouter();
+
+  const handleCancel = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+
+      if (disabled) return;
+
+      if (actionId !== undefined) {
+        onAction?.(actionId);
+      }
+    },
+    [onAction, actionId, disabled]
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
@@ -46,6 +75,19 @@ export const ListingCard = ({ data, currentUser }: ListingCardProps) => {
             <p className="text-sm text-gray-500">{data.locationValue}</p>
           </div>
         </div>
+        {onAction && actionLabel && (
+          <Button
+            onClick={handleCancel}
+            disabled={disabled}
+            className={`${
+              disabled
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-red-500 text-white"
+            } py-2 rounded-md`}
+          >
+            {actionLabel}
+          </Button>
+        )}
       </div>
     </motion.div>
   );

@@ -72,13 +72,13 @@ export const AddHostelModal = () => {
     setStep((value) => value + 1);
   };
 
-  const Map = useMemo(
-    () =>
-      dynamic(() => import("@/components/map"), {
-        ssr: false,
-      }),
-    [location]
-  );
+  // const Map = useMemo(
+  //   () =>
+  //     dynamic(() => import("@/components/map"), {
+  //       ssr: false,
+  //     }),
+  //   [location]
+  // );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.CATEGORY) {
@@ -207,7 +207,7 @@ export const AddHostelModal = () => {
           )) }
         </Combobox>
 
-        <Map center={location?.latlng} />
+        {/* <Map center={location?.latlng} /> */}
       </div>
     );
   }

@@ -1,6 +1,7 @@
-import { ListingClient } from "./_components/listingClient";
 import getCurrentUser from "@/actions/getCurrentUser";
 import getListingById from "@/actions/getListingById";
+import ListingClient from "./_components/listingClient";
+import ClientOnly from "@/components/client-only";
 
 interface IParams {
   listingId?: string;
@@ -14,9 +15,11 @@ const HostelIdPage = async ({ params }: { params: IParams }) => {
     return null;
   }
   return (
-    <div>
-      <ListingClient listing={listings} currentUser={currentUser} />
-    </div>
+    <ClientOnly>
+      <div>
+        <ListingClient listing={listings} currentUser={currentUser} />
+      </div>
+    </ClientOnly>
   );
 };
 

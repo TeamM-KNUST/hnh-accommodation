@@ -2,7 +2,6 @@ import getCurrentUser from "@/actions/getCurrentUser";
 import ClientOnly from "@/components/client-only";
 import { EmptyState } from "@/components/empty-state";
 import React from "react";
-import TripsClient from "./_components/tripsclient";
 
 type Props = {};
 

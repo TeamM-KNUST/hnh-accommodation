@@ -1,10 +1,8 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
 import { Listing, User, Reservation } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import HeartButton from "./heart-button";
 import { useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -62,14 +60,7 @@ export const ListingCard = ({
   }, [reservation]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.8,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01],
-      }}
+    <div
       onClick={() => router.push(`/dashboard/listings/${data.id}`)}
       className="col-span-1 cursor-pointer group"
     >
@@ -114,18 +105,7 @@ export const ListingCard = ({
           </Button>
         )}
       </div>
-    </motion.div>
-  );
-};
-//loading skeleton
-
-export const ListingCardSkeleton = () => {
-  return (
-    <div className="col-span-1 cursor-pointer group">
-      <div className="flex flex-col gap-2 w-full">
-        <Skeleton className="aspect-square w-full relative overflow-hidden rounded-xl" />
-        <Skeleton className="aspect-square w-full relative overflow-hidden rounded-xl" />
-      </div>
     </div>
   );
 };
+//loading skeleton

@@ -1,9 +1,9 @@
 import { Navbar } from "../(marketing)/(routes)/_components/navbar/Navbar";
 
-interface FavoritesLayoutProps {
+interface TripsLayoutProps {
   children: React.ReactNode;
 }
-const FavoritesLayout = ({ children }: FavoritesLayoutProps) => {
+const TripsLayout = ({ children }: TripsLayoutProps) => {
   return (
     <div>
       <Navbar />
@@ -12,4 +12,4 @@ const FavoritesLayout = ({ children }: FavoritesLayoutProps) => {
   );
 };
 
-export default FavoritesLayout;
+export default TripsLayout;

@@ -3,6 +3,8 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { categories } from "@/data/constant";
 import { CategoryBox } from "./categorybox";
+import { Suspense } from "react";
+import { CategoriesSketeton } from "@/data/loadingSkeleton";
 
 export const Categories = () => {
   const params = useSearchParams();
@@ -17,13 +19,15 @@ export const Categories = () => {
 
   return (
     <div className="flex items-center justify-center overflow-x-auto p-4">
-      {categories.map((items) => (
-        <CategoryBox
-          key={items.id}
-          name={items.name}
-          selected={category === items.name}
-        />
-      ))}
+      <Suspense fallback={<CategoriesSketeton />}>
+        {categories.map((items) => (
+          <CategoryBox
+            key={items.id}
+            name={items.name}
+            selected={category === items.name}
+          />
+        ))}
+      </Suspense>
     </div>
   );
 };

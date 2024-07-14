@@ -103,6 +103,13 @@ export const UserMenu = () => {
                   >
                     Favorites
                   </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => router.push("/trips")}
+                  >
+                    Trips
+                  </Button>
                   <Separator />
                   <Button
                     variant="default"

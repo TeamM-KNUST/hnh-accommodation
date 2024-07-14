@@ -6,8 +6,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import HeartButton from "./heart-button";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
+import { format } from "date-fns";
 
 interface ListingCardProps {
   data: Listing;
@@ -43,6 +44,23 @@ export const ListingCard = ({
     [onAction, actionId, disabled]
   );
 
+  const price = useMemo(() => {
+    if (reservation) {
+      return reservation.totalPrice;
+    }
+
+    return data.price;
+  }, [reservation, data.price]);
+
+  const reservationDate = useMemo(() => {
+    if (!reservation) return null;
+
+    const start = new Date(reservation.startDate);
+    const end = new Date(reservation.endDate);
+
+    return `${format(start, "MMM dd")} - ${format(end, "MMM dd")}`;
+  }, [reservation]);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
@@ -70,11 +88,18 @@ export const ListingCard = ({
         <div className="flex flex-col gap-1">
           <h3 className="text-lg font-semibold">{data.title}</h3>
           <p className="text-sm text-gray-500">{data.description}</p>
-          <div className="flex justify-between items-center">
-            <p className="text-sm font-medium">{data.category}</p>
-            <p className="text-sm text-gray-500">{data.locationValue}</p>
+          <div className="flex items-center justify-between">
+            <div className="font-light text-neutral-500">
+              {reservationDate || data.category}
+            </div>
+            <div className="flex flex-row items-center gap-">
+              <div className="flex gap-1 font-semibold">
+                {price} {!reservation && <div className="font-light">year</div>}
+              </div>
+            </div>
           </div>
         </div>
+
         {onAction && actionLabel && (
           <Button
             onClick={handleCancel}

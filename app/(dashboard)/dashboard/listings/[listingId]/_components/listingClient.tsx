@@ -4,6 +4,8 @@ import { Container } from "@/components/container";
 import { ListingHead } from "./listingHead";
 import { Listing, User } from "@prisma/client";
 import { ListingInfo } from "./lisiting-info";
+import { useMemo } from "react";
+import { categories } from "@/data/constant";
 
 interface ListingClientProps {
   listing: Listing & {
@@ -13,6 +15,11 @@ interface ListingClientProps {
 }
 
 export const ListingClient = ({ listing, currentUser }: ListingClientProps) => {
+
+    const category = useMemo(() => {
+      return categories.find((item) => item.name === listing.category);
+    }, [listing.category]);
+
   return (
     <Container>
       <div className="max-w-screen-lg mx-auto">
@@ -28,6 +35,7 @@ export const ListingClient = ({ listing, currentUser }: ListingClientProps) => {
               locationValue={listing.locationValue}
               user={listing.user}
               description={listing.description}
+              category={category}
             />
           </div>
         </div>

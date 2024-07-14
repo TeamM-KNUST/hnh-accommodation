@@ -6,21 +6,28 @@ import { User } from "@prisma/client";
 import dynamic from "next/dynamic";
 import Sleep from "./sleep";
 import Offers from "./offer";
+import ListingCategory from "./listing-category";
 
 interface ListingInfoProps {
   user: User;
   description: string;
-  locationValue: string | null;
+  category: | {
+    id: string;
+
+    name: string;
+  } | undefined;
+  locationValue: string 
 }
 
-const Map = dynamic(() => import("@/components/map"), {
-  ssr: false,
-});
+// const Map = dynamic(() => import("@/components/map"), {
+//   ssr: false,
+// });
 
 export const ListingInfo = ({
   user,
   description,
   locationValue,
+  category,
 }: ListingInfoProps) => {
   const { getByCode } = useCountries();
   const coordinates = getByCode(locationValue || "");
@@ -45,13 +52,18 @@ export const ListingInfo = ({
           </p>
         </div>
         <hr />
+        {category && (
+          <ListingCategory
+            id={category?.id}
+            name={category?.name}
+          />
+        )}
         <p className="text-lg font-light text-neutral-500">{description}</p>
         <hr />
         <Sleep />
         <hr />
         <Offers />
         <hr />
-
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
       </div>
     </div>

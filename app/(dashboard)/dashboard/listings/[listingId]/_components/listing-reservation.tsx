@@ -39,7 +39,7 @@ function ListingReservation({
       />
       <hr />
       <div className="p-4">
-        <Button disabled={disabled} onClick={onSubmit}>
+        <Button variant="destructive" disabled={disabled} onClick={onSubmit} className="w-full">
           Reserve
         </Button>
       </div>

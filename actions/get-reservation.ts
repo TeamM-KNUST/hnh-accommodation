@@ -1,45 +1,43 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-
-interface IParams{
-    listingId?: string;
-    authorId?: string;
-    userId: string;
-    
+interface IParams {
+  listingId?: string;
+  userId?: string;
+  authorId?: string;
 }
 
-export default async function POST(params: IParams) {
+export default async function getReservation(params: IParams) {
     
-    try {
+     try {
+    const { listingId, userId, authorId } = params;
 
-        const { listingId, userId, authorId } = params;
-        const query: any = {};
+    const query: any = {};
 
-        if (listingId) {
-            query.listingId= listingId
-        }
-        if (userId) {
-            query.userId = userId;
-        }
+    if (listingId) {
+      query.listingId = listingId;
+    }
 
-        if (authorId) {
-            query.listingId = {userId:authorId}
-        }
+    if (userId) {
+      query.userId = userId;
+    }
 
-        const reservation = await db.reservation.findMany({
-            where: query,
-            include: {
-                listing:true
-            },
-            orderBy: {
-                createdAt:"desc"
-            }
-        })
+    if (authorId) {
+      query.listing = { userId: authorId };
+    }
 
-        return NextResponse.json(reservation)
-        
+    const reservations = await db.reservation.findMany({
+      where: query,
+      include: {
+        listing: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+		return reservations;
     } catch (error) {
-        console.log(["COURSE-ERROR"], error);
-        return new NextResponse("Internal Server Error", {status:500})
+      console.error("Error in getReservations:", error);
+		throw new Error("An error occurred while fetching reservations.");
     }
 }

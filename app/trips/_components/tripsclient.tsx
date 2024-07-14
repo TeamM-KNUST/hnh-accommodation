@@ -1,66 +1,65 @@
-// "use client";
+"use client";
 
-// import { ListingCard } from "@/app/(dashboard)/dashboard/_components/listingCard";
-// import { Container } from "@/components/container";
-// import { Heading } from "@/components/heading";
-// import { Listing, Reservation, User } from "@prisma/client";
-// import axios from "axios";
-// import { useRouter } from "next/navigation";
-// import React, { useCallback, useState } from "react";
-// import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
+import { User, Reservation } from "@prisma/client";
+import { Container } from "@/components/container";
+import { Heading } from "@/components/heading";
+import { ListingCard } from "@/app/(dashboard)/dashboard/_components/listingCard";
+import { toast } from "react-toastify";
 
-// type Props = {
-//   reservations: Reservation[];
-//   currentUser?: User | null;
-//   listing?: Listing[];
-// };
+interface TripsClientProps {
+  currentUser?: User | null;
+  reservations: Reservation[];
+}
 
-// function TripsClient({ reservations, currentUser, listing }: Props) {
-//   const router = useRouter();
-//   const [deletingId, setDeletingId] = useState("");
+const TripsClient = ({ currentUser, reservations }: TripsClientProps) => {
+  const router = useRouter();
 
-//   const onCancel = useCallback(
-//     (id: string) => {
-//       setDeletingId(id);
+  const [isdeleting, setIsDeleting] = useState("");
 
-//       axios
-//         .delete(`/api/reservations/${id}`)
-//         .then(() => {
-//           toast.info("Reservation cancelled");
-//           router.refresh();
-//         })
-//         .catch((error) => {
-//           toast.error(error?.response?.data?.error);
-//         })
-//         .finally(() => {
-//           setDeletingId("");
-//         });
-//     },
-//     [router]
-//   );
+  const onCancel = useCallback(
+    (id: string) => {
+      setIsDeleting(id);
 
-//   return (
-//     <Container>
-//       <Heading
-//         title="Trips"
-//         subTitle="Where you've been and where you're going"
-//       />
-//       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
-//         {reservations.map((reservation) => (
-//           <ListingCard
-//             key={reservation.id}
-//             data={reservation}
-//             reservation={reservation}
-//             actionId={reservation.id}
-//             onAction={onCancel}
-//             disabled={deletingId === reservation.id}
-//             actionLabel="Cancel reservation"
-//             currentUser={currentUser}
-//           />
-//         ))}
-//       </div>
-//     </Container>
-//   );
-// }
+      axios
+        .delete(`/api/reservations/${id}`)
+        .then(() => {
+          toast.success("Reservation canceled");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error?.response?.data?.message || "Something went wrong");
+        })
+        .finally(() => {
+          setIsDeleting("");
+        });
+    },
+    [router]
+  );
+  return (
+    <Container>
+      <Heading
+        title="Trips"
+        subTitle="Where you're going and where you've been"
+      />
+      <div className="mt-10 grid grid-cols-1 2xl:grid-cols-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-col-4 xl:grid-cols-5  gap-8">
+        {reservations.map((reservation: any) => (
+          <ListingCard
+            key={reservation.id}
+            data={reservation.listing}
+            reservation={reservation}
+            actionId={reservation.id}
+            disabled={isdeleting === reservation.id}
+            onAction={onCancel}
+            actionLabel="Cancel Reservation"
+            currentUser={currentUser}
+          />
+        ))}
+      </div>
+    </Container>
+  );
+};
 
-// export default TripsClient;
+export default TripsClient;

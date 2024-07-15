@@ -38,6 +38,22 @@ const TripsClient = ({ currentUser, reservations }: TripsClientProps) => {
     },
     [router]
   );
+
+  const onPay = useCallback(
+    (id: string) => {
+      axios
+        .post(`/api/reservations/${id}/checkout`)
+        .then(() => {
+          toast.success("Payment successful");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error?.response?.data?.message || "Something went wrong");
+        });
+    },
+    [router]
+  );
+
   return (
     <Container>
       <Heading
@@ -52,9 +68,11 @@ const TripsClient = ({ currentUser, reservations }: TripsClientProps) => {
             reservation={reservation}
             actionId={reservation.id}
             disabled={isdeleting === reservation.id}
-            onAction={onCancel}
+            onAction={onCancel || onPay}
             actionLabel="Cancel Reservation"
             currentUser={currentUser}
+            secondaryActionLabel="Pay Now"
+        
           />
         ))}
       </div>

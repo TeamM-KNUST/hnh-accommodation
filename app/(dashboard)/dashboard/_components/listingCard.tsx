@@ -16,6 +16,8 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
+  secondaryAction?: string;
+  secondaryActionLabel?: string;
 }
 
 export const ListingCard = ({
@@ -26,10 +28,25 @@ export const ListingCard = ({
   disabled,
   actionId,
   actionLabel,
+  secondaryAction,
+  secondaryActionLabel,
 }: ListingCardProps) => {
   const router = useRouter();
 
   const handleCancel = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+
+      if (disabled) return;
+
+      if (actionId !== undefined) {
+        onAction?.(actionId);
+      }
+    },
+    [onAction, actionId, disabled]
+  );
+
+  const handleCreate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
 
@@ -92,17 +109,30 @@ export const ListingCard = ({
         </div>
 
         {onAction && actionLabel && (
-          <Button
-            onClick={handleCancel}
-            disabled={disabled}
-            className={`${
-              disabled
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-red-500 text-white"
-            } py-2 rounded-md`}
-          >
-            {actionLabel}
-          </Button>
+          <div className="flex items-center justify-between gap-x-5">
+            <Button
+              onClick={handleCreate}
+              disabled={disabled}
+              className={`${
+                disabled
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-green-500 text-white"
+              } py-2 rounded-md`}
+            >
+              {secondaryActionLabel}
+            </Button>
+            <Button
+              onClick={handleCancel}
+              disabled={disabled}
+              className={`${
+                disabled
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-red-500 text-white"
+              } py-2 rounded-md`}
+            >
+              {actionLabel}
+            </Button>
+          </div>
         )}
       </div>
     </div>

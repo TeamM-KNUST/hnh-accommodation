@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import Calendar from "@/components/calendar";
 
 type Props = {
-  price: number;
   dateRange: Range;
   totalPrice: number;
   onChangeDate: (value: Range) => void;
@@ -16,7 +15,6 @@ type Props = {
 };
 
 function ListingReservation({
-  price,
   dateRange,
   totalPrice,
   onChangeDate,
@@ -28,7 +26,7 @@ function ListingReservation({
     <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
       <div className="flex flex-row items-center gap-1 p-4">
         <p className="flex gap-1 text-2xl font-semibold">
-          {price} <p className="font-light text-neutral-600">year</p>
+         <p className="font-light text-neutral-600">year</p>
         </p>
       </div>
       <hr />

@@ -21,18 +21,6 @@ export async function POST(req: Request) {
                 id: listingId,
             },
             data: {
-                reservations: {
-                    create: {
-                        startDate,
-                        endDate,
-                        totalPrice,
-                        user: {
-                            connect: {
-                                id: currentUser.id,
-                            },
-                        },
-                    },
-                },
             },
             
         });

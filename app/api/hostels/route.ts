@@ -22,7 +22,6 @@ export async function POST(req: Request) {
         title,
         description,
         location,
-        price,
         category,
 
         } = body;
@@ -39,7 +38,6 @@ export async function POST(req: Request) {
             category,
             description,
             locationValue:location,
-            price:parseInt(price, 10),
             userId: currentUser.id
            }
     })

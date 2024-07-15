@@ -64,8 +64,8 @@ export const ListingCard = ({
       return reservation.totalPrice;
     }
 
-    return data.price;
-  }, [reservation, data.price]);
+   
+  }, [reservation]);
 
   const reservationDate = useMemo(() => {
     if (!reservation) return null;

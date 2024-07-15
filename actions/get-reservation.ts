@@ -28,11 +28,12 @@ export default async function getReservation(params: IParams) {
     const reservations = await db.reservation.findMany({
       where: query,
       include: {
-        listing: true,
+        user: true,
       },
       orderBy: {
         createdAt: "desc",
-      },
+    
+      }
     });
 
 		return reservations;

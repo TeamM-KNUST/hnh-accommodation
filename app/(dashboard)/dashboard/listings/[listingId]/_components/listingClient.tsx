@@ -47,7 +47,7 @@ function ListingClient({ reservations = [], listing, currentUser }: Props) {
   }, [reservations]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState<number>(listing.price ?? 0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const onCreateReservation = useCallback(() => {
@@ -77,20 +77,6 @@ function ListingClient({ reservations = [], listing, currentUser }: Props) {
       });
   }, [totalPrice, dateRange, listing?.id, router, currentUser]);
 
-  useEffect(() => {
-    if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInCalendarDays(
-        dateRange.endDate,
-        dateRange.startDate
-      );
-
-      if (dayCount && listing.price !== null) {
-        setTotalPrice(dayCount * Number(listing.price));
-      } else {
-        setTotalPrice(Number(listing.price) ?? 0);
-      }
-    }
-  }, [dateRange, listing.price]);
   const category = useMemo(() => {
     return categories.find((item) => item.name === listing.category);
   }, [listing.category]);
@@ -114,7 +100,6 @@ function ListingClient({ reservations = [], listing, currentUser }: Props) {
             />
             <div className="order-first mb-10 md:order-last md:col-span-3">
               <ListingReservation
-                price={listing.price ?? 0}
                 totalPrice={totalPrice}
                 onChangeDate={(value) => setDateRange(value)}
                 dateRange={dateRange}

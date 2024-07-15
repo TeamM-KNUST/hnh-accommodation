@@ -7,49 +7,58 @@
 generator client {
   provider = "prisma-client-js"
 }
-// prisma/schema.prisma
+
 datasource db {
   provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
 }
 
 enum UserRole {
   ADMIN
   USER
   MODERATOR
-
 }
 
-// Define the User model with the following fields:
+enum RoomCount {
+  ONE_IN_A_ROOM
+  TWO_IN_A_ROOM
+  THREE_IN_A_ROOM
+  FOUR_IN_A_ROOM
+}
+
+enum RoomType {
+  MALE
+  FEMALE
+}
+
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  favoriteIds   String[]
-  password      String?
-  confirmPassword String?
+  id                  String    @id @default(cuid())
+  name                String?
+  email               String    @unique
+  emailVerified       DateTime?
+  image               String?
+  favoriteIds         String[]
+  password            String?
+  confirmPassword     String?
 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 
-  role          UserRole @default(USER)
+  role                UserRole  @default(USER)
 
-  accounts      Account[]
-  listings     Listing[]
-  reservations Reservation[]
-  favorites    Favorite[]
+  accounts            Account[]
+  purchases           Purchase[]
+  reviews             Review[]
+  listings            Listing[]
+  reservations        Reservation[]
+  favorites           Favorite[]
   twoFactorConfirmation TwoFactorConfirmation?
 
-  isTwoFactorEnabled Boolean @default(false)
+  isTwoFactorEnabled  Boolean   @default(false)
 
   @@index([role])
-
 }
 
-
-// Define the Account model with the following fields:
 model Account {
   id                 String  @id @default(cuid())
   userId             String
@@ -64,125 +73,145 @@ model Account {
   id_token           String?  @db.Text
   session_state      String?
 
- 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
-
-
-// Define the Listing model with the following fields:
 model Listing {
-  id                 String  @id @default(cuid())
-  imageSrc        String
-  userId          String   
-  title           String
-  description     String
-  createdAt       DateTime? @default(now())
-  roomCount       Int?
-  locationValue   String
-  price           Int?
-  category       String
+  id                 String      @id @default(cuid())
+  imageSrc           String
+  userId             String
+  title              String
+  description        String
+  createdAt          DateTime    @default(now())
+  locationValue      String
+  category           String
 
-  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  purchase        Purchase[]
-
-  reservations    Reservation[]
-  favorites       Favorite[]
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purchases          Purchase[]
+  rooms              Room[]
+  favorites          Favorite[]
+  reviews            Review[]
 
   @@index([createdAt])
- 
+  @@index([locationValue])
+  @@index([category])
 }
 
+model Room {
+  id                 String      @id @default(cuid())
+  listingId          String
+  description        String
+  price              Float
+  capacity           RoomCount
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  type               RoomType
+  listing            Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  reservations       Reservation[]
+
+  @@index([listingId])
+  @@index([price])
+}
 
 model Reservation {
-  id                 String  @id @default(cuid())
-  userId           String 
-  listingId        String 
-  startDate        DateTime
-  endDate          DateTime
-  totalPrice       Int
-  createdAt        DateTime @default(now())
+  id                 String      @id @default(cuid())
+  userId             String
+  roomId             String
+  startDate          DateTime
+  endDate            DateTime
+  totalPrice         Int
+  createdAt          DateTime    @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room               Room        @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
-
+  @@index([userId])
+  @@index([roomId])
   @@index([startDate, endDate])
 }
 
+model Review {
+  id                 String      @id @default(cuid())
+  userId             String
+  listingId          String
+  rating             Int         @default(0)
+  comment            String?
+  createdAt          DateTime    @default(now())
 
-// Define the Favorite model with the following fields:
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing            Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([listingId])
+}
+
 model Favorite {
-  id                String  @id @default(cuid())
-  userId          String
-  listingId       String 
-  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing         Listing       @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  id                 String      @id @default(cuid())
+  userId             String
+  listingId          String
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing            Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
 
   @@unique([userId, listingId])
 }
 
-// Define the VerificationToken, PasswordResetToken, TwoFactorToken, and TwoFactorConfirmation models with the following fields:
 model VerificationToken {
-  id String @id @default(cuid())
-  email String
-  token String @unique
-  expires DateTime
+  id                 String      @id @default(cuid())
+  email              String
+  token              String      @unique
+  expires            DateTime
 
   @@unique([email, token])
 }
 
-
-
 model PasswordResetToken {
-  id String @id @default(cuid())
-  email String
-  token String @unique
-  expires DateTime
+  id                 String      @id @default(cuid())
+  email              String
+  token              String      @unique
+  expires            DateTime
 
   @@unique([email, token])
 }
 
 model TwoFactorToken {
-  id String @id @default(cuid())
-  email String
-  token String @unique
-  expires DateTime
+  id                 String      @id @default(cuid())
+  email              String
+  token              String      @unique
+  expires            DateTime
 
   @@unique([email, token])
 }
 
 model TwoFactorConfirmation {
-  id String @id @default(cuid())
+  id                 String      @id @default(cuid())
 
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             String
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId])
 }
 
-
 model Purchase {
-  id String @id @default(uuid())
-  userId String
+  id                 String      @id @default(uuid())
+  userId             String
+  listingId          String
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
 
-  listingId String
-  course Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing            Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
 
   @@unique([userId, listingId])
   @@index([listingId])
 }
 
 model StripeCustomer {
-  id String @id @default(uuid())
-  userId String @unique
-  stripeCustomerId String @unique
+  id                 String      @id @default(uuid())
+  userId             String      @unique
+  stripeCustomerId   String      @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
 }

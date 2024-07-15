@@ -8,12 +8,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useDebounce } from "@/hooks/use-debounce";
 
-interface SearchInputProps {
-  values?: string;
-  onChanges?: (value: string) => void;
-}
-
-export const SearchInput = ({ values, onChanges }: SearchInputProps) => {
+export const SearchInput = () => {
   const [value, setValue] = useState("");
   const router = useRouter();
   const pathname = usePathname();

@@ -1,12 +1,11 @@
 "use client";
 
-
 import { useMemo, useState } from "react";
 import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import { locations,categories } from "@/data/constant";
+import { locations, categories } from "@/data/constant";
 import Modal from "./modal";
 
 import axios from "axios";
@@ -14,9 +13,18 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
 
-import dynamic from "next/dynamic";
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
 import useAddHostel from "@/hooks/addhostel";
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectValue,
+  SelectItem,
+  SelectGroup,
+  SelectLabel,
+} from "@/components/ui/select";
+import { RoomCount } from "@prisma/client";
 
 enum STEPS {
   IMAGES = 0,
@@ -24,8 +32,8 @@ enum STEPS {
   DESCRIPTION = 2,
   LOCATION = 3,
   CATEGORY = 4,
+  CAPACITY = 5,
 }
-
 
 export const AddHostelModal = () => {
   const addModal = useAddHostel();
@@ -49,12 +57,14 @@ export const AddHostelModal = () => {
       description: "",
       location: " ",
       category: " ",
+      capacity: RoomCount.ONE_IN_A_ROOM,
     },
   });
 
   const imageSrc = watch("imageSrc");
   const location = watch("location");
   const category = watch("category");
+  const capacity = watch("capacity");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -81,7 +91,7 @@ export const AddHostelModal = () => {
   // );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.CATEGORY) {
+    if (step !== STEPS.CAPACITY) {
       return onNext();
     }
 
@@ -91,6 +101,7 @@ export const AddHostelModal = () => {
     axios
       .post("/api/hostels", data)
       .then((response) => {
+        console.log("Response", response.data);
         toast.success("Hostel added successfully");
         router.refresh();
         reset();
@@ -107,7 +118,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) {
+    if (step === STEPS.CAPACITY) {
       return "Create";
     }
     return "Next";
@@ -203,7 +214,7 @@ export const AddHostelModal = () => {
               onSelect={(name) => setCustomValue("location", name)}
               selectedValue={location.name}
             />
-          )) }
+          ))}
         </Combobox>
 
         {/* <Map center={location?.latlng} /> */}
@@ -232,7 +243,33 @@ export const AddHostelModal = () => {
             />
           ))}
         </Combobox>
-    
+      </div>
+    );
+  }
+
+  if (step === STEPS.CAPACITY) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="How many guests can your place accommodate?"
+          subTitle="Set the number of guests your place can accommodate"
+        />
+
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Room Capacity" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Room Capacity</SelectLabel>
+              {Object.values(RoomCount).map((count) => (
+                <SelectItem key={count} value={count}>
+                  {count}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
     );
   }
@@ -247,7 +284,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+      secondaryAction={step === STEPS.CAPACITY ? undefined : onBack}
       body={bodyContent}
     />
   );

@@ -1,5 +1,5 @@
 import getListings, { IListingsParams } from "@/actions/getLisiting";
-import { ListingCard} from "./_components/listingCard";
+import { ListingCard } from "./_components/listingCard";
 import { Container } from "@/components/container";
 import { Suspense } from "react";
 import getCurrentUser from "@/actions/getCurrentUser";

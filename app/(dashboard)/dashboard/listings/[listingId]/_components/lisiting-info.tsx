@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Sleep from "./sleep";
 import Offers from "./offer";
 import ListingCategory from "./listing-category";
+import { UserMenu } from "@/components/select-capacity";
 
 interface ListingInfoProps {
   user: User;
@@ -65,6 +66,7 @@ export const ListingInfo = ({
         <Offers />
         <hr />
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
+        <UserMenu />
       </div>
     </div>
   );

@@ -3,11 +3,10 @@
 import { AvatarImg } from "@/app/(marketing)/(routes)/_components/navbar/avatarImage";
 import { useCountries } from "@/hooks/useCountries";
 import { User } from "@prisma/client";
-import dynamic from "next/dynamic";
 import Sleep from "./sleep";
 import Offers from "./offer";
 import ListingCategory from "./listing-category";
-import { UserMenu } from "@/components/select-capacity";
+
 
 interface ListingInfoProps {
   user: User;

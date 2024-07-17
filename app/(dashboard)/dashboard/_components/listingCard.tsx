@@ -1,6 +1,6 @@
 "use client";
 
-import { Listing, User, Reservation } from "@prisma/client";
+import { Listing, User, Reservation, Room } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import HeartButton from "./heart-button";
@@ -18,6 +18,7 @@ interface ListingCardProps {
   actionId?: string;
   secondaryAction?: string;
   secondaryActionLabel?: string;
+  room?: Room;
 }
 
 export const ListingCard = ({
@@ -30,6 +31,7 @@ export const ListingCard = ({
   actionLabel,
   secondaryAction,
   secondaryActionLabel,
+  room,
 }: ListingCardProps) => {
   const router = useRouter();
 
@@ -64,8 +66,10 @@ export const ListingCard = ({
       return reservation.totalPrice;
     }
 
+    return room?.price;
+
    
-  }, [reservation]);
+  }, [reservation, room]);
 
   const reservationDate = useMemo(() => {
     if (!reservation) return null;

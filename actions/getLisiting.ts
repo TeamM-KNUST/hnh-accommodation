@@ -5,11 +5,17 @@ export interface IListingsParams{
     locationValue?: string;
     category?: string
     title?: string;
+
+        price: number;
+        type: string;
+        capacity: number;
+    
+
 }
 
 export default async function getListings(params: IListingsParams) {
     try {
-        const { currentUser, locationValue, category, title } = params;
+        const { currentUser, locationValue, category, title, price, type, capacity } = params;
         let query: any = {};
 
         if (currentUser) {
@@ -32,12 +38,36 @@ export default async function getListings(params: IListingsParams) {
             };
         }
 
+        if (price) {
+            query.price =price;
+        }
+
+        if (capacity) {
+            query.capacity = capacity;
+        }
+
+        if (type) {
+            query.type = {
+                contains: type,
+                mode: "insensitive",
+        
+            };
+        }
+
 
     const listing = await db.listing.findMany({
         where: query,
         include: {
-            rooms: true,
-        },
+            rooms: {
+                select: {
+                    price: true,
+                    type: true,
+                    capacity: true,
+                    
+                }
+
+            },
+            },  
       orderBy: {
         createdAt: "desc",
       },

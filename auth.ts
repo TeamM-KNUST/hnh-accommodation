@@ -2,12 +2,13 @@ import authConfig from "@/auth.config";
 import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { UserRole } from "@prisma/client";
+import { RoomCount, UserRole, RoomType, Room } from "@prisma/client";
 import NextAuth from "next-auth";
 
 declare module "next-auth" {
 	interface User {
 		role: UserRole;
+		
 	}
 }
 
@@ -43,36 +44,42 @@ export const {
 
 			return true;
 		},
-		async session({ session, token, user }) {
+		async session({ token, session, user }) {
 			if (token.sub && session.user) {
 				session.user.id = token.sub;
 			}
-			console.log({ session, sessionToken: token });
+
 			if (token.role && session.user) {
 				session.user.role = token.role as UserRole;
 			}
 
-			return {
-				...session,
-				user: {
-					...session.user,
-					role: token.role as UserRole,
-				},
-			};
+			if (session.user) {
+				session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
+			}
+
+			if (session.user) {
+				session.user.name = token.name;
+				session.user.isOAuth = token.isOAuth as boolean;
+			}
+
+			return session;
 		},
 		async jwt({ token }) {
 			if (!token.sub) return token;
 
 			const existingUser = await getUserById(token.sub);
+
 			if (!existingUser) return token;
 
+			token.name = existingUser.name;
+			token.email = existingUser.email;
 			token.role = existingUser.role;
-		
+			token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
 			return token;
 		},
 	},
 	adapter: PrismaAdapter(db),
-	session: { strategy: "jwt" },
+	session: { strategy: "jwt" || "database" },
 	...authConfig,
 });

@@ -14,7 +14,6 @@ const DashboardPage = async ({
   searchParams = {} as IListingsParams,
 }: DashboardPageProps) => {
   try {
-    // Ensure searchParams is correctly typed
     const listings = await getListings(searchParams);
     const currentUser = await getCurrentUser();
 

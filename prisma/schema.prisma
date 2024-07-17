@@ -102,12 +102,11 @@ model Listing {
 model Room {
   id                 String      @id @default(cuid())
   listingId          String
-  description        String
   price              Float
-  capacity           RoomCount
+  capacity           RoomCount?
   createdAt          DateTime    @default(now())
   updatedAt          DateTime    @updatedAt
-  type               RoomType
+  type               RoomType?
   listing            Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
   reservations       Reservation[]
 

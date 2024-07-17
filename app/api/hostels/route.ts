@@ -23,6 +23,7 @@ export async function POST(req: Request) {
         description,
         location,
         category,
+        price,
 
         } = body;
         
@@ -30,7 +31,10 @@ export async function POST(req: Request) {
     if (!body[value]) {
       NextResponse.error();
     }
-  });
+        });
+
+
+        
     const listing = await db.listing.create({
         data: {
             imageSrc,
@@ -38,9 +42,16 @@ export async function POST(req: Request) {
             category,
             description,
             locationValue:location,
-            userId: currentUser.id
-           }
-    })
+            userId: currentUser.id,
+            rooms: {
+                create: {
+                    price: parseFloat(price),
+                }
+            }
+        },
+       
+       
+    });
         
         console.log("Listing", listing);
 

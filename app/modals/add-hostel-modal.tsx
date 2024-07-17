@@ -91,7 +91,6 @@ export const AddHostelModal = () => {
     axios
       .post("/api/hostels", data)
       .then((response) => {
-        console.log("Response Data", response.data);
         toast.success("Hostel added successfully");
         router.refresh();
         reset();

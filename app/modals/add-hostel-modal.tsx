@@ -24,7 +24,7 @@ import {
   SelectGroup,
   SelectLabel,
 } from "@/components/ui/select";
-import { RoomCount } from "@prisma/client";
+import { RoomCount, RoomType } from "@prisma/client";
 
 enum STEPS {
   IMAGES = 0,
@@ -33,6 +33,7 @@ enum STEPS {
   LOCATION = 3,
   CATEGORY = 4,
   CAPACITY = 5,
+  TYPE=6,
 }
 
 export const AddHostelModal = () => {
@@ -58,13 +59,14 @@ export const AddHostelModal = () => {
       location: " ",
       category: " ",
       capacity: RoomCount.ONE_IN_A_ROOM,
+      type:RoomType.MALE,
+
     },
   });
 
   const imageSrc = watch("imageSrc");
   const location = watch("location");
   const category = watch("category");
-  const capacity = watch("capacity");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -91,7 +93,7 @@ export const AddHostelModal = () => {
   // );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.CAPACITY) {
+    if (step !== STEPS.TYPE) {
       return onNext();
     }
 
@@ -118,7 +120,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.CAPACITY) {
+    if (step === STEPS.TYPE) {
       return "Create";
     }
     return "Next";
@@ -274,6 +276,33 @@ export const AddHostelModal = () => {
     );
   }
 
+
+  if (step === STEPS.TYPE) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="What type of hostel is this?"
+          subTitle="Select the type of hostel"
+        />
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Room Type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Room Type</SelectLabel>
+              {Object.values(RoomType).map((type) => (
+                <SelectItem key={type} value={type}>
+                  {type}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  }
+
   return (
     <Modal
       disabled={isLoading}
@@ -284,7 +313,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CAPACITY ? undefined : onBack}
+      secondaryAction={step === STEPS.TYPE ? undefined : onBack}
       body={bodyContent}
     />
   );

@@ -24,6 +24,8 @@ export async function POST(req: Request) {
         location,
         category,
         price,
+        type,
+        capacity,
 
         } = body;
         
@@ -46,6 +48,9 @@ export async function POST(req: Request) {
             rooms: {
                 create: {
                     price: parseFloat(price),
+                    type,
+                    capacity,
+                
                 }
             }
         },

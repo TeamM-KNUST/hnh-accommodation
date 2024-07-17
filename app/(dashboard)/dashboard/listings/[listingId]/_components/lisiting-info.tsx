@@ -66,7 +66,6 @@ export const ListingInfo = ({
         <Offers />
         <hr />
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
-        <UserMenu />
       </div>
     </div>
   );

@@ -5,10 +5,9 @@ export interface IListingsParams{
     locationValue?: string;
     category?: string
     title?: string;
-
-        price: number;
-        type: string;
-        capacity: number;
+    price?: number;
+    type?: string;
+    capacity?: number;
     
 
 }

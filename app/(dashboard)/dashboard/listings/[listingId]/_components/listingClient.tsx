@@ -6,7 +6,7 @@ import { Container } from "@/components/container";
 import {  useMemo } from "react";
 
 import { ListingInfo } from "./lisiting-info";
-import {  Listing, User, Room } from "@prisma/client";
+import {  Listing, User} from "@prisma/client";
 
 import { categories } from "@/data/constant";
 import ListingHead from "./listingHead";
@@ -17,9 +17,6 @@ type Props = {
   };
   currentUser?: User | null;
 
-  room: Room & {
-    listing: Listing;
-  };
 };
 
 function ListingClient({ listing, currentUser }: Props) {

@@ -4,14 +4,18 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-}
 
 enum UserRole {
   ADMIN
@@ -103,17 +107,29 @@ model Room {
   id                 String      @id @default(cuid())
   listingId          String
   price              Float
-  imageSrc           String?
   capacity           RoomCount?
   createdAt          DateTime    @default(now())
   updatedAt          DateTime    @updatedAt
   type               RoomType?
   listing            Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
   reservations       Reservation[]
+  roomImages         RoomImage[]
 
   @@index([listingId])
   @@index([price])
 }
+
+model RoomImage {
+  id                 String      @id @default(cuid())
+  roomId             String
+  imageSrc           String
+  createdAt          DateTime    @default(now())
+
+  room               Room        @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@index([roomId])
+}
+
 
 model Reservation {
   id                 String      @id @default(cuid())

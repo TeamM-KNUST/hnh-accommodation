@@ -12,22 +12,44 @@ import { AvatarImg } from "./avatarImage";
 import { MenuIcon } from "lucide-react";
 import useAddHostel from "@/hooks/addhostel";
 import { Separator } from "@/components/ui/separator";
+import useAddImage from "@/hooks/addImage";
 
 export const UserMenu = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const hostel = pathname.includes("dashboard");
+  const isDashboard = pathname.includes("/dashboard");
+  const isListing = pathname.includes("/dashboard/listings");
 
   const addHostel = useAddHostel();
+  const addImage = useAddImage();
   const { data: session } = useSession();
 
-  return (
-    <div className="relative">
-      <div className="flex item-center justify-end gap-2 ">
-        {hostel && (
-          <div
-            className="hidden
+  const renderActionButton = () => {
+    if (isListing) {
+      return (
+        <div
+          className="hidden
+            md:block
+            text-[1rem]
+            font-semibold
+            py-3
+            px-4
+            rounded-full
+            hover:bg-neutral-100
+            transition-all duration-200 ease-in-out
+            cursor-pointer"
+          onClick={() => addImage.onOpen()}
+        >
+          Add Listing
+        </div>
+      );
+    }
+
+    if (isDashboard) {
+      return (
+        <div
+          className="hidden
         md:block
         text-[1rem]
         font-semibold
@@ -35,15 +57,22 @@ export const UserMenu = () => {
         px-4
         rounded-full
         hover:bg-neutral-100
-        transition-all *:duration-200 *:ease-in-out
-        cursor-pointer
-        "
-            onClick={() => addHostel.onOpen()}
-          >
-            Hostel
-          </div>
-        )}
+        transition-all duration-200 ease-in-out
+        cursor-pointer"
+          onClick={() => addHostel.onOpen()}
+        >
+          Hostel
+        </div>
+      );
+    }
 
+    return null;
+  };
+
+  return (
+    <div className="relative">
+      <div className="flex item-center justify-end gap-2 ">
+        {renderActionButton()}
         <div
           className="
           p-2

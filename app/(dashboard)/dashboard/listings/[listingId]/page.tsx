@@ -12,22 +12,18 @@ interface IParams {
 const HostelIdPage = async ({ params }: { params: IParams }) => {
   const listings = await getListingById(params);
   const currentUser = await getCurrentUser();
-  const rooms = await getRoomById(params);
 
   if (!listings) {
     return null;
   }
 
-  if (!rooms) {
-    return null;
-  }
+
   return (
     <ClientOnly>
       <div>
         <ListingClient
           listing={listings}
           currentUser={currentUser}
-          room={rooms}
         />
       </div>
     </ClientOnly>

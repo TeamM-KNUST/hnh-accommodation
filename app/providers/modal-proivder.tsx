@@ -3,6 +3,7 @@
 import { Toaster } from "react-hot-toast";
 import { AddHostelModal } from "../modals/add-hostel-modal";
 import { ToasterProvider } from "./toaster-provider";
+import { AddImage } from "../modals/add-image";
 
 
 // const AddHostelModal = dynamic(
@@ -16,6 +17,7 @@ export const ModalProvider = () => {
     <>
       <ToasterProvider/>
       <AddHostelModal />
+      <AddImage />
       <Toaster />
     </>
   );

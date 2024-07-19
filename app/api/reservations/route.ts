@@ -10,46 +10,32 @@ export async function POST(req: Request) {
         }
         const body = await req.json();
 
-        const { listingId, startDate, endDate, totalPrice } = body;
+        const { roomId, startDate, endDate, totalPrice } = body;
         
-        if (!listingId || !startDate || !endDate || !totalPrice) {
+        if (!roomId || !startDate || !endDate || !totalPrice) {
             return new NextResponse("Bad Request", { status: 400 });
         }
 
-        const listing = await db.listing.findUnique({
-            where: {
-                id: listingId,
-            },
-
-        });
-
-        if (!listing) {
-            return new NextResponse("Listing not found", { status: 404 });
-        }
-
-        const reservation = await db.reservation.create({
+        const reservations = await db.room.update({
+            where: { id: roomId },
             data: {
-                startDate,
-                endDate,
-                totalPrice,
-                user: {
-                    connect: {
-                        id: currentUser.id,
+                reservations: {
+                    create: {
+                        startDate: new Date(startDate),
+                        endDate: new Date(endDate),
+                        totalPrice,
+                        user: {
+                            connect: {
+                                id: currentUser.id,
+                            },
+                        },
                     },
                 },
-                room: {
-                    connect: {
-                        id: listingId,
-                    },
-                }
-               
             },
         });
-
-        return NextResponse.json(reservation);
-        console.log(reservation);
-
-    
+        
+        console.log("RESERVATION", reservations);
+        return NextResponse.json(reservations);
         
     } catch (error) {
         console.error(["RSERVATION_CREATE_ERROR", error]);

@@ -10,6 +10,7 @@ import {  Listing, User} from "@prisma/client";
 
 import { categories } from "@/data/constant";
 import ListingHead from "./listingHead";
+import ListingReservation from "./listing-reservation";
 
 type Props = {
   listing: Listing & {

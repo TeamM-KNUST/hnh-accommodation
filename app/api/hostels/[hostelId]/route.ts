@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 interface Iparams{
-    listingId: string;
+    hostelId: string;
 }
 
 
@@ -38,7 +38,7 @@ export async function POST(req: Request, { params }: {
             capacity,
             listing: {
                 connect: {
-                    id: params.listingId
+                    id: params.hostelId
                 }
             },
             roomImages: {

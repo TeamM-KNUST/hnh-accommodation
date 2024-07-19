@@ -5,16 +5,12 @@ import { Heading } from "@/components/heading";
 import { UploadImage } from "@/components/upload-image";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import { locations, categories } from "@/data/constant";
 import Modal from "./modal";
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
-
-import { Combobox, ComboboxItem } from "@/components/ui/combobox";
-import useAddHostel from "@/hooks/addhostel";
 import {
   Select,
   SelectTrigger,
@@ -76,16 +72,17 @@ export const AddImage = () => {
     setStep((value) => value + 1);
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data, id) => {
     if (step !== STEPS.TYPE) {
       return onNext();
     }
 
     console.log("Data", data);
+    console.log("Listing", id);
     setIsLoading(true);
 
     axios
-      .post("/api/hostels/images", data)
+      .post(`/api/listings/${id}`, data)
       .then((response) => {
         console.log("Response", response.data);
         toast.success("Hostel added successfully");

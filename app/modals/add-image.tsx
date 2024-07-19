@@ -14,6 +14,7 @@ import { Input } from "@/components/Input";
 import { toast } from "react-toastify";
 
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
+import useAddHostel from "@/hooks/addhostel";
 import {
   Select,
   SelectTrigger,
@@ -50,11 +51,7 @@ export const AddImage = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       imageSrc: "",
-      title: "",
       price: 1,
-      description: "",
-      location: " ",
-      category: " ",
       capacity: RoomCount.ONE_IN_A_ROOM,
       type:RoomType.MALE,
 
@@ -62,8 +59,6 @@ export const AddImage = () => {
   });
 
   const imageSrc = watch("imageSrc");
-  const location = watch("location");
-  const category = watch("category");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -80,8 +75,6 @@ export const AddImage = () => {
   const onNext = () => {
     setStep((value) => value + 1);
   };
-
-
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.TYPE) {
@@ -159,6 +152,7 @@ export const AddImage = () => {
     );
   }
 
+
   if (step === STEPS.CAPACITY) {
     bodyContent = (
       <div className="flex flex-col gap-4">
@@ -217,8 +211,8 @@ export const AddImage = () => {
     <Modal
       disabled={isLoading}
       isOpen={addModal.isOpen}
-      title="Add Images"
-      description="Add a new hostel hostel image"
+      title="Add Hostel"
+      description="Add a new hostel to your listing"
       onClose={addModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}

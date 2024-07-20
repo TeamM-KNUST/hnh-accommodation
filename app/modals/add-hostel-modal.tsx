@@ -25,6 +25,7 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { RoomCount, RoomType } from "@prisma/client";
+import { ca, ro } from "date-fns/locale";
 
 enum STEPS {
   IMAGES = 0,
@@ -33,7 +34,7 @@ enum STEPS {
   LOCATION = 3,
   CATEGORY = 4,
   CAPACITY = 5,
-  TYPE=6,
+  TYPE = 6,
 }
 
 export const AddHostelModal = () => {
@@ -59,14 +60,15 @@ export const AddHostelModal = () => {
       location: " ",
       category: " ",
       capacity: RoomCount.ONE_IN_A_ROOM,
-      type:RoomType.MALE,
-
+      type: RoomType.MALE,
     },
   });
 
   const imageSrc = watch("imageSrc");
   const location = watch("location");
   const category = watch("category");
+  const capacity = watch("capacity");
+  const type = watch("type");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -83,14 +85,6 @@ export const AddHostelModal = () => {
   const onNext = () => {
     setStep((value) => value + 1);
   };
-
-  // const Map = useMemo(
-  //   () =>
-  //     dynamic(() => import("@/components/map"), {
-  //       ssr: false,
-  //     }),
-  //   [location]
-  // );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.TYPE) {
@@ -258,14 +252,21 @@ export const AddHostelModal = () => {
         />
 
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]"
+          onChange={(value) => setCustomValue("capacity", value)}
+          
+          >
             <SelectValue placeholder="Room Capacity" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Room Capacity</SelectLabel>
               {Object.values(RoomCount).map((count) => (
-                <SelectItem key={count} value={count}>
+                <SelectItem
+                  key={count}
+                  value={count}
+                  onChange={(value) => setCustomValue("capacity", value)}
+                >
                   {count}
                 </SelectItem>
               ))}
@@ -276,7 +277,6 @@ export const AddHostelModal = () => {
     );
   }
 
-
   if (step === STEPS.TYPE) {
     bodyContent = (
       <div className="flex flex-col gap-4">
@@ -285,14 +285,20 @@ export const AddHostelModal = () => {
           subTitle="Select the type of hostel"
         />
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]"
+          onChange={(value) => setCustomValue("type", value)}
+          >
             <SelectValue placeholder="Room Type" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Room Type</SelectLabel>
               {Object.values(RoomType).map((type) => (
-                <SelectItem key={type} value={type}>
+                <SelectItem
+                  key={type}
+                  value={type}
+                  onChange={(value) => setCustomValue("type", value)}
+                >
                   {type}
                 </SelectItem>
               ))}

@@ -11,9 +11,7 @@ export async function POST(req: Request, { params }: {
     params: Iparams;
 }) {
     try {
-        const body = await req.json();
-
-        
+        const body = await req.json(); 
 
     const {
         imageSrc,
@@ -36,18 +34,13 @@ export async function POST(req: Request, { params }: {
             price: parseFloat(price),
             type,
             capacity,
+            imageSrc,
             listing: {
                 connect: {
                     id: params.hostelId
                 }
-            },
-            roomImages: {
-                create: {
-                    imageSrc,
-                }
+         },
             
-            }
-        
         },
       
        
@@ -62,7 +55,3 @@ export async function POST(req: Request, { params }: {
         return new NextResponse("Internal server error", { status: 500 });
     }
 }
-
-
-
-  

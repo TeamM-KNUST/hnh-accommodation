@@ -45,20 +45,11 @@ export async function POST(req: Request) {
             description,
             locationValue:location,
             userId: currentUser.id,
-            rooms: {
-                create: {
-                    price: parseFloat(price),
-                    type,
-                    capacity,
-                
-                }
-            }
         },
        
        
     });
         
-        console.log("Listing", listing);
 
         return NextResponse.json(listing)
         

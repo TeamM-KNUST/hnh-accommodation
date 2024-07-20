@@ -73,18 +73,12 @@ export async function POST(req: Request, { params }: {
         const room = await db.room.create({
         
             data: {
+                imageSrc,
             listing: {
                 connect: {
                     id: params.listingId
                 }
-            },
-            roomImages: {
-                create: {
-                    imageSrc,
-                }
-            
             }
-        
         },
       
        

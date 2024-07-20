@@ -9,76 +9,76 @@ CREATE TYPE "RoomType" AS ENUM ('MALE', 'FEMALE');
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
-    "name" TEXT,
-    "email" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "name" STRING,
+    "email" STRING NOT NULL,
     "emailVerified" TIMESTAMP(3),
-    "image" TEXT,
-    "favoriteIds" TEXT[],
-    "password" TEXT,
-    "confirmPassword" TEXT,
+    "image" STRING,
+    "favoriteIds" STRING[],
+    "password" STRING,
+    "confirmPassword" STRING,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "role" "UserRole" NOT NULL DEFAULT 'USER',
-    "isTwoFactorEnabled" BOOLEAN NOT NULL DEFAULT false,
+    "isTwoFactorEnabled" BOOL NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Account" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "provider" TEXT NOT NULL,
-    "providerAccountId" TEXT NOT NULL,
-    "refresh_token" TEXT,
-    "access_token" TEXT,
-    "expires_at" INTEGER,
-    "token_type" TEXT,
-    "scope" TEXT,
-    "id_token" TEXT,
-    "session_state" TEXT,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "type" STRING NOT NULL,
+    "provider" STRING NOT NULL,
+    "providerAccountId" STRING NOT NULL,
+    "refresh_token" STRING,
+    "access_token" STRING,
+    "expires_at" INT4,
+    "token_type" STRING,
+    "scope" STRING,
+    "id_token" STRING,
+    "session_state" STRING,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Listing" (
-    "id" TEXT NOT NULL,
-    "imageSrc" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "imageSrc" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "title" STRING NOT NULL,
+    "description" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "locationValue" TEXT NOT NULL,
-    "category" TEXT NOT NULL,
+    "locationValue" STRING NOT NULL,
+    "category" STRING NOT NULL,
 
     CONSTRAINT "Listing_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Room" (
-    "id" TEXT NOT NULL,
-    "listingId" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
-    "capacity" "RoomCount" NOT NULL,
+    "id" STRING NOT NULL,
+    "listingId" STRING NOT NULL,
+    "price" FLOAT8,
+    "capacity" "RoomCount",
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "type" "RoomType" NOT NULL,
+    "imageSrc" STRING NOT NULL,
+    "type" "RoomType",
 
     CONSTRAINT "Room_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Reservation" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "roomId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "roomId" STRING NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
-    "totalPrice" INTEGER NOT NULL,
+    "totalPrice" INT4 NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Reservation_pkey" PRIMARY KEY ("id")
@@ -86,11 +86,11 @@ CREATE TABLE "Reservation" (
 
 -- CreateTable
 CREATE TABLE "Review" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "listingId" TEXT NOT NULL,
-    "rating" INTEGER NOT NULL DEFAULT 0,
-    "comment" TEXT,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "listingId" STRING NOT NULL,
+    "rating" INT4 NOT NULL DEFAULT 0,
+    "comment" STRING,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
@@ -98,18 +98,18 @@ CREATE TABLE "Review" (
 
 -- CreateTable
 CREATE TABLE "Favorite" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "listingId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "listingId" STRING NOT NULL,
 
     CONSTRAINT "Favorite_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "VerificationToken" (
-    "id" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "token" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "email" STRING NOT NULL,
+    "token" STRING NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "VerificationToken_pkey" PRIMARY KEY ("id")
@@ -117,9 +117,9 @@ CREATE TABLE "VerificationToken" (
 
 -- CreateTable
 CREATE TABLE "PasswordResetToken" (
-    "id" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "token" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "email" STRING NOT NULL,
+    "token" STRING NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "PasswordResetToken_pkey" PRIMARY KEY ("id")
@@ -127,9 +127,9 @@ CREATE TABLE "PasswordResetToken" (
 
 -- CreateTable
 CREATE TABLE "TwoFactorToken" (
-    "id" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "token" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "email" STRING NOT NULL,
+    "token" STRING NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "TwoFactorToken_pkey" PRIMARY KEY ("id")
@@ -137,17 +137,17 @@ CREATE TABLE "TwoFactorToken" (
 
 -- CreateTable
 CREATE TABLE "TwoFactorConfirmation" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
 
     CONSTRAINT "TwoFactorConfirmation_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Purchase" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "listingId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "listingId" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -156,9 +156,9 @@ CREATE TABLE "Purchase" (
 
 -- CreateTable
 CREATE TABLE "StripeCustomer" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "stripeCustomerId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "stripeCustomerId" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

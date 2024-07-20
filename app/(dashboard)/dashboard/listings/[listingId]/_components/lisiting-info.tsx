@@ -53,10 +53,7 @@ export const ListingInfo = ({
         </div>
         <hr />
         {category && (
-          <ListingCategory
-            id={category?.id}
-            name={category?.name}
-          />
+          <ListingCategory id={category?.id} name={category?.name} />
         )}
         <p className="text-lg font-light text-neutral-500">{description}</p>
         <hr />
@@ -65,6 +62,7 @@ export const ListingInfo = ({
         <Offers />
         <hr />
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
+        
       </div>
     </div>
   );

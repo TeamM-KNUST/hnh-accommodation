@@ -19,32 +19,11 @@ export const UserMenu = () => {
   const pathname = usePathname();
 
   const isDashboard = pathname.includes("/dashboard");
-  const isListing = pathname.includes("/dashboard/listings");
 
   const addHostel = useAddHostel();
-  const addImage = useAddImage();
   const { data: session } = useSession();
 
   const renderActionButton = () => {
-    if (isListing) {
-      return (
-        <div
-          className="hidden
-            md:block
-            text-[1rem]
-            font-semibold
-            py-3
-            px-4
-            rounded-full
-            hover:bg-neutral-100
-            transition-all duration-200 ease-in-out
-            cursor-pointer"
-          onClick={() => addImage.onOpen()}
-        >
-          Add Listing
-        </div>
-      );
-    }
 
     if (isDashboard) {
       return (

@@ -2,22 +2,20 @@
 
 import { Container } from "@/components/container";
 
-
-import {  useMemo } from "react";
+import { useMemo } from "react";
 
 import { ListingInfo } from "./lisiting-info";
-import {  Listing, User} from "@prisma/client";
+import { Listing, User } from "@prisma/client";
 
 import { categories } from "@/data/constant";
 import ListingHead from "./listingHead";
-import ListingReservation from "./listing-reservation";
+import { AddImage } from "@/app/modals/add-image";
 
 type Props = {
   listing: Listing & {
     user: User;
   };
   currentUser?: User | null;
-
 };
 
 function ListingClient({ listing, currentUser }: Props) {
@@ -42,6 +40,13 @@ function ListingClient({ listing, currentUser }: Props) {
               description={listing.description}
               locationValue={listing.locationValue}
             />
+            <div className="order-first mb-10 md:order-last md:col-span-3">
+              <AddImage
+                initialData={listing}
+                currentUser={currentUser}
+                ListingId={listing.id}
+              />
+            </div>
           </div>
         </div>
       </div>

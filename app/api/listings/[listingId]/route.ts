@@ -60,10 +60,6 @@ export async function POST(req: Request, { params }: {
 
     const {
         imageSrc,
-        price,
-        type,
-        capacity,
-
         } = body;
         
         Object.keys(body).forEach((value: any) => {
@@ -74,11 +70,9 @@ export async function POST(req: Request, { params }: {
 
 
         
-    const room = await db.room.create({
-        data: {
-            price: parseFloat(price),
-            type,
-            capacity,
+        const room = await db.room.create({
+        
+            data: {
             listing: {
                 connect: {
                     id: params.listingId

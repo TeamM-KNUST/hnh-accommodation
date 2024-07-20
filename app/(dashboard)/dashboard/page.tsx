@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { EmptyState } from "@/components/empty-state";
 import { ListingCardSkeleton } from "@/data/loadingSkeleton";
+import getRooms from "@/actions/get-room";
 
 interface DashboardPageProps {
   searchParams?: IListingsParams; // Make searchParams optional
@@ -15,6 +16,7 @@ const DashboardPage = async ({
 }: DashboardPageProps) => {
   try {
     const listings = await getListings(searchParams);
+    const rooms = await getRooms();
     const currentUser = await getCurrentUser();
 
     if (listings.length === 0) {
@@ -23,6 +25,10 @@ const DashboardPage = async ({
           <EmptyState showReset />
         </>
       );
+    }
+
+    if (!rooms) {
+      return null;
     }
 
     return (

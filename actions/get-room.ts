@@ -1,46 +1,21 @@
 import { db } from "@/lib/db";
 import { Room } from "@prisma/client";
+import getCurrentUser from "./getCurrentUser";
 
-export interface IListingsParams{
-    currentUser?: string;
-    price?: number;
-    type?: string;
-    capacity?: number;
-
-}
-
-export default async function getRooms(params: IListingsParams):Promise<Room[]> {
+export default async function getRooms() {
     try {
-        const { currentUser, price, type, capacity } = params;
-        let query: any = {};
 
-        if (currentUser) {
-            query.currentUser = currentUser;
-        }
-
-        if (price) {
-            query.price = price;
-        }
-
-        if (capacity) {
-            query.capacity = capacity;
-        }
-
-        if (type) {
-            query.type = {
-                contains: type,
-                mode: "insensitive",
+        const currentUser = await getCurrentUser();
         
-            };
-        }
-
 
     const room = await db.room.findMany({
-        where: query,
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+        where: {
+            id:currentUser?.id
+        },
+        orderBy: {
+            createdAt:"desc"
+        }
+            });
 
         return room;
         

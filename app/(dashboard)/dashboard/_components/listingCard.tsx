@@ -18,13 +18,7 @@ interface ListingCardProps {
   actionId?: string;
   secondaryAction?: string;
   secondaryActionLabel?: string;
-  room?: {
-    Room: {
-      price: number;
-      capacity: number;
-      type: string;
-    }
-  }
+  roomPrice?: number;
 }
 
 export const ListingCard = ({
@@ -37,10 +31,11 @@ export const ListingCard = ({
   actionLabel,
   secondaryAction,
   secondaryActionLabel,
-  room,
+  roomPrice
+
 }: ListingCardProps) => {
   const router = useRouter();
-  console.log("Data", data, "Room", room?.Room.price);
+ 
 
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -73,9 +68,9 @@ export const ListingCard = ({
       return reservation.totalPrice;
     }
 
-    return room?.Room.price;
+    return roomPrice
 
-  }, [reservation, room]);
+  }, [reservation, roomPrice]);
 
   const reservationDate = useMemo(() => {
     if (!reservation) return null;

@@ -13,7 +13,6 @@ interface ListingInfoProps {
   description: string;
   category: | {
     id: string;
-
     name: string;
   } | undefined;
   locationValue: string 

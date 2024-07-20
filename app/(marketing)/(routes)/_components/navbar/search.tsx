@@ -20,7 +20,7 @@ export const SearchInput = () => {
       {
         url: pathname,
         query: {
-          title: debouncedValue,
+          title: debouncedValue
         },
       },
       { skipEmptyString: true, skipNull: true }

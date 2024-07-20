@@ -45,9 +45,15 @@ export async function POST(req: Request) {
             description,
             locationValue:location,
             userId: currentUser.id,
+            rooms: {
+                create: {
+                    capacity,
+                    type,
+                    imageSrc,
+                    price:parseFloat(price)
+                }
+            }
         },
-       
-       
     });
         
 

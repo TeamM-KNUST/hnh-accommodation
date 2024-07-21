@@ -25,16 +25,17 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { RoomCount, RoomType } from "@prisma/client";
-import { ca, ro } from "date-fns/locale";
+import { validate } from "uuid";
 
 enum STEPS {
   IMAGES = 0,
-  PRICE = 1,
-  DESCRIPTION = 2,
-  LOCATION = 3,
-  CATEGORY = 4,
-  CAPACITY = 5,
-  TYPE = 6,
+  ANOTHER=1,
+  PRICE = 2,
+  DESCRIPTION = 3,
+  LOCATION = 4,
+  CATEGORY = 5,
+  CAPACITY = 6,
+  TYPE = 7,
 }
 
 export const AddHostelModal = () => {
@@ -53,7 +54,7 @@ export const AddHostelModal = () => {
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      imageSrc: "",
+      imageSrc:[" ", " ", "", " ", " ",],
       title: "",
       price: 1,
       description: "",
@@ -133,12 +134,28 @@ export const AddHostelModal = () => {
         title="Add Photo to your place"
         subTitle="How guests what your place looks like"
       />
-      <UploadImage
-        onChange={(value) => setCustomValue("imageSrc", value)}
+     <UploadImage
         value={imageSrc}
+        onChange={(value)=>setCustomValue("imageSrc", imageSrc) }
       />
+      
     </div>
   );
+
+  if (step == STEPS.ANOTHER) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="Add Photo to your place"
+          subTitle="How guests what your place looks like"
+        />
+        <UploadImage
+          onChange={(value) => setCustomValue("imageSrc", value)}
+          value={imageSrc}
+        />
+      </div>
+    );
+  }
 
   if (step === STEPS.PRICE) {
     bodyContent = (
@@ -252,9 +269,9 @@ export const AddHostelModal = () => {
         />
 
         <Select>
-          <SelectTrigger className="w-[180px]"
-          onChange={(value) => setCustomValue("capacity", value)}
-          
+          <SelectTrigger
+            className="w-[180px]"
+            onChange={(value) => setCustomValue("capacity", value)}
           >
             <SelectValue placeholder="Room Capacity" />
           </SelectTrigger>
@@ -285,8 +302,9 @@ export const AddHostelModal = () => {
           subTitle="Select the type of hostel"
         />
         <Select>
-          <SelectTrigger className="w-[180px]"
-          onChange={(value) => setCustomValue("type", value)}
+          <SelectTrigger
+            className="w-[180px]"
+            onChange={(value) => setCustomValue("type", value)}
           >
             <SelectValue placeholder="Room Type" />
           </SelectTrigger>

@@ -60,6 +60,7 @@ export async function POST(req: Request, { params }: {
 
     const {
         imageSrc,
+        price,
         } = body;
         
         Object.keys(body).forEach((value: any) => {
@@ -74,6 +75,7 @@ export async function POST(req: Request, { params }: {
         
             data: {
                 imageSrc,
+                price,
             listing: {
                 connect: {
                     id: params.listingId

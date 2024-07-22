@@ -120,7 +120,7 @@ export const UserMenu = () => {
                   </Button>
                   <Separator />
                   <Button
-                    variant="default"
+                    variant="destructive"
                     size="sm"
                     onClick={() => signOut()}
                     className="w-full text-center"

@@ -21,6 +21,15 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/map.jsx", "lib/map-api.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/map.jsx",
+    "lib/map-api.js",
+    "app/map/page.jsx",
+    "app/map/_components/Map.jsx"
+  ],
   "exclude": ["node_modules"]
 }

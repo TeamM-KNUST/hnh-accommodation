@@ -6,6 +6,8 @@ import { User } from "@prisma/client";
 import Sleep from "./sleep";
 import Offers from "./offer";
 import ListingCategory from "./listing-category";
+import Mapbox from "@/components/map";
+
 
 
 interface ListingInfoProps {
@@ -61,7 +63,7 @@ export const ListingInfo = ({
         <Offers />
         <hr />
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
-        
+        <Mapbox />
       </div>
     </div>
   );

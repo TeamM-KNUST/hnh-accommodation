@@ -1,32 +1,26 @@
-import getCurrentUser from "@/actions/getCurrentUser";
-import ListingClient from "./_components/listingClient";
-import ClientOnly from "@/components/client-only";
-import getListingById from "@/actions/getListitingById";
-import getRoomById from "@/actions/getRoomById";
+
+import { db } from "@/lib/db";
+import { redirect } from "next/navigation";
 
 interface IParams {
   listingId?: string;
-  roomId?: string;
 }
 
 const HostelIdPage = async ({ params }: { params: IParams }) => {
-  const listings = await getListingById(params);
-  const currentUser = await getCurrentUser();
+  const listing = await db.listing.findUnique({
+    where: {
+      id: params.listingId,
+    },
+    include: {
+      rooms: true,
+    },
+  });
 
-  if (!listings) {
-    return null;
+  if (!listing) {
+    return redirect("/auth/login");
   }
-
-
-  return (
-    <ClientOnly>
-      <div>
-        <ListingClient
-          listing={listings}
-          currentUser={currentUser}
-        />
-      </div>
-    </ClientOnly>
+  return redirect(
+    `/dashboard/listings/${listing.id}/rooms/${listing.rooms[0].id}`
   );
 };
 

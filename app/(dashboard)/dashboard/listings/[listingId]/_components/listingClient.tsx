@@ -10,6 +10,7 @@ import { Listing, User } from "@prisma/client";
 import { categories } from "@/data/constant";
 import ListingHead from "./listingHead";
 import { AddImage } from "@/app/modals/add-image";
+import ListingReservation from "./listing-reservation";
 
 type Props = {
   listing: Listing & {
@@ -41,10 +42,16 @@ function ListingClient({ listing, currentUser }: Props) {
               locationValue={listing.locationValue}
             />
             <div className="order-first mb-10 md:order-last md:col-span-3">
-              <AddImage
-                initialData={listing}
-                currentUser={currentUser}
-                ListingId={listing.id}
+              <ListingReservation
+                dateRange={{
+                  startDate: new Date(),
+                  endDate: new Date(),
+                  key: "selection",
+                }}
+                totalPrice={listing.title.length}
+                onChangeDate={() => {}}
+                onSubmit={() => {}}
+                disabledDates={[]}
               />
             </div>
           </div>

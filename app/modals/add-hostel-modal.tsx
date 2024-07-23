@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Heading } from "@/components/heading";
-import { UploadImage } from "@/components/upload-image";
+
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { locations, categories } from "@/data/constant";
@@ -25,15 +25,15 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { RoomCount, RoomType } from "@prisma/client";
-import { validate } from "uuid";
+import { UploadImage } from "@/components/upload-image";
+
 
 enum STEPS {
   IMAGES = 0,
-  ANOTHER=1,
-  PRICE = 2,
-  DESCRIPTION = 3,
-  LOCATION = 4,
-  CATEGORY = 5,
+  PRICE = 1,
+  DESCRIPTION = 2,
+  LOCATION = 3,
+  CATEGORY = 4,
   CAPACITY = 6,
   TYPE = 7,
 }
@@ -54,7 +54,7 @@ export const AddHostelModal = () => {
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      imageSrc:[" ", " ", "", " ", " ",],
+      imageSrc:"",
       title: "",
       price: 1,
       description: "",
@@ -134,28 +134,14 @@ export const AddHostelModal = () => {
         title="Add Photo to your place"
         subTitle="How guests what your place looks like"
       />
-     <UploadImage
+      <UploadImage
+        onChange={(value) => setCustomValue("imageSrc", value)}
         value={imageSrc}
-        onChange={(value)=>setCustomValue("imageSrc", imageSrc) }
       />
-      
     </div>
   );
 
-  if (step == STEPS.ANOTHER) {
-    bodyContent = (
-      <div className="flex flex-col gap-4">
-        <Heading
-          title="Add Photo to your place"
-          subTitle="How guests what your place looks like"
-        />
-        <UploadImage
-          onChange={(value) => setCustomValue("imageSrc", value)}
-          value={imageSrc}
-        />
-      </div>
-    );
-  }
+
 
   if (step === STEPS.PRICE) {
     bodyContent = (

@@ -10,7 +10,10 @@ const nextConfig = {
 			{
 				hostname: "a.hwstatic.com"
 				
-						 }			 
+			},
+			{
+				hostname:"imgs.search.brave.com"
+			}
 		]
 	},
 };

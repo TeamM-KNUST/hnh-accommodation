@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import HeartButton from "../../../_components/heart-button";
 import { Listing, User } from "@prisma/client";
+import { images } from "@/data/constant";
 
 type Props = {
   title: string;
@@ -13,19 +14,10 @@ type Props = {
   currentUser?: User | null;
 };
 
-function ListingHead({
-  title,
-  imageSrc,
-  id,
-  currentUser,
-}: Props) {
-
+function ListingHead({ title, imageSrc, id, currentUser }: Props) {
   return (
     <>
-      <Heading
-        title={title}
-        subTitle="DFGSDFSDFsdsd"
-      />
+      <Heading title={title} subTitle="DFGSDFSDFsdsd" />
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -46,6 +38,23 @@ function ListingHead({
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>
       </motion.div>
+      <div>
+        <h1 className="text-3xl font-bold">
+          List of Facilities 
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {images.map((image, index) => (
+            <Image
+              key={index}
+              src={image.url}
+              alt={image.alt}
+              width={500}
+              height={500}
+              className="w-full h-40 object-cover rounded-lg"
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }

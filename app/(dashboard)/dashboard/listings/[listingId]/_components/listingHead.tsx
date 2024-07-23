@@ -6,6 +6,8 @@ import Image from "next/image";
 import HeartButton from "../../../_components/heart-button";
 import { Listing, User } from "@prisma/client";
 import { images } from "@/data/constant";
+import { useState } from "react";
+import useAddImage from "@/hooks/addImage";
 
 type Props = {
   title: string;
@@ -15,6 +17,10 @@ type Props = {
 };
 
 function ListingHead({ title, imageSrc, id, currentUser }: Props) {
+  const [showAll, setShowAll] = useState(false);
+  const addImage = useAddImage();
+
+  const imagesToShow = showAll ? images : images.slice(0, 3);
   return (
     <>
       <Heading title={title} subTitle="DFGSDFSDFsdsd" />
@@ -39,21 +45,29 @@ function ListingHead({ title, imageSrc, id, currentUser }: Props) {
         </div>
       </motion.div>
       <div>
-        <h1 className="text-3xl font-bold">
-          List of Facilities 
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-          {images.map((image, index) => (
-            <Image
-              key={index}
-              src={image.url}
-              alt={image.alt}
-              width={500}
-              height={500}
-              className="w-full h-40 object-cover rounded-lg"
-            />
+        <h1 className="text-2xl font-bold">List of Facilities</h1>
+        <div className="flex flex-wrap justify-between">
+          {imagesToShow.map((image, index) => (
+            <div key={index} className="w-[33%]">
+              <Image
+                src={image.url}
+                alt={image.alt}
+                width={500}
+                height={500}
+                className="w-full h-40 object-cover cursor-pointer "
+                onClick={addImage.onOpen}
+              />
+            </div>
           ))}
         </div>
+        {images.length > 3 && (
+          <button
+            className="mt-4 text-blue-500"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? "Show Less" : "Show More"}
+          </button>
+        )}
       </div>
     </>
   );

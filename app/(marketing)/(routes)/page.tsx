@@ -18,7 +18,7 @@ export default function Home() {
       <Suspense>
         <div className="flex flex-col gap-y-6">
           <Connect />
-          <InterSection />
+          {/* <InterSection /> */}
           <Sayhello />
           <SoloToSocial />
           <Roamies />

@@ -1,27 +1,36 @@
+import getCurrentUser from "@/actions/getCurrentUser";
+import getListingById from "@/actions/getListitingById";
+import ClientOnly from "@/components/client-only";
+import { EmptyState } from "@/components/empty-state";
+import ListingClient from "./_components/listingClient";
 
-import { db } from "@/lib/db";
-import { redirect } from "next/navigation";
-
-interface IParams {
+interface Iparams {
   listingId?: string;
+  roomId?: string;
 }
 
-const HostelIdPage = async ({ params }: { params: IParams }) => {
-  const listing = await db.listing.findUnique({
-    where: {
-      id: params.listingId,
-    },
-    include: {
-      rooms: true,
-    },
-  });
+const ListingIdPage = async ({ params }: { params: Iparams }) => {
+  const currentUser = await getCurrentUser();
+  const listings = await getListingById(params);
 
-  if (!listing) {
-    return redirect("/auth/login");
+  if (!listings) {
+    return (
+      <ClientOnly>
+        <EmptyState
+          title="Listing not found"
+          subtitle="This listing may have been removed or the link is incorrect"
+        />
+      </ClientOnly>
+    );
   }
-  return redirect(
-    `/dashboard/listings/${listing.id}/rooms/${listing.rooms[0].id}`
+
+  return (
+    <div>
+      <ClientOnly>
+        <ListingClient listing={listings} currentUser={currentUser} />
+      </ClientOnly>
+    </div>
   );
 };
 
-export default HostelIdPage;
+export default ListingIdPage;

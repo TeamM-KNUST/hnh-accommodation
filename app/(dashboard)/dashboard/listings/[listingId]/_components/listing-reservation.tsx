@@ -1,26 +1,20 @@
 "use client";
 
 import React from "react";
-import { Range } from "react-date-range";
 import { Button } from "@/components/ui/button";
-import Calendar from "@/components/calendar";
 
 type Props = {
-  dateRange: Range;
+
   totalPrice: number;
-  onChangeDate: (value: Range) => void;
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: Date[];
 };
 
 function ListingReservation({
-  dateRange,
   totalPrice,
-  onChangeDate,
   onSubmit,
   disabled,
-  disabledDates,
 }: Props) {
   return (
     <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
@@ -29,12 +23,7 @@ function ListingReservation({
          <p className="font-light text-neutral-600">year</p>
         </p>
       </div>
-      <hr />
-      <Calendar
-        value={dateRange}
-        disabledDates={disabledDates}
-        onChange={(value) => onChangeDate(value.selection)}
-      />
+
       <hr />
       <div className="p-4">
         <Button variant="destructive" disabled={disabled} onClick={onSubmit} className="w-full">

@@ -10,7 +10,7 @@ function Sleep({}: Props) {
   return (
     <div>
       <p className="text-xl font-semibold">{`Where you'll sleep`}</p>
-      <div className="flex justify-between pt-6">
+      <div className="flex justify-between pt-6 space-x-3">
         <motion.div
           initial={{
             x: 200,
@@ -22,7 +22,7 @@ function Sleep({}: Props) {
         >
           <div className="flex flex-col justify-start items-start px-6 py-6 gap-1 text-center">
             <IoBedOutline size={25} />
-            <p className="text-lg text-black font-medium">Bedroom 1</p>
+            <p className="text-lg text-black font-medium">1 In Room</p>
             <p className="text-sm text-neutral-500">1 king bed</p>
           </div>
         </motion.div>
@@ -36,9 +36,12 @@ function Sleep({}: Props) {
           className="border border-black rounded-md cursor-pointer"
         >
           <div className="flex flex-col justify-start items-start px-6 py-6 gap-1 text-center">
-            <IoBedOutline size={25} />
-            <p className="text-lg text-black font-medium">Bedroom 2</p>
-            <p className="text-sm text-neutral-500">1 queen bed</p>
+            <div className="flex items-center justify-between space-x-4">
+              <IoBedOutline size={25} />
+              <IoBedOutline size={25} />
+            </div>
+            <p className="text-lg text-black font-medium">2 In Room</p>
+            <p className="text-sm text-neutral-500">2 queen bed</p>
           </div>
         </motion.div>
         <motion.div
@@ -54,11 +57,30 @@ function Sleep({}: Props) {
             <div className="flex justify-between gap-2">
               <IoBedOutline size={25} />
               <BiBed size={25} />
+              <IoBedOutline size={25} />
             </div>
-            <p className="text-lg text-black font-medium">Bedroom 3</p>
-            <p className="text-sm text-neutral-500">
-              1 queen bed, 1 single bed
-            </p>
+            <p className="text-lg text-black font-medium">3 In Room</p>
+            <p className="text-sm text-neutral-500">3 queen bed</p>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{
+            x: 200,
+            opacity: 0,
+          }}
+          transition={{ duration: 1 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className="border border-black rounded-md cursor-pointer"
+        >
+          <div className="flex flex-col justify-start items-start px-6 py-6 gap-1 text-center">
+            <div className="flex justify-between gap-2">
+              <IoBedOutline size={25} />
+              <BiBed size={25} />
+              <IoBedOutline size={25} />
+              <IoBedOutline size={25} />
+            </div>
+            <p className="text-lg text-black font-medium">4 In Room</p>
+            <p className="text-sm text-neutral-500">4 queen bed</p>
           </div>
         </motion.div>
       </div>

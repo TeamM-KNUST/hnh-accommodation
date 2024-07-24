@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 
 export interface IListingsParams{
-    currentUser?: string;
+    currentUser: string;
     locationValue?: string;
     category?: string
     title?: string;

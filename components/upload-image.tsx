@@ -1,8 +1,7 @@
 "use client";
 
-import { CldUploadWidget} from "next-cloudinary";
-import { ImageMinus} from "lucide-react";
-import { useCallback, useState } from "react";
+import { CldUploadButton } from "next-cloudinary";
+import { useCallback } from "react";
 import Image from "next/image";
 
 declare global {
@@ -15,7 +14,6 @@ interface UploadImageProps {
 }
 
 export const UploadImage = ({ onChange, value }: UploadImageProps) => {
-  
   const handleUpload = useCallback(
     (result: any) => {
       onChange?.(result.info.secure_url);
@@ -24,38 +22,27 @@ export const UploadImage = ({ onChange, value }: UploadImageProps) => {
   );
 
   return (
-    <CldUploadWidget
-      uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
-      onSuccess
-      ={handleUpload}
-      options={{
-        maxFiles: 1,
-      }}
-     
-    >
-      {({ open }) => {
-        return (
-          <div
-            className="relative hover:opacity-70
-                transition duration-200 ease-in-out cursor-pointer
-                border-dashed border-2 p-20 border-neutral-300 flex flex-col items-center justify-center gap-4 text-neutral-600"
-            onClick={()=>open?.()}
-          >
-            <ImageMinus size={34} />
-            <div className="font-semibold text-lg">Click to upload image</div>
-            {value && (
-              <div className="absolute inset-0 w-full h-full">
-                <Image
-                  fill
-                  src={value}
-                  alt="uploaded"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-          </div>
-        );
-      }}
-    </CldUploadWidget>
+    <div className="flex gap-5 items-center justify-center flex-col h-full">
+      <h2 className="font-semibold text-lg">Add some photos of your Hostel</h2>
+      <CldUploadButton
+        options={{ multiple: true }}
+        onSuccess={handleUpload}
+        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+      >
+        <span className="relative cursor-pointer hover:opacity-70 transition border-dashed border-2 p-36 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600">
+          Upload
+        </span>
+      </CldUploadButton>
+      {value && (
+        <div className=" absolute inset-0 w-full h-full">
+          <Image
+            alt="uploade"
+            fill
+            style={{ objectFit: "cover" }}
+            src={value}
+          />
+        </div>
+      )}
+    </div>
   );
 };

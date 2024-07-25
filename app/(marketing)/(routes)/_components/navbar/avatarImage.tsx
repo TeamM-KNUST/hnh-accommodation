@@ -12,8 +12,7 @@ export const AvatarImg = ({ src, alt, onClick, className }: AvatarImgProps) => {
     <Avatar onClick={onClick}>
       <AvatarImage
         src={
-          src ||
-          "https://miro.medium.com/v2/resize:fill:64:64/1*dmbNkD5D-u45r44go_cf0g.png"
+          src || "/empty-profile.png"
         }
         alt={alt}
         className={className}

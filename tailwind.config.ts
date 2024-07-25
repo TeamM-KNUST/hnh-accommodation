@@ -24,6 +24,9 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+         "airbnb-theme-color": "#FF385C",
+        "airbnb-light-black": "#222222",
+        "airbnb-light-gray": "#717171",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -52,6 +55,13 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+       backgroundImage: {
+        "airbnb-gradient":
+          "linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%)",
+      },
+      gridTemplateRows: {
+        "new-listing": "10vh 80vh 10vh",
       },
       borderRadius: {
         lg: "var(--radius)",

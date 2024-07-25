@@ -30,6 +30,6 @@
     "lib/map-api.js",
     "app/map/page.tsx",
     "app/map/_components/Map.tsx"
-  ],
+, "stores/slices/AuthSlice.ts", "stores/store.ts"  ],
   "exclude": ["node_modules"]
 }

@@ -10,7 +10,7 @@ function Sleep({}: Props) {
   return (
     <div >
       <p className="text-xl font-semibold">{`Where you'll sleep`}</p>
-      <div className="flex justify-between pt-6 space-x-3">
+      <div className="flex justify-between pt-6 space-x-2">
         <motion.div
           initial={{
             x: 200,

@@ -10,32 +10,34 @@ export async function POST(req: Request) {
         }
         const body = await req.json();
 
-        const { roomId, startDate, endDate, totalPrice } = body;
+        const { listingId, startDate, endDate, totalPrice } = body;
         
-        if (!roomId || !startDate || !endDate || !totalPrice) {
+        if (!listingId || !startDate || !endDate || !totalPrice) {
             return new NextResponse("Bad Request", { status: 400 });
         }
 
-        const reservations = await db.room.update({
-            where: { id: roomId },
-            data: {
-                reservations: {
-                    create: {
-                        startDate: new Date(startDate),
-                        endDate: new Date(endDate),
-                        totalPrice,
-                        user: {
-                            connect: {
-                                id: currentUser.id,
-                            },
-                        },
-                    },
-                },
+          const listenAndReservation = await db.listing.update({
+    where: {
+      id: listingId,
+    },
+    data: {
+      reservations: {
+        create: {
+          startDate,
+          endDate,
+          totalPrice,
+          user: {
+            connect: {
+              id: currentUser.id,
             },
-        });
-        
-        console.log("RESERVATION", reservations);
-        return NextResponse.json(reservations);
+          },
+        },
+      },
+    },
+  });
+  
+        console.log("RESERVATION", listenAndReservation);
+        return NextResponse.json(listenAndReservation);
         
     } catch (error) {
         console.error(["RSERVATION_CREATE_ERROR", error]);

@@ -50,52 +50,5 @@ export async function DELETE(req: Request, { params }: {
 
 
 
-export async function POST(req: Request, { params }: {
-    params: Iparams;
-}) {
-    try {
-        const body = await req.json();
-
-        
-
-    const {
-        imageSrc,
-        price,
-        } = body;
-        
-        Object.keys(body).forEach((value: any) => {
-    if (!body[value]) {
-      NextResponse.error();
-    }
-        });
-
-
-        
-        const room = await db.room.create({
-        
-            data: {
-                imageSrc,
-                price,
-            listing: {
-                connect: {
-                    id: params.listingId
-                }
-            }
-        },
-      
-       
-    });
-        
-        return NextResponse.json(room)
-        console.log("Room", room);
-     
-    }
-    catch (error) {
-        console.log(["ADD IMAGE ERROR", error]);
-        return new NextResponse("Internal server error", { status: 500 });
-    }
-}
-
-
 
   

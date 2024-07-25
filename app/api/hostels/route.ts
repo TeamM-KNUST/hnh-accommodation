@@ -24,9 +24,6 @@ export async function POST(req: Request) {
         location,
         category,
         price,
-        type,
-        capacity,
-
         } = body;
         
         Object.keys(body).forEach((value: any) => {
@@ -45,14 +42,7 @@ export async function POST(req: Request) {
             description,
             locationValue:location,
             userId: currentUser.id,
-            rooms: {
-                create: {
-                    capacity,
-                    type,
-                    imageSrc,
-                    price:parseFloat(price)
-                }
-            }
+            price,
         },
     });
         

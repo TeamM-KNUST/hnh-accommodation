@@ -19,7 +19,7 @@ export const Map = () => {
         {...viewport}
         mapboxAccessToken={process.env.NEXT_PUBLIC_APP_MAPBOX_ACCESS_TOKEN}
         mapStyle="mapbox://styles/sabudu/clyz4uy1d00ea01r07tasaoj1"
-        style={{ borderRadius: "1rem" }}
+        style={{ borderRadius: "1rem", width:"100%" }}
       >
         <Marker latitude={37.7577} longitude={-122.4376}>
           <div className="text-2xl">📍</div>

@@ -15,16 +15,6 @@ import { toast } from "react-toastify";
 
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
 import useAddHostel from "@/hooks/addhostel";
-import {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectValue,
-  SelectItem,
-  SelectGroup,
-  SelectLabel,
-} from "@/components/ui/select";
-import { RoomCount, RoomType } from "@prisma/client";
 import { UploadImage } from "@/components/upload-image";
 
 
@@ -34,8 +24,6 @@ enum STEPS {
   DESCRIPTION = 2,
   LOCATION = 3,
   CATEGORY = 4,
-  CAPACITY = 6,
-  TYPE = 7,
 }
 
 export const AddHostelModal = () => {
@@ -60,16 +48,13 @@ export const AddHostelModal = () => {
       description: "",
       location: " ",
       category: " ",
-      capacity: RoomCount.ONE_IN_A_ROOM,
-      type: RoomType.MALE,
     },
   });
 
   const imageSrc = watch("imageSrc");
   const location = watch("location");
   const category = watch("category");
-  const capacity = watch("capacity");
-  const type = watch("type");
+
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -88,7 +73,7 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.TYPE) {
+    if (step !== STEPS.CATEGORY) {
       return onNext();
     }
 
@@ -115,7 +100,7 @@ export const AddHostelModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.TYPE) {
+    if (step === STEPS.CATEGORY) {
       return "Create";
     }
     return "Next";
@@ -246,72 +231,6 @@ export const AddHostelModal = () => {
     );
   }
 
-  if (step === STEPS.CAPACITY) {
-    bodyContent = (
-      <div className="flex flex-col gap-4">
-        <Heading
-          title="How many guests can your place accommodate?"
-          subTitle="Set the number of guests your place can accommodate"
-        />
-
-        <Select>
-          <SelectTrigger
-            className="w-[180px]"
-            onChange={(value) => setCustomValue("capacity", value)}
-          >
-            <SelectValue placeholder="Room Capacity" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Room Capacity</SelectLabel>
-              {Object.values(RoomCount).map((count) => (
-                <SelectItem
-                  key={count}
-                  value={count}
-                  onChange={(value) => setCustomValue("capacity", value)}
-                >
-                  {count}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-    );
-  }
-
-  if (step === STEPS.TYPE) {
-    bodyContent = (
-      <div className="flex flex-col gap-4">
-        <Heading
-          title="What type of hostel is this?"
-          subTitle="Select the type of hostel"
-        />
-        <Select>
-          <SelectTrigger
-            className="w-[180px]"
-            onChange={(value) => setCustomValue("type", value)}
-          >
-            <SelectValue placeholder="Room Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Room Type</SelectLabel>
-              {Object.values(RoomType).map((type) => (
-                <SelectItem
-                  key={type}
-                  value={type}
-                  onChange={(value) => setCustomValue("type", value)}
-                >
-                  {type}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-    );
-  }
 
   return (
     <Modal
@@ -323,7 +242,7 @@ export const AddHostelModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.TYPE ? undefined : onBack}
+      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       body={bodyContent}
     />
   );

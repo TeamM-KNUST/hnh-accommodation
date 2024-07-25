@@ -35,17 +35,6 @@ export default async function getListings(params: IListingsParams) {
 
     const listing = await db.listing.findMany({
         where: query,
-        include: {
-            rooms: {
-                select: {
-                    price: true,
-                    type: true,
-                    capacity: true,
-                    
-                }
-
-            },
-            },  
       orderBy: {
         createdAt: "desc",
       },

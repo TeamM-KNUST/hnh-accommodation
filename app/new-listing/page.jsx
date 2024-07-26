@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { Overview } from "./_components/overview";
 import { userAppStore } from "@/store/store";
 import { StepOneStarter } from "./_components/StepOneStart";
+import { ListingType } from "./_components/ListingType";
+import {PlaceLocation} from "./_components/PlaceLocation";
 
 const NewListingPage = () => {
     const [step, setStep] = useState(0);
@@ -32,9 +34,11 @@ const NewListingPage = () => {
       case 0:
         return <Overview />;
       case 1:
-        return (<StepOneStarter/>)
-     
-     
+        return <StepOneStarter />
+      case 2:
+        return <ListingType />
+      case 3:
+        return <PlaceLocation/>
       default:
         return <></>;
     }

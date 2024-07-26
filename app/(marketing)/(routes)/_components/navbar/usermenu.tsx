@@ -38,7 +38,7 @@ export const UserMenu = () => {
         hover:bg-neutral-100
         transition-all duration-200 ease-in-out
         cursor-pointer"
-          onClick={() => router.push("/new-listing")}
+          onClick={()=>addHostel.onOpen()}
         >
           Hostel
         </div>

@@ -6,6 +6,7 @@ import { User } from "@prisma/client";
 import Sleep from "./sleep";
 import Offers from "./offer";
 import ListingCategory from "./listing-category";
+import { Map } from "@/components/Map";
 
 
 
@@ -63,6 +64,7 @@ export const ListingInfo = ({
         <hr />
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
       </div>
+        <Map/>
     </div>
   );
 };

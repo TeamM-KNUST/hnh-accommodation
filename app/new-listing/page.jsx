@@ -7,7 +7,11 @@ import { Overview } from "./_components/overview";
 import { userAppStore } from "@/store/store";
 import { StepOneStarter } from "./_components/StepOneStart";
 import { ListingType } from "./_components/ListingType";
-import {PlaceLocation} from "./_components/PlaceLocation";
+import { PlaceLocation } from "./_components/PlaceLocation";
+import { FloorPlan } from "./_components/FloorPlan";
+import { StepTwoStarter } from "./_components/StepTwoStarter";
+import { ProcessAmeneties } from "./_components/ProcessAmeneties";
+import { Photos } from "./_components/Photos";
 
 const NewListingPage = () => {
     const [step, setStep] = useState(0);
@@ -38,7 +42,13 @@ const NewListingPage = () => {
       case 2:
         return <ListingType />
       case 3:
-        return <PlaceLocation/>
+        return <FloorPlan />
+      case 4:
+        return <StepTwoStarter />
+      case 5:
+        return <ProcessAmeneties />
+      case 6:
+        return  <Photos/>
       default:
         return <></>;
     }
@@ -65,7 +75,7 @@ const NewListingPage = () => {
       >
         {step >= 1 && (
           <Button
-                        variant="destructive"
+                        variant="default"
                         onClick={handlePrevious}
             
           >
@@ -80,7 +90,8 @@ const NewListingPage = () => {
             Next
           </Button>
         ) : (
-          <Button
+              <Button
+                variant="destructive"
          
            onClick={handleNext}
           >

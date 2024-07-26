@@ -1,33 +1,44 @@
-import React, { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import { useRef, useEffect, useState } from "react";
+import { SearchBox } from "@mapbox/search-js-react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
-import 'mapbox-gl/dist/mapbox-gl.css';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+const accessToken = "pk.eyJ1Ijoic2FidWR1IiwiYSI6ImNseXo0OW13ZTFqNXAybnNsZ3ZjNTR4c2IifQ.4T6amcvTQrTB84WrRaE4Ng";
 
-export const PlaceLocation = () => {
+export const PlaceLocation = ()=> {
   const mapContainerRef = useRef();
-  const mapRef = useRef();
-
+  const mapInstanceRef = useRef();
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   useEffect(() => {
-    mapboxgl.accessToken = process.env.NEXT_PUBLIC_APP_MAPBOX_ACCESS_TOKEN;
+    mapboxgl.accessToken = accessToken;
 
-    mapRef.current = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [-79.4512, 43.6568],
-      zoom: 13
+    mapInstanceRef.current = new mapboxgl.Map({
+      container: mapContainerRef.current, // container ID
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9, // starting zoom
     });
 
-    mapRef.current.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      })
-    );
-
-    return () => mapRef.current.remove();
+    mapInstanceRef.current.on("load", () => {
+      setMapLoaded(true);
+    });
   }, []);
 
-  return <div ref={mapContainerRef} style={{ height: '100%' }} />;
-};
+  return (
+    <>
+      <SearchBox
+        accessToken={accessToken}
+        map={mapInstanceRef.current}
+        mapboxgl={mapboxgl}
+        value={inputValue}
+        onChange={(d) => {
+          setInputValue(d);
+        }}
+        marker
+      />
+      <div id="map-container" ref={mapContainerRef} style={{ height: 700 }} />
+    </>
+  );
+}
+
+

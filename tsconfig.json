@@ -29,7 +29,16 @@
     "components/map.jsx",
     "lib/map-api.js",
     "app/map/page.tsx",
-    "app/map/_components/Map.tsx"
-, "stores/slices/AuthSlice.ts", "stores/store.ts", "data/share-room.jsx", "data/room.jsx", "data/house.jsx", "data/amenities.jsx", "app/new-listing/_components/PlaceLocation.jsx", "app/new-listing/_components/geocoder-control.jsx", "components/Map.jsx"  ],
+    "components/Map.tsx",
+    "stores/slices/AuthSlice.ts",
+    "stores/store.ts",
+    "data/share-room.jsx",
+    "data/room.jsx",
+    "data/house.jsx",
+    "data/amenities.jsx",
+    "app/new-listing/_components/PlaceLocation.jsx",
+    "app/new-listing/_components/geocoder-control.jsx",
+    "components/Map.tsx"
+  ],
   "exclude": ["node_modules"]
 }

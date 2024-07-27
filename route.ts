@@ -9,7 +9,6 @@ export const publicRoutes = [
     "/",
     "/auth/confirm",
     "/dashboard",
-    "/map"
     
 ];
 

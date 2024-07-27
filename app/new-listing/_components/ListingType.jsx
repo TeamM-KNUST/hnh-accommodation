@@ -1,4 +1,4 @@
-import { userAppStore } from "@/store/store";
+import { userAppStore } from "../../../store/store";
 import {House} from "@/data/house";
 import {Room} from "@/data/room";
 import {SharedRoom} from "@/data/share-room";

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { userAppStore } from "@/store/store";
+import { userAppStore } from "../../../store/store";
 import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
 

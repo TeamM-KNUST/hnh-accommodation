@@ -1,25 +1,18 @@
 "use client";
 
 import { CldUploadButton } from "next-cloudinary";
-import { useCallback } from "react";
 import Image from "next/image";
 
-declare global {
-  var cloudinary: any;
-}
-
 interface UploadImageProps {
-  onChange?: (value: string) => void;
-  value?: string;
+  onChange: (value: string[]) => void;
+  value: string[];
 }
 
-export const UploadImage = ({ onChange, value }: UploadImageProps) => {
-  const handleUpload = useCallback(
-    (result: any) => {
-      onChange?.(result.info.secure_url);
-    },
-    [onChange]
-  );
+export default function UploadImage({ onChange, value }: UploadImageProps) {
+  const handleUpload = (data: any) => {
+    const newPhotos = data.map((photo: any) => photo.secure_url);
+    onChange([...value, ...newPhotos]);
+  };
 
   return (
     <div className="flex gap-5 items-center justify-center flex-col h-full">
@@ -33,16 +26,15 @@ export const UploadImage = ({ onChange, value }: UploadImageProps) => {
           Upload
         </span>
       </CldUploadButton>
-      {value && (
-        <div className=" absolute inset-0 w-full h-full">
-          <Image
-            alt="uploade"
-            fill
-            style={{ objectFit: "cover" }}
-            src={value}
-          />
-        </div>
-      )}
+      <div className="grid grid-cols-3 gap-4 h-[55vh] overflow-auto pb-10 no-scrollbar">
+        {value.map((photo, index) => (
+    
+          <div className="relative h-36 w-[200px]" key={index}>
+            <Image src={photo} fill alt="upload" />
+
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+}

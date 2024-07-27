@@ -1,4 +1,5 @@
-import { userAppStore } from "@/store/store";
+import { Button } from "@/components/ui/button";
+import { userAppStore } from "../../../store/store";
 
 export const FloorPlan =()=> {
   const { placeSpace, setPlaceSpace } = userAppStore();
@@ -29,19 +30,21 @@ export const FloorPlan =()=> {
           >
             <span className="capitalize ">{place}</span>
             <div className="flex gap-10 items-center justify-between w-48">
-              <button
-                className="border border-gray-200 py-[10px] rounded-full px-5 flex items-center justify-center hover:border-gray-500"
+              <Button
+                variant="outline"
+                size="lg"
                 onClick={() => handleDecrement(place)}
               >
                 -
-              </button>
+              </Button>
               <span className="min-w-[20px]">{placeSpace[place]}</span>
-              <button
-                className="border border-gray-200 py-[10px] rounded-full px-[18px] flex items-center justify-center hover:border-gray-500"
+              <Button
+               variant="outline"
+                size="lg"
                 onClick={() => handleIncrement(place)}
               >
                 +
-              </button>
+              </Button>
             </div>
           </div>
         ))}

@@ -15,7 +15,8 @@ import { toast } from "react-toastify";
 
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
 import useAddHostel from "@/hooks/addhostel";
-import { UploadImage } from "@/components/upload-image";
+import UploadImage from "@/components/upload-image";
+
 
 
 enum STEPS {
@@ -42,7 +43,7 @@ export const AddHostelModal = () => {
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      imageSrc:"",
+      imageSrc: [],
       title: "",
       price: 1,
       description: "",

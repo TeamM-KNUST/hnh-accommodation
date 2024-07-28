@@ -64,7 +64,6 @@ const amenities = watch("amenities");
 
 
   const setCustomValue = (id: string, value: any) => {
-    console.log(`value ${id}`, value);
     setValue(id, value, {
       shouldValidate: true,
       shouldDirty: true,
@@ -85,13 +84,13 @@ const amenities = watch("amenities");
       return onNext();
     }
 
-    console.log("Data", data);
+  
     setIsLoading(true);
 
     axios
       .post("/api/hostels", data)
       .then((response) => {
-        console.log("Response", response.data);
+
         toast.success("Hostel added successfully");
         router.refresh();
         reset();
@@ -100,7 +99,7 @@ const amenities = watch("amenities");
       })
       .catch((error) => {
         toast.error(error.response.data);
-        console.log("Error response", error.response.data);
+    
       })
       .finally(() => {
         setIsLoading(false);

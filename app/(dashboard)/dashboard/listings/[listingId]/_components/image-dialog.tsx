@@ -11,7 +11,7 @@ export function ImageDialog() {
   const addImage = useAddImage();
   return (
     <Dialog open={addImage.isOpen} onOpenChange={addImage.onClose}>
-      <DialogContent className="sm:max-w-[915px]">
+      <DialogContent className="sm:max-w-xl">
         <Carousel
           showArrows={true}
           autoPlay={false}

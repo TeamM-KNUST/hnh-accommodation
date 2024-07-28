@@ -5,9 +5,11 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 
+
+
 interface UploadImageProps {
-  onChange: (value: string[]) => void;
   value: string[];
+  onChange: (value: string[]) => void;
 }
 
 export default function UploadImage({ onChange, value }: UploadImageProps) {
@@ -15,12 +17,15 @@ const [photos, setPhotos] = useState<string[]>(value);
 
 useEffect(() => {
   setPhotos(value);
+
+  console.log("Value props updated", value);
 }, [value]);
 
-const handleUpload = (data: any) => {
-  const newPhotos = [...photos, data.info.secure_url];
-  setPhotos(newPhotos);
-  onChange(newPhotos);
+const handleUpload = (data:any) => {
+   const newPhotoUrl = data.info.secure_url;
+   const newPhotos = [...photos, newPhotoUrl];
+   setPhotos(newPhotos);
+   onChange(newPhotos);
 };
 
   return (
@@ -36,7 +41,7 @@ const handleUpload = (data: any) => {
       <div className="grid grid-cols-3 gap-4 h-[55vh] overflow-auto pb-10 no-scrollbar">
         {photos.map((photo, index) => (
           <div className="relative h-36 w-[200px]" key={index}>
-            <Image src={photo} fill alt={`upload ${index}`} />
+            <Image src={photo} layout="fill" objectFit="cover" alt={`upload ${index}`} />
           </div>
         ))}
       </div>

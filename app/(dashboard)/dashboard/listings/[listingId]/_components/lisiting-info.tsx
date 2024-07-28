@@ -79,9 +79,8 @@ export const ListingInfo = ({
         <hr />
         <Sleep />
         <hr />
-        <Offers />
         <div className="flex flex-col gap-2">
-          <h4 className="text-xl font-semibold ">Amenties</h4>
+          <h4 className="text-xl font-semibold ">What this place offers</h4>
           <ul className="grid grid-cols-5 gap-2">
             {placeAmeneites.map((amenity) => (
               <li

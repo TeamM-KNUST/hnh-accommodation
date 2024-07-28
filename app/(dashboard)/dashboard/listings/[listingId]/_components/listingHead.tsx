@@ -47,18 +47,19 @@ function ListingHead({ title, imageSrc, id, currentUser }: Props) {
       <div>
         <h1 className="text-2xl font-bold">List of Facilities</h1>
         <div className="flex flex-wrap justify-between">
-          {imagesToShow.map((image, index) => (
-            <div key={index} className="w-[33%]">
-              <Image
-                src={image.url}
-                alt={image.alt}
-                width={500}
-                height={500}
-                className="w-full h-40 object-cover cursor-pointer "
-                onClick={addImage.onOpen}
-              />
-            </div>
-          ))}
+          <ul className="flex gap-5 flex-wrap">
+            {imagesToShow.map((image, index) => (
+              <li key={index} className="relative w-48 h-32 cursor-pointer">
+                <Image
+                  src={image.url}
+                  alt={image.alt}
+                  fill
+                  className="w-full h-40 object-cover cursor-pointer "
+                  onClick={addImage.onOpen}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
         {images.length > 3 && (
           <button

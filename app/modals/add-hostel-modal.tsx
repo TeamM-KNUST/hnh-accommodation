@@ -16,15 +16,19 @@ import { toast } from "react-toastify";
 import { Combobox, ComboboxItem } from "@/components/ui/combobox";
 import useAddHostel from "@/hooks/addhostel";
 import UploadImage from "@/components/upload-image";
+import { ProcessAmeneties } from "@/components/amenities";
+
+
 
 
 
 enum STEPS {
   IMAGES = 0,
   PRICE = 1,
-  DESCRIPTION = 2,
-  LOCATION = 3,
-  CATEGORY = 4,
+  AMENITIES= 2,
+  DESCRIPTION = 3,
+  LOCATION = 4,
+  CATEGORY = 5,
 }
 
 export const AddHostelModal = () => {
@@ -49,15 +53,18 @@ export const AddHostelModal = () => {
       description: "",
       location: " ",
       category: " ",
+      amenities: [],
     },
   });
 
   const imageSrc = watch("imageSrc");
   const location = watch("location");
   const category = watch("category");
+const amenities = watch("amenities");
 
 
   const setCustomValue = (id: string, value: any) => {
+    console.log(`value ${id}`, value);
     setValue(id, value, {
       shouldValidate: true,
       shouldDirty: true,
@@ -146,6 +153,21 @@ export const AddHostelModal = () => {
           errors={errors}
           disabled={isLoading}
           formatPrice
+        />
+      </div>
+    );
+  }
+
+if (step === STEPS.AMENITIES) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="What amenities does your place have?"
+          subTitle="Select the amenities that your place has"
+        />
+        <ProcessAmeneties
+          value={amenities}
+          onChange={(value) => setCustomValue("amenities", value)}
         />
       </div>
     );

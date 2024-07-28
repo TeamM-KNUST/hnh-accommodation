@@ -28,7 +28,7 @@ function ListingClient({ listing, currentUser }: Props) {
         <div className="flex flex-col gap-6">
           <ListingHead
             title={listing.title}
-            imageSrc={listing.imageSrc}
+            imageSrc={listing.imageSrc[0]}
             id={listing.id}
             currentUser={currentUser}
           />
@@ -38,6 +38,7 @@ function ListingClient({ listing, currentUser }: Props) {
               category={category}
               description={listing.description}
               locationValue={listing.locationValue}
+              placeAmeneites={listing.placeAmenities}
             />
             <div className="order-first mb-10 md:order-last md:col-span-2">
               <ListingReservation

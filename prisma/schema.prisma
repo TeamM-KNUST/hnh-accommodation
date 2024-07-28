@@ -18,7 +18,7 @@ model User {
   name                String?
   email               String    @unique
   emailVerified       DateTime?
-  image               Json?
+  image               String?
   favoriteIds         String[]
   password            String?
   confirmPassword     String?
@@ -62,14 +62,15 @@ model Account {
 
 model Listing {
   id                 String      @id @default(cuid())
-  imageSrc           String
+  imageSrc           String[]
   userId             String
   title              String
   description        String
   createdAt          DateTime    @default(now())
   locationValue      String
   category           String
-  price              String
+  price              Float
+  placeAmenities     String[]
   user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   purchases          Purchase[]
   favorites          Favorite[]

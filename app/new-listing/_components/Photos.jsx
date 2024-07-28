@@ -1,12 +1,14 @@
 "use client";
-import React, { useState } from "react";
-import { userAppStore } from "../../../store/store";
+import { userAppStore } from "@/store/store";
 import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
-export const Photos=()=> {
+
+export default function Photos() {
   const { photos, setPhotos } = userAppStore();
   const handleUpload = (data) => {
+    console.log(data);
     setPhotos([...photos, data.info.secure_url]);
   };
   return (
@@ -16,20 +18,21 @@ export const Photos=()=> {
         You'll need 5 photos to get started. You can add more or make changes
         later.
       </p>
-        <CldUploadButton
+      <CldUploadButton
         options={{ multiple: true }}
         onSuccess={handleUpload}
         uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
-          >
-              <span className="relative cursor-pointer hover:opacity-70 transition border-dashed border-2 p-36 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600">
-          Upload
-        </span>
+      >
+        <Button
+          variant="destructive"
+
+        >Uploud</Button>
       </CldUploadButton>
 
       <div className="grid grid-cols-3 gap-4 h-[55vh] overflow-auto pb-10 no-scrollbar">
         {photos.map((photo) => (
           <div className="relative h-36 w-[200px]" key={photo}>
-            <Image src={photo.Photos} fill alt="upload" />
+            <Image src={photo} fill alt="upload" />
           </div>
         ))}
       </div>

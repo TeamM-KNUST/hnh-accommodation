@@ -24,6 +24,7 @@ export async function POST(req: Request) {
         location,
         category,
         price,
+        amenities,
         } = body;
         
         Object.keys(body).forEach((value: any) => {
@@ -42,12 +43,14 @@ export async function POST(req: Request) {
             description,
             locationValue:location,
             userId: currentUser.id,
-            price,
+            price:parseFloat(price),
+             placeAmenities: amenities
         },
     });
         
 
         return NextResponse.json(listing)
+        console.log(listing)
         
     }
     catch (error) {

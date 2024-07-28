@@ -2,10 +2,8 @@
 
 import { Overview } from "./_components/overview"
 import { StepOneStarter } from "./_components/StepOneStart"
-import { ListingType } from "./_components/ListingType"
 import { FloorPlan } from "./_components/FloorPlan"
 import { StepTwoStarter } from "./_components/StepTwoStarter"
-import { Photos } from "./_components/Photos"
 import  {ProcessAmeneties} from "./_components/ProcessAmeneties"
 import { useRouter } from "next/navigation";
 import { useState,useEffect } from "react";
@@ -15,6 +13,7 @@ import StepThreeStarter from "./_components/StepThreeStarter";
 import Description from "./_components/Description";
 import Price from "./_components/Price";
 import { Button } from "@/components/ui/button";
+import Photos from "./_components/Photos";
 
 import axios from "axios";
 
@@ -105,7 +104,7 @@ const NewListingPage = () => {
       <footer
         className={`flex ${
           step > 0 ? "justify-between" : "justify-end"
-        } items-center px-20 pb-4  border-t-4 border-t-gray-300 `}
+        } items-center px-20 pb-4  border-b-4 border-t-gray-300 `}
       >
         {step >= 1 && (
           <Button

@@ -90,7 +90,7 @@ export const ListingCard = ({
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
           <Image
             fill
-            src={data.imageSrc}
+            src={data.imageSrc[0]}
             alt="hostel"
             className="object-cover w-full h-full group-hover:scale-110 transition duration-300 ease-in-out"
           />

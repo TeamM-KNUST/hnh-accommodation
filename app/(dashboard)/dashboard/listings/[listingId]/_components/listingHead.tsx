@@ -4,10 +4,12 @@ import { Heading } from "@/components/heading";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import HeartButton from "../../../_components/heart-button";
-import { Listing, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { images } from "@/data/constant";
 import { useState } from "react";
 import useAddImage from "@/hooks/addImage";
+import { ArrowBigLeft, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   title: string;
@@ -23,7 +25,13 @@ function ListingHead({ title, imageSrc, id, currentUser }: Props) {
   const imagesToShow = showAll ? images : images.slice(0, 3);
   return (
     <>
-      <Heading title={title} subTitle="DFGSDFSDFsdsd" />
+      <div className="flex items-center justify-between">
+        <Heading title={title} subTitle="DFGSDFSDFsdsd" />
+        <Button variant="secondary" onClick={() => window.history.back()}>
+          <ArrowLeft size={22}className="mr-2" />
+          Back
+        </Button>
+      </div>
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}

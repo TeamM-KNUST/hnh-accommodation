@@ -16,20 +16,18 @@ const font = Poppins({
 });
 
 export const Connect = () => {
-	const router = useRouter();
+  const router = useRouter();
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
   const getImageUrl = useMemo(() => {
-    return isSmallScreen
-      ? "https://a.hwstatic.com/image/upload/f_auto,h_400,q_50/v1644922394/pwa/new/The_Spindrift_Hostel-img-sm.jpg"
-      : "https://a.hwstatic.com/image/upload/f_auto,h_568,q_50/v1644922394/pwa/new/The_Spindrift_Hostel-img.jpg";
+    return isSmallScreen ? "/image/homie.jpg" : "/image/homie.jpg";
   }, [isSmallScreen]);
   return (
     <div className=" relative w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto xl:pl-28 md:pl-10 sm:pl-2">
       <Image
         src={getImageUrl}
         alt="hostel"
-        className="block mx-auto object-contain  max-h-[568px] w-[305px]exi lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0"
+        className="block mx-auto object-contain  max-h-[568px] w-[305px] lg:order-2 lg:max-h-[568px] lg:w-[568px] lg:m-0 rounded-2xl hover:scale-110 transition-transform duration-300"
         height={568}
         width={504}
       />
@@ -49,14 +47,13 @@ export const Connect = () => {
           )}
         >
           Helping you
-          <span className="text-[#cc0074]"> connect with travellers </span> .
-          Even <span className="text-[#cc0074]">before</span> you get to your
-          hostel.
+          <span className="text-[#cc0074]"> connect with students </span> . Even{" "}
+          <span className="text-[#cc0074]">before</span> you get to your hostel.
         </h2>
         <Button
           size="lg"
-				  className="h-12 mt-4 text-lg font-semibold bg-[#cc0074] text-white text-center "
-				  onClick={() => router.push("/dashboard")}
+          className="h-12 mt-4 text-lg font-semibold bg-[#cc0074] text-white text-center "
+          onClick={() => router.push("/dashboard")}
         >
           Browse hostels
         </Button>

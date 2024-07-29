@@ -13,6 +13,9 @@ const nextConfig = {
 			},
 			{
 				hostname:"imgs.search.brave.com"
+			},
+			{
+				hostname:"photos.google.com"
 			}
 		]
 	},

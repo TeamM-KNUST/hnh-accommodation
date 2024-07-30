@@ -39,7 +39,11 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
     axios
       .post("api/reservations", {
         listingId: listing.id,
-        totalPrice: listing.price,
+        totalPrice:
+          listing.oneInARoomPrice ||
+          listing.twoInARoomPrice ||
+          listing.threeInARoomPrice ||
+          listing.fourInARoomPrice,
       })
       .then(() => {
         toast.success("Reservation created successfully");
@@ -49,7 +53,15 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [currentUser, listing.id, listing.price, router]);
+  }, [
+    currentUser,
+    listing.id,
+    router,
+    listing.oneInARoomPrice,
+    listing.twoInARoomPrice,
+    listing.threeInARoomPrice,
+    listing.fourInARoomPrice,
+  ]);
 
   const category = useMemo(() => {
     return categories.find((item) => item.name === listing.category);
@@ -75,10 +87,16 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
             />
             <div className="order-first mb-10 md:order-last md:col-span-2">
               <ListingReservation
-                totalPrice={listing.price}
                 disabledDates={disabledDates}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
+                oneInRoom={listing.oneInARoomPrice}
+                twoInRoom={listing.twoInARoomPrice}
+                threeInRoom={listing.threeInARoomPrice}
+                fourInRoom={listing.fourInARoomPrice}
+                managerName={listing.managerName}
+                managerNumber={listing.managerNumber.toString()}
+                address={listing.digitalAddress}
               />
             </div>
           </div>

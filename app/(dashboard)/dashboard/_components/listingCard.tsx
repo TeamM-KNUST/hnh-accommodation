@@ -100,11 +100,6 @@ export const ListingCard = ({
             <div className="font-light text-neutral-500">
               {reservationDate || data.category}
             </div>
-            <div className="flex flex-row items-center gap-">
-              <div className="flex gap-1 font-semibold">
-                {price} {!reservation && <div className="font-light">year</div>}
-              </div>
-            </div>
           </div>
         </div>
 

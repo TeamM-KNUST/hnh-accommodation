@@ -4,42 +4,46 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 type Props = {
-
-  totalPrice: number;
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: any;
+  oneInRoom: string;
+  twoInRoom: string;
+  threeInRoom: string;
+  fourInRoom: string;
+  managerName: string;
+  managerNumber: string;
+  address: string;
 };
 
 function ListingReservation({
-  totalPrice,
   onSubmit,
   disabled,
+  oneInRoom,
+  twoInRoom,
+  threeInRoom,
+  fourInRoom,
+  managerName,
+  managerNumber,
+  address,
 }: Props) {
   return (
     <div className="mx-auto ml-10 ">
-      <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden ">
-        <div className="flex flex-row items-center gap-1 p-4">
-          <p className="flex gap-1 text-2xl font-semibold">
-            <p className="font-light text-neutral-600">year</p>
-          </p>
-        </div>
-
-        <hr />
-        <div className="p-4">
-          <Button
-            variant="destructive"
-            disabled={disabled}
-            onClick={onSubmit}
-            className="w-full"
-          >
-            Reserve
-          </Button>
-        </div>
-        <hr />
-        <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
-          <p>Total</p>
-          <p> {totalPrice}</p>
+      <div>
+        <h2 className="text-xl my-2 py-2 font-semibold ">Manager Information</h2>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row items-center gap-1">
+            <p className="font-semibold">Manager Name:</p>
+            <p className="text-gray-950">{ managerName}</p>
+          </div>
+          <div className="flex flex-row items-center gap-1">
+            <p className="font-semibold">Manager Number:</p>
+            <p className="text-gray-950">{managerNumber}</p>
+          </div>
+          <div className="flex flex-row items-center gap-1">
+            <p className="font-semibold">Digital Address:</p>
+            <p className="text-gray-950">{address}</p>
+          </div>
         </div>
       </div>
       <div className="mt-4">
@@ -61,29 +65,53 @@ function ListingReservation({
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">One In A Room</td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-950">
-                Gh₵ 8000 - 9000
+                Gh₵ {oneInRoom}
               </td>
             </tr>
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">Two In A Room</td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-950">
-                Gh₵ 6000 - 7000
+                Gh₵ {twoInRoom}
               </td>
             </tr>
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">Three In A Room</td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-950">
-                Gh₵ 4000 - 5000
+                Gh₵ {threeInRoom}
               </td>
             </tr>
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">Four In A Room</td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-950">
-                Gh₵ 2000 - 3000
+                Gh₵ {fourInRoom}
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden ">
+        <div className="flex flex-row items-center gap-1 p-4">
+          <p className="flex gap-1 text-2xl font-semibold">
+            <p className="font-light text-neutral-600">year</p>
+          </p>
+        </div>
+
+        <hr />
+        <div className="p-4">
+          <Button
+            variant="destructive"
+            disabled={disabled}
+            onClick={onSubmit}
+            className="w-full"
+          >
+            Reserve
+          </Button>
+        </div>
+        <hr />
+        <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
+          <p>Total</p>
+          <p> {}</p>
+        </div>
       </div>
     </div>
   );

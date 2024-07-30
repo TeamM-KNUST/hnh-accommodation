@@ -10,9 +10,9 @@ export async function POST(req: Request) {
         }
         const body = await req.json();
 
-        const { listingId, price } = body;
+        const { listingId, totalPrice } = body;
         
-        if (!listingId || !price) {
+        if (!listingId || !totalPrice) {
             return new NextResponse("Bad Request", { status: 400 });
         }
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     data: {
       reservations: {
         create: {
-          totalPrice: price,
+          totalPrice,
           user: {
             connect: {
               id: currentUser.id,

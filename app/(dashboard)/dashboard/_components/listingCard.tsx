@@ -74,11 +74,6 @@ export const ListingCard = ({
 
   const reservationDate = useMemo(() => {
     if (!reservation) return null;
-
-    const start = new Date(reservation.startDate);
-    const end = new Date(reservation.endDate);
-
-    return `${format(start, "MMM dd")} - ${format(end, "MMM dd")}`;
   }, [reservation]);
 
   return (

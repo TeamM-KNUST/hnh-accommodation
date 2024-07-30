@@ -34,8 +34,6 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
       return redirect("/auth/login");
     }
 
-
-
     setIsLoading(true);
 
     axios
@@ -45,10 +43,9 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
       })
       .then(() => {
         toast.success("Reservation created successfully");
-        router.push("/reserved")
-      
+        router.push("/reserved");
       })
-    
+
       .finally(() => {
         setIsLoading(false);
       });

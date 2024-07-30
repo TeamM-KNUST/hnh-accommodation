@@ -26,11 +26,7 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
   const router = useRouter();
 
   const disabledDates = useMemo(() => {
-    return reservations.map((reservation) => {
-      return {
-        start: reservation.createdAt,
-      };
-    });
+    return reservations.map((item) => item.totalPrice);
   }, [reservations]);
 
   const onCreateReservation = useCallback(() => {
@@ -38,18 +34,19 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
       return redirect("/auth/login");
     }
 
+
+
     setIsLoading(true);
 
     axios
       .post("api/reservations", {
         listingId: listing.id,
-        startDate: new Date().toISOString(),
-        endDate: new Date().toISOString(),
         totalPrice: listing.price,
       })
       .then(() => {
         toast.success("Reservation created successfully");
         router.push("/reserved")
+      
       })
     
       .finally(() => {
@@ -84,6 +81,7 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
                 totalPrice={listing.price}
                 disabledDates={disabledDates}
                 onSubmit={onCreateReservation}
+                disabled={isLoading}
               />
             </div>
           </div>

@@ -43,30 +43,44 @@ function ListingReservation({
         </div>
       </div>
       <div className="mt-4">
-        <h2 className="text-xl font-semibold py-2 my-2">Potential Price Range</h2>
+        <h2 className="text-xl font-semibold py-2 my-2">
+          Potential Price Range
+        </h2>
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Room Type</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Room Type
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Price
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">One In A Room</td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-950">Gh 100</td>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-950">
+                Gh₵ 8000 - 9000
+              </td>
             </tr>
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">Two In A Room</td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-950">$80</td>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-950">
+                Gh₵ 6000 - 7000
+              </td>
             </tr>
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">Three In A Room</td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-950">$60</td>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-950">
+                Gh₵ 4000 - 5000
+              </td>
             </tr>
             <tr>
               <td className="px-6 py-4 whitespace-nowrap">Four In A Room</td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-950">$50</td>
+              <td className="px-6 py-4 whitespace-nowrap text-gray-950">
+                Gh₵ 2000 - 3000
+              </td>
             </tr>
           </tbody>
         </table>

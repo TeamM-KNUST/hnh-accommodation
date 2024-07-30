@@ -8,7 +8,7 @@ type Props = {
   totalPrice: number;
   onSubmit: () => void;
   disabled?: boolean;
-  disabledDates: Date[];
+  disabledDates: any;
 };
 
 function ListingReservation({

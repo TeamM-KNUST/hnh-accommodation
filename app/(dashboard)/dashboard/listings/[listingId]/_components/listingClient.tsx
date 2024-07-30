@@ -2,22 +2,62 @@
 
 import { Container } from "@/components/container";
 
-import {useMemo} from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { ListingInfo } from "./lisiting-info";
-import { Listing, User } from "@prisma/client";
+import { Listing, Reservation, User } from "@prisma/client";
 import { categories } from "@/data/constant";
 import ListingHead from "./listingHead";
 import ListingReservation from "./listing-reservation";
+import { redirect, useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type Props = {
   listing: Listing & {
     user: User;
   };
   currentUser?: User | null;
+  reservations: Reservation[];
 };
 
-function ListingClient({ listing, currentUser }: Props) {
+function ListingClient({ listing, currentUser, reservations = [] }: Props) {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const disabledDates = useMemo(() => {
+    return reservations.map((reservation) => {
+      return {
+        start: reservation.createdAt,
+        end: reservation.endDate,
+      };
+    });
+  }, [reservations]);
+
+  const onCreateReservation = useCallback(() => {
+    if (!currentUser) {
+      return redirect("/auth/login");
+    }
+
+    setIsLoading(true);
+
+    axios
+      .post("api/reservations", {
+        listingId: listing.id,
+        startDate: new Date().toISOString(),
+        endDate: new Date().toISOString(),
+        totalPrice: listing.price,
+      })
+      .then(() => {
+        toast.success("Reservation created successfully");
+        router.push("/reserved")
+      })
+    
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [currentUser, listing.id, listing.price, router]);
+
   const category = useMemo(() => {
     return categories.find((item) => item.name === listing.category);
   }, [listing.category]);
@@ -42,9 +82,9 @@ function ListingClient({ listing, currentUser }: Props) {
             />
             <div className="order-first mb-10 md:order-last md:col-span-2">
               <ListingReservation
-                totalPrice={listing.title.length}
-                onSubmit={() => {}}
-                disabledDates={[]}
+                totalPrice={listing.price}
+                disabledDates={disabledDates}
+                onSubmit={onCreateReservation}
               />
             </div>
           </div>

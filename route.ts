@@ -9,6 +9,7 @@ export const publicRoutes = [
     "/",
     "/auth/confirm",
     "/dashboard",
+    "/api/webhook",
     
 ];
 

@@ -83,7 +83,6 @@ export const AddHostelModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("hostel Data",data);
     if (step !== STEPS.CATEGORY) {
       return onNext();
     }

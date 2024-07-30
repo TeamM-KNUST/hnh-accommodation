@@ -46,7 +46,7 @@ const listing = await db.listing.create({
         locationValue:location,
         userId: currentUser.id,
         managerName,
-        managerNumber,
+        managerNumber: parseInt(managerNumber),
         digitalAddress: address,
         oneInARoomPrice: oneInRoom,
         twoInARoomPrice: twoInRoom,
@@ -55,8 +55,6 @@ const listing = await db.listing.create({
         placeAmenities: amenities
     },
 });
-    
-console.log(listing)
 return NextResponse.json(listing)
         
     }

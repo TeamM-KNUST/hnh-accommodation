@@ -30,7 +30,6 @@ export function Combobox({ data, onChange, children }: ComboboxProps) {
   const [value, setValue] = React.useState(data || "");
 
   const handleSelect = (itemName: string) => {
-    console.log(itemName);
     setValue(itemName); // Update local state
     if (onChange) {
       onChange(itemName); // Invoke onChange prop with new value

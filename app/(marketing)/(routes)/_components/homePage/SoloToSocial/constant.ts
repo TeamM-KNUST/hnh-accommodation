@@ -20,7 +20,7 @@ export const CARD_ITEMS = [
 	},
 	{
 		frameUrl:
-			"https://a.hwstatic.com/video/upload/q_50/v1644569502/pwa/linkup/linkups-surf.mp4",
+			"https://x.com/i/status/1421907710405226496",
 		name: "Anna",
 		title: "Surf Class",
 		time: "Today",

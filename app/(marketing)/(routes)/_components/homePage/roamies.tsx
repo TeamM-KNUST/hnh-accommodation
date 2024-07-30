@@ -25,24 +25,20 @@ export const Roamies = () => {
       <div className="flex items-center mb-8 mt-16 max-h-[23.375rem] min-w-[21.4375rem]  xl:max-w-[48.75rem] xl:max-h-[38.75rem]">
         <div className="mr-[-1rem] xl:mr-6 xl:mt-16 overflow-hidden max-w-full ">
           <Image
-            src={
-              "https://a.hwstatic.com/image/upload/f_auto,h_260,w_355,q_50/v1651737425/pwa/roamies/roamies.d.2.png"
-            }
+            src="/image/home.jpg"
             alt="Roamies"
-            width={355}
-            height={260}
+            width={455}
+            height={360}
             loading="lazy"
-            className="hidden xl:block"
+            className="hidden xl:block rounded-3xl"
           />
           <Image
-            src={
-              "https://a.hwstatic.com/image/upload/f_auto,h_150,w_172,q_50/v1651737423/pwa/roamies/roamies.m2.png"
-            }
+            src="/image/home.jpg"
             alt="Roamies"
             width={172}
             height={150}
             loading="lazy"
-            className="xl:hidden"
+            className="xl:hidden rounded-3xl"
           />
           <div className="ml:auto mr-8 xl:mr-0 mt-4">
             <Image
@@ -78,24 +74,20 @@ export const Roamies = () => {
             className="xl:hidden max-w-full h-auto"
           />
           <Image
-            src={
-              "https://a.hwstatic.com/image/upload/f_auto,h_292,w_393,q_50/v1651737423/pwa/roamies/roamies.d.4.png"
-            }
+            src="/image/ms.jpg"
             alt="Roamies"
             width={393}
             height={292}
             loading="lazy"
-            className="hidden xl:block"
+            className="hidden xl:block rounded-3xl"
           />
           <Image
-            src={
-              "https://a.hwstatic.com/image/upload/f_auto,h_181,w_180,q_50/v1651737423/pwa/roamies/roamies.m4.png"
-            }
+            src="/image/ms.jpg"
             alt="Roamies"
             width={180}
             height={181}
             loading="lazy"
-            className="xl:hidden"
+            className="xl:hidden rounded-2xl"
           />
         </div>
       </div>

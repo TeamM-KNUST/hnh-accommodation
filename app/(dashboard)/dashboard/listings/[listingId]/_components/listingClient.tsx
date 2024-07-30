@@ -29,7 +29,6 @@ function ListingClient({ listing, currentUser, reservations = [] }: Props) {
     return reservations.map((reservation) => {
       return {
         start: reservation.createdAt,
-        end: reservation.endDate,
       };
     });
   }, [reservations]);

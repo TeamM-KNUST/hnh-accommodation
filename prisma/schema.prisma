@@ -90,19 +90,15 @@ model Listing {
 model Reservation {
   id                 String      @id @default(cuid())
   userId             String
-  startDate          DateTime
-  endDate            DateTime
+
   totalPrice         Int
   createdAt          DateTime    @default(now())
   listingId          String
-
   user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing            Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)          
 
-
   @@index([userId])
   @@index([listingId])
-  @@index([startDate, endDate])
 }
 
 model Review {

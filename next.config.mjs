@@ -14,9 +14,6 @@ const nextConfig = {
 			{
 				hostname:"imgs.search.brave.com"
 			},
-			{
-				hostname:"x.com"
-			}
 		]
 	},
 };

@@ -43,7 +43,7 @@ export async function POST(req: Request, { params }: { params: { listingId: stri
                         name: listing.title,
                         description: listing.description,
                     },
-                    unit_amount: Math.round(listing.price * 100),
+                    unit_amount: Math.round(listing.managerNumber* 100),
                 },
                 quantity: 1,
             },

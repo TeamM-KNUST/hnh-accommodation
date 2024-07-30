@@ -5,7 +5,7 @@ import { Skeleton } from "./ui/skeleton";
 
 interface HeadingProps {
   title: string;
-  subTitle: string;
+  subTitle?: string;
   center?: string;
 }
 

@@ -26,9 +26,9 @@ function ListingHead({ title, imageSrc, id, currentUser }: Props) {
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading title={title} subTitle="DFGSDFSDFsdsd" />
+        <Heading title={title} />
         <Button variant="secondary" onClick={() => window.history.back()}>
-          <ArrowLeft size={22}className="mr-2" />
+          <ArrowLeft size={22} className="mr-2" />
           Back
         </Button>
       </div>

@@ -71,14 +71,20 @@ model Listing {
   description        String
   createdAt          DateTime    @default(now())
   locationValue      String
+  managerName        String
+  managerNumber      Int
+  digitalAddress     String
+  oneInARoomPrice    String
+  twoInARoomPrice    String
+  threeInARoomPrice  String
+  fourInARoomPrice   String
   category           String
-  price              Float
   placeAmenities     String[]
   user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   purchases          Purchase[]
   favorites          Favorite[]
   reviews            Review[]
-  reservations        Reservation[]
+  reservations       Reservation[]
 
   @@index([createdAt])
   @@index([locationValue])

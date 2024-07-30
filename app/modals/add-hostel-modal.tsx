@@ -17,18 +17,16 @@ import { Combobox, ComboboxItem } from "@/components/ui/combobox";
 import useAddHostel from "@/hooks/addhostel";
 import UploadImage from "@/components/upload-image";
 import { ProcessAmeneties } from "@/components/amenities";
-
-
-
-
+import { m } from "framer-motion";
 
 enum STEPS {
   IMAGES = 0,
   PRICE = 1,
-  AMENITIES= 2,
+  AMENITIES = 2,
   DESCRIPTION = 3,
   LOCATION = 4,
-  CATEGORY = 5,
+  MANAGER = 5,
+  CATEGORY = 6,
 }
 
 export const AddHostelModal = () => {
@@ -49,10 +47,16 @@ export const AddHostelModal = () => {
     defaultValues: {
       imageSrc: [],
       title: "",
-      price: 1,
+      oneInRoom: "",
+      twoInRoom: "",
+      threeInRoom: "",
+      fourInRoom: "",
       description: "",
       location: " ",
       category: " ",
+      managerName: "",
+      managerNumber: 0,
+      address: "",
       amenities: [],
     },
   });
@@ -60,8 +64,7 @@ export const AddHostelModal = () => {
   const imageSrc = watch("imageSrc");
   const location = watch("location");
   const category = watch("category");
-const amenities = watch("amenities");
-
+  const amenities = watch("amenities");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -80,17 +83,16 @@ const amenities = watch("amenities");
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log("hostel Data",data);
     if (step !== STEPS.CATEGORY) {
       return onNext();
     }
 
-  
     setIsLoading(true);
 
     axios
       .post("/api/hostels", data)
       .then((response) => {
-
         toast.success("Hostel added successfully");
         router.refresh();
         reset();
@@ -99,7 +101,6 @@ const amenities = watch("amenities");
       })
       .catch((error) => {
         toast.error(error.response.data);
-    
       })
       .finally(() => {
         setIsLoading(false);
@@ -133,20 +134,52 @@ const amenities = watch("amenities");
     </div>
   );
 
-
-
   if (step === STEPS.PRICE) {
     bodyContent = (
       <div className="flex flex-col gap-4">
         <Heading
-          title="How much do you want to charge for your place?"
-          subTitle="Set a price for your guests"
+          title="What is the potential price range your rooms?"
+          subTitle="Set a price for your students"
         />
 
         <Input
-          id="price"
-          label="Price"
-          type="number"
+          id="oneInRoom"
+          label="One in a room"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+          formatPrice
+        />
+        <hr />
+
+        <Input
+          id="twoInRoom"
+          label="Two in a room"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+          formatPrice
+        />
+
+        <hr />
+
+        <Input
+          id="threeInRoom"
+          label="Three in a room"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+          formatPrice
+        />
+
+        <hr />
+
+        <Input
+          id="fourInRoom"
+          label="Four in a room"
           required
           register={register}
           errors={errors}
@@ -157,7 +190,7 @@ const amenities = watch("amenities");
     );
   }
 
-if (step === STEPS.AMENITIES) {
+  if (step === STEPS.AMENITIES) {
     bodyContent = (
       <div className="flex flex-col gap-4">
         <Heading
@@ -201,6 +234,49 @@ if (step === STEPS.AMENITIES) {
       </div>
     );
   }
+
+  if (step === STEPS.MANAGER) {
+    bodyContent = (
+      <div className="flex flex-col gap-4">
+        <Heading
+          title="Who is the manager of your place?"
+          subTitle="Enter the manager details"
+        />
+
+        <Input
+          id="managerName"
+          label="Manager Name"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+        />
+        <hr />
+
+        <Input
+          id="managerNumber"
+          label="Manager Number"
+          type="number"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+        />
+
+        <hr />
+
+        <Input
+          id="address"
+          label="Address"
+          required
+          register={register}
+          errors={errors}
+          disabled={isLoading}
+        />
+      </div>
+    );
+  }
+
   if (step === STEPS.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -252,7 +328,6 @@ if (step === STEPS.AMENITIES) {
       </div>
     );
   }
-
 
   return (
     <Modal

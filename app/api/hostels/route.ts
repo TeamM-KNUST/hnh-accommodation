@@ -15,42 +15,49 @@ export async function POST(req: Request) {
        
         const body = await req.json();
 
-        
-
     const {
         imageSrc,
         title,
         description,
         location,
         category,
-        price,
+        managerName,
+        managerNumber,
+        address,
+        oneInRoom,
+        twoInRoom,
+        threeInRoom,
+        fourInRoom,
         amenities,
         } = body;
         
-        Object.keys(body).forEach((value: any) => {
+  Object.keys(body).forEach((value: any) => {
     if (!body[value]) {
       NextResponse.error();
     }
-        });
-
-
-        
-    const listing = await db.listing.create({
-        data: {
-            imageSrc,
-            title,
-            category,
-            description,
-            locationValue:location,
-            userId: currentUser.id,
-            price:parseFloat(price),
-             placeAmenities: amenities
-        },
-    });
-        
-
-        return NextResponse.json(listing)
-        console.log(listing)
+  });
+     
+const listing = await db.listing.create({
+    data: {
+        imageSrc,
+        title,
+        category,
+        description,
+        locationValue:location,
+        userId: currentUser.id,
+        managerName,
+        managerNumber,
+        digitalAddress: address,
+        oneInARoomPrice: oneInRoom,
+        twoInARoomPrice: twoInRoom,
+        threeInARoomPrice: threeInRoom,
+        fourInARoomPrice: fourInRoom,
+        placeAmenities: amenities
+    },
+});
+    
+console.log(listing)
+return NextResponse.json(listing)
         
     }
     catch (error) {

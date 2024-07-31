@@ -100,6 +100,10 @@ export const ListingCard = ({
             <div className="font-light text-neutral-500">
               {reservationDate || data.category}
             </div>
+
+            <div className="font-light text-neutral-500">
+              {reservationDate || data.locationValue}
+            </div>
           </div>
         </div>
 

@@ -4,7 +4,6 @@ import { AvatarImg } from "@/app/(marketing)/(routes)/_components/navbar/avatarI
 import { useCountries } from "@/hooks/useCountries";
 import { User } from "@prisma/client";
 import Sleep from "./sleep";
-import Offers from "./offer";
 import ListingCategory from "./listing-category";
 import Map from "@/components/Map";
 import { AmenetiesType } from "@/data/amenities";
@@ -97,6 +96,9 @@ export const ListingInfo = ({
         <p className="text-xl font-semibold">{`Where you’ll be`}</p>
         <Map />
       </div>
+      {/* How to show recommendated hostel based on location */}
+
+     
     </div>
   );
 };

@@ -24,8 +24,8 @@ const FavoritesPage = async () => {
   if (!listings || listings.length === 0 ) {
     return (
       <EmptyState
-        title="Unauthorized"
-        subtitle="You are not authorized to view this page. Please login to view your favorite listings."
+        title="No favorite listings"
+        subtitle="You have not added any listings to your favorites"
       />
     );
   }

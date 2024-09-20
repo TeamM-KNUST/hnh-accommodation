@@ -79,8 +79,11 @@ model Listing {
   threeInARoomPrice  String
   fourInARoomPrice   String
   category           String
+  categoryValue      String
   placeAmenities     String[]
   user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  location           Location    @relation(fields: [locationValue], references: [id], onDelete: Cascade)
+  categoryId           Category    @relation(fields: [categoryValue], references: [id], onDelete: Cascade)
   purchases          Purchase[]
   favorites          Favorite[]
   reviews            Review[]
@@ -88,9 +91,28 @@ model Listing {
 
   @@index([createdAt])
   @@index([locationValue])
-  @@index([category])
+  @@index([categoryValue])
 }
 
+model Location {
+  id                 String      @id @default(cuid())
+  name               String
+  slug               String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  listings           Listing[]
+}
+
+model Category {
+  id                 String      @id @default(cuid())
+  name               String
+  slug               String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  listings           Listing[]
+}
 
 
 model Reservation {
